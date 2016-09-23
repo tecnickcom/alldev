@@ -54,4 +54,4 @@ build:
 # Upload docker image
 upload:
 	docker push ${OWNER}/${PROJECT}:latest
-	docker push ${OWNER}/${PROJECT}:$(cat VERSION)-$(cat RELEASE)
+	docker push ${OWNER}/${PROJECT}:${VERSION}-${RELEASE}
