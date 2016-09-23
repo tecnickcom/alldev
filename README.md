@@ -16,9 +16,9 @@
 
 Source configuration file to build a Docker container image with a generic development environment.
 
-## Docker Image:
+The generated Docker image, available at https://hub.docker.com/r/tecnickcom/alldev/, 
+is quite large and it is intended to provide a ready-made development environment for different languages and technologies.
 
-https://hub.docker.com/r/tecnickcom/alldev/
 
 ## Requirements
 
