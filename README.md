@@ -52,7 +52,7 @@ docker build --tag="tecnickcom/alldev" .
 To log into the newly created container:
 ```
 docker run -t -i tecnickcom/alldev /bin/bash
-``
+```
 
 To get the container ID:
 ```
