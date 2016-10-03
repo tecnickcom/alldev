@@ -8,7 +8,7 @@
 # @link        https://github.com/tecnickcom/alldev
 # ------------------------------------------------------------------------------
 
-FROM ubuntu:xenial
+FROM phusion/baseimage
 MAINTAINER info@tecnick.com
 
 ENV DEBIAN_FRONTEND noninteractive
@@ -19,8 +19,17 @@ ENV DISPLAY :0
 ENV GOPATH=/root
 ENV PATH=/usr/local/go/bin:$GOPATH/bin:$PATH
 
-# Configure SSH
-RUN mkdir -p /root/.ssh && echo "Host github.com\n\tStrictHostKeyChecking no\n" >> /root/.ssh/config
+
+FROM phusion/baseimage
+MAINTAINER info@tecnick.com
+
+ENV DEBIAN_FRONTEND noninteractive
+ENV TERM linux
+RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
+ENV HOME /root
+ENV DISPLAY :0
+ENV GOPATH=/root
+ENV PATH=/usr/local/go/bin:$GOPATH/bin:$PATH
 
 # Add i386 architecture
 RUN dpkg --add-architecture i386
@@ -164,6 +173,26 @@ zbar-tools \
 zlib1g \
 zlib1g-dev
 
+# Configure SSH
+RUN mkdir -p /root/.ssh && echo "Host github.com\n\tStrictHostKeyChecking no\n" >> /root/.ssh/config
+
+# Install extra python dependencies
+RUN pip install --upgrade pip && \
+pip install cffi && \
+pip install --upgrade autopep8 && \
+pip install fabric
+
+# Install extra npm dependencies
+RUN cd /usr/bin && \
+ln -s nodejs node && \
+npm install --global grunt-cli && \
+npm install --global gulp-cli && \
+npm install --global jquery && \
+npm install --global uglify-js && \
+npm install --global uglifyjs && \
+npm install --global csso && \
+npm install --global html-minifier
+
 # Install and configure GO
 RUN wget https://storage.googleapis.com/golang/go1.7.1.linux-amd64.tar.gz && \
 tar xvf go1.7.1.linux-amd64.tar.gz && \
@@ -174,19 +203,3 @@ mkdir -p /root/src && \
 echo 'export GOPATH=/root' >> /root/.profile && \
 echo 'export PATH=/usr/local/go/bin:$GOPATH/bin:$PATH' >> /root/.profile && \
 go version
-
-# Install etra python dependencies
-RUN pip install --upgrade pip && \
-pip install cffi && \
-pip install --upgrade autopep8
-
-# Install extra npm dependencies
-RUN pip install fabric && \
-cd /usr/bin && ln -s nodejs node && \
-npm install --global grunt-cli && \
-npm install --global gulp-cli && \
-npm install --global jquery && \
-npm install --global uglify-js && \
-npm install --global uglifyjs && \
-npm install --global csso && \
-npm install --global html-minifier
