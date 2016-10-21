@@ -194,8 +194,8 @@ npm install --global csso && \
 npm install --global html-minifier
 
 # Install and configure GO
-RUN wget https://storage.googleapis.com/golang/go1.7.1.linux-amd64.tar.gz && \
-tar xvf go1.7.1.linux-amd64.tar.gz && \
+RUN wget https://storage.googleapis.com/golang/go1.7.3.linux-amd64.tar.gz && \
+tar xvf go1.7.3.linux-amd64.tar.gz && \
 mv go /usr/local && \
 mkdir -p /root/bin && \
 mkdir -p /root/pkg && \
