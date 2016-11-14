@@ -81,6 +81,7 @@ libc6-dev-i386 \
 libffi-dev \
 libglib2.0-0 \
 libglib2.0-dev \
+liblzma-dev \
 libssl1.0.0 \
 libssl-dev \
 libwine-development \
@@ -169,6 +170,7 @@ wget \
 wine \
 wine64-development-tools \
 winetricks \
+xmlsec1 \
 zbar-tools \
 zlib1g \
 zlib1g-dev
