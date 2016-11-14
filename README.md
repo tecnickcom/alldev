@@ -81,7 +81,7 @@ docker rm $(docker ps -a -q)
 
 To delete all images
 ```
-    docker rmi $(docker images -q)
+docker rmi $(docker images -q)
 ```
 
 ## Developer(s) Contact
