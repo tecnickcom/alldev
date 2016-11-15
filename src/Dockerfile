@@ -82,6 +82,7 @@ libxslt1.1 \
 libxslt1-dev \
 lsof \
 make \
+memcached \
 mingw-w64 \
 mingw-w64-i686-dev \
 mingw-w64-tools \
