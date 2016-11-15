@@ -19,18 +19,6 @@ ENV DISPLAY :0
 ENV GOPATH=/root
 ENV PATH=/usr/local/go/bin:$GOPATH/bin:$PATH
 
-
-FROM phusion/baseimage
-MAINTAINER info@tecnick.com
-
-ENV DEBIAN_FRONTEND noninteractive
-ENV TERM linux
-RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
-ENV HOME /root
-ENV DISPLAY :0
-ENV GOPATH=/root
-ENV PATH=/usr/local/go/bin:$GOPATH/bin:$PATH
-
 # Add i386 architecture
 RUN dpkg --add-architecture i386
 
