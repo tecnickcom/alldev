@@ -3,7 +3,7 @@
 # Development environment based on Ubuntu 16.04 (Xenial)
 #
 # @author      Nicola Asuni <info@tecnick.com>
-# @copyright   2016-2016 Nicola Asuni - Tecnick.com LTD
+# @copyright   2016-2017 Nicola Asuni - Tecnick.com LTD
 # @license     http://www.gnu.org/copyleft/lesser.html GNU-LGPL v3 (see LICENSE)
 # @link        https://github.com/tecnickcom/alldev
 # ------------------------------------------------------------------------------
@@ -23,7 +23,9 @@ ENV PATH=/usr/local/go/bin:$GOPATH/bin:$PATH
 RUN dpkg --add-architecture i386
 
 # Add repositories and update
-RUN apt-get update && apt-get -y dist-upgrade && \
+RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF && \
+echo "deb http://download.mono-project.com/repo/debian wheezy main" | tee /etc/apt/sources.list.d/mono-xamarin.list && \
+apt-get update && apt-get -y dist-upgrade && \
 apt-get install -y apt-utils software-properties-common python-software-properties && \
 apt-add-repository universe && \
 apt-add-repository multiverse && \
@@ -36,6 +38,7 @@ apache2 \
 astyle \
 autoconf \
 autotools-dev \
+automake \
 binfmt-support \
 binutils-mingw-w64 \
 build-essential \
@@ -54,13 +57,16 @@ flawfinder \
 g++ \
 gcc \
 gdb \
+gettext \
 ghostscript \
 git \
 g++-multilib \
 golang \
 golang-golang-x-tools \
 gsfonts \
+gtk-sharp2 \
 imagemagick \
+intltool \
 lcov \
 libboost-all-dev \
 libc6 \
@@ -69,9 +75,10 @@ libc6-dev-i386 \
 libffi-dev \
 libglib2.0-0 \
 libglib2.0-dev \
-liblzma-dev \
+libreadline6 \
 libssl1.0.0 \
 libssl-dev \
+libtool \
 libwine-development \
 libxml2 \
 libxml2-dev \
@@ -80,6 +87,7 @@ libxmlsec1-dev \
 libxmlsec1-openssl \
 libxslt1.1 \
 libxslt1-dev \
+liblzma-dev \
 lsof \
 make \
 memcached \
@@ -88,11 +96,13 @@ mingw-w64-i686-dev \
 mingw-w64-tools \
 mingw-w64-x86-64-dev \
 mongodb \
+mono-complete \
 mysql-client \
 mysql-server \
 mysql-utilities \
 nano \
 npm \
+nuget \
 openssh-client \
 openssh-server \
 openssl \
@@ -161,8 +171,20 @@ wine64-development-tools \
 winetricks \
 xmlsec1 \
 zbar-tools \
+zip \
 zlib1g \
 zlib1g-dev
+
+RUN nuget update -self
+
+RUN git clone https://github.com/mono/mono-tools.git && \
+cd mono-tools && \
+export enable_gtkhtml=no && \
+export enable_gecko=no && \
+export enable_webkit=no && \
+./autogen.sh && \
+make && \
+make install
 
 # Configure SSH
 RUN mkdir -p /root/.ssh && echo "Host github.com\n\tStrictHostKeyChecking no\n" >> /root/.ssh/config
