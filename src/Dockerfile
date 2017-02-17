@@ -2,7 +2,7 @@
 #
 # Development environment based on Ubuntu 16.04 (Xenial)
 #
-# @author      Nicola Asuni <nicola.asuni@tecnickcom.com>
+# @author      Nicola Asuni <info@tecnick.com>
 # @copyright   2016-2016 Nicola Asuni - Tecnick.com LTD
 # @license     http://www.gnu.org/copyleft/lesser.html GNU-LGPL v3 (see LICENSE)
 # @link        https://github.com/tecnickcom/alldev
@@ -185,8 +185,8 @@ npm install --global csso && \
 npm install --global html-minifier
 
 # Install and configure GO
-RUN wget https://storage.googleapis.com/golang/go1.7.5.linux-amd64.tar.gz && \
-tar xvf go1.7.5.linux-amd64.tar.gz && \
+RUN wget https://storage.googleapis.com/golang/go1.8.linux-amd64.tar.gz && \
+tar xvf go1.8.linux-amd64.tar.gz && \
 mv go /usr/local && \
 mkdir -p /root/bin && \
 mkdir -p /root/pkg && \
