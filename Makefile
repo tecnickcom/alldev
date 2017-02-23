@@ -48,12 +48,7 @@ all: help
 
 # Build the Docker image
 build:
-	docker rm `docker ps -a | grep ${OWNER}/${PROJECT}:raw | awk '{print $$1}'` || true
-	docker build -t ${OWNER}/${PROJECT}:raw ./src/
-	docker run -i ${OWNER}/${PROJECT}:raw /bin/bash -c "exit"
-	docker ps -a | grep ${OWNER}/${PROJECT}:raw | awk '{print $$1}' > container.id
-	docker export `cat container.id` | docker import - ${OWNER}/${PROJECT}:latest
-	docker rm `cat container.id`
+	docker build -t ${OWNER}/${PROJECT}:latest ./src/
 	docker tag ${OWNER}/${PROJECT}:latest ${OWNER}/${PROJECT}:${VERSION}-${RELEASE}
 
 # Upload docker image
