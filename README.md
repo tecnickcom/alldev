@@ -7,8 +7,8 @@
 
 * **category**    Docker
 * **author**      Nicola Asuni <info@tecnick.com>
-* **copyright**   2016-2016 Nicola Asuni - Tecnick.com LTD
-* **license**     http://www.gnu.org/copyleft/lesser.html GNU-LGPL v3 (see LICENSE)
+* **copyright**   2016-2017 Nicola Asuni - Tecnick.com LTD
+* **license**     MIT (see LICENSE)
 * **link**        https://github.com/tecnickcom/alldev
 * **docker**      https://hub.docker.com/r/tecnickcom/alldev/
 

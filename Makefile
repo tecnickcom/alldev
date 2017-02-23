@@ -3,8 +3,8 @@
 # @since       2016-09-23
 # @category    Docker
 # @author      Nicola Asuni <info@tecnick.com>
-# @copyright   2015-2015 Nicola Asuni - Tecnick.com LTD
-# @license     http://www.gnu.org/copyleft/lesser.html GNU-LGPL v3 (see LICENSE)
+# @copyright   2015-2017 Nicola Asuni - Tecnick.com LTD
+# @license     MIT (see LICENSE)
 # @link        https://github.com/tecnickcom/alldev
 #
 # This file is part of alldev project.
@@ -39,8 +39,8 @@ help:
 	@echo "${PROJECT} Makefile."
 	@echo "The following commands are available:"
 	@echo ""
-	@echo "    make build       : Build the Docker image"
-	@echo "    make upload      : Upload the docker image (only with the right credentials)"
+	@echo "    make build  : Build the Docker image"
+	@echo "    make upload : Upload the docker image (only with the right credentials)"
 	@echo ""
 
 # Alias for help target
@@ -48,7 +48,12 @@ all: help
 
 # Build the Docker image
 build:
-	docker build -t ${OWNER}/${PROJECT}:latest ./src/
+	docker rm `docker ps -a | grep ${OWNER}/${PROJECT}:raw | awk '{print $$1}'` || true
+	docker build -t ${OWNER}/${PROJECT}:raw ./src/
+	docker run -it ${OWNER}/${PROJECT}:raw bash -c "exit"
+	docker ps -a | grep ${OWNER}/${PROJECT}:raw | awk '{print $$1}' > container.id
+	docker export `cat container.id` | docker import - ${OWNER}/${PROJECT}:latest
+	docker rm `cat container.id`
 	docker tag ${OWNER}/${PROJECT}:latest ${OWNER}/${PROJECT}:${VERSION}-${RELEASE}
 
 # Upload docker image
