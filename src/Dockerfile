@@ -67,6 +67,7 @@ gsfonts \
 gtk-sharp2 \
 imagemagick \
 intltool \
+jq \
 lcov \
 libboost-all-dev \
 libc6 \
@@ -193,7 +194,8 @@ RUN mkdir -p /root/.ssh && echo "Host github.com\n\tStrictHostKeyChecking no\n" 
 RUN pip install --upgrade pip && \
 pip install cffi && \
 pip install --upgrade autopep8 && \
-pip install fabric
+pip install fabric && \
+pip install json-spec
 
 # Install extra npm dependencies
 RUN cd /usr/bin && \
