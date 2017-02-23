@@ -50,7 +50,7 @@ all: help
 build:
 	docker rm `docker ps -a | grep ${OWNER}/${PROJECT}:raw | awk '{print $$1}'` || true
 	docker build -t ${OWNER}/${PROJECT}:raw ./src/
-	docker run -it ${OWNER}/${PROJECT}:raw bash -c "exit"
+	docker run -i ${OWNER}/${PROJECT}:raw /bin/bash -c "exit"
 	docker ps -a | grep ${OWNER}/${PROJECT}:raw | awk '{print $$1}' > container.id
 	docker export `cat container.id` | docker import - ${OWNER}/${PROJECT}:latest
 	docker rm `cat container.id`
