@@ -13,14 +13,15 @@ MAINTAINER info@tecnick.com
 
 ENV DEBIAN_FRONTEND noninteractive
 ENV TERM linux
-RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
 ENV HOME /root
 ENV DISPLAY :0
 ENV GOPATH=/root
 ENV PATH=/usr/local/go/bin:$GOPATH/bin:$PATH
 
+RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections \
+
 # Add i386 architecture
-RUN dpkg --add-architecture i386 \
+&& dpkg --add-architecture i386 \
 
 # Add repositories and update
 && apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF \
