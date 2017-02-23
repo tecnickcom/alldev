@@ -4,7 +4,7 @@
 #
 # @author      Nicola Asuni <info@tecnick.com>
 # @copyright   2016-2017 Nicola Asuni - Tecnick.com LTD
-# @license     http://www.gnu.org/copyleft/lesser.html GNU-LGPL v3 (see LICENSE)
+# @license     MIT (see LICENSE)
 # @link        https://github.com/tecnickcom/alldev
 # ------------------------------------------------------------------------------
 
@@ -20,19 +20,22 @@ ENV GOPATH=/root
 ENV PATH=/usr/local/go/bin:$GOPATH/bin:$PATH
 
 # Add i386 architecture
-RUN dpkg --add-architecture i386
+RUN dpkg --add-architecture i386 \
 
 # Add repositories and update
-RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF && \
-echo "deb http://download.mono-project.com/repo/debian wheezy main" | tee /etc/apt/sources.list.d/mono-xamarin.list && \
-apt-get update && apt-get -y dist-upgrade && \
-apt-get install -y apt-utils software-properties-common python-software-properties && \
-apt-add-repository universe && \
-apt-add-repository multiverse && \
-apt-get update
+&& apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF \
+&& echo "deb http://download.mono-project.com/repo/debian wheezy main" | tee /etc/apt/sources.list.d/mono-xamarin.list \
+&& apt-get update && apt-get -y dist-upgrade \
+&& apt-get install -y apt-utils software-properties-common python-software-properties \
+&& apt-add-repository universe \
+&& apt-add-repository multiverse \
+&& apt-get update \
+
+# Configure SSH
+&& mkdir -p /root/.ssh && echo "Host github.com\n\tStrictHostKeyChecking no\n" >> /root/.ssh/config \
 
 # install development packages and debugging tools
-RUN apt-get install -y \
+&& apt-get install -y \
 alien \
 apache2 \
 astyle \
@@ -174,47 +177,51 @@ xmlsec1 \
 zbar-tools \
 zip \
 zlib1g \
-zlib1g-dev
+zlib1g-dev \
 
-RUN nuget update -self
+&& nuget update -self \
 
-RUN git clone https://github.com/mono/mono-tools.git && \
-cd mono-tools && \
-export enable_gtkhtml=no && \
-export enable_gecko=no && \
-export enable_webkit=no && \
-./autogen.sh && \
-make && \
-make install
-
-# Configure SSH
-RUN mkdir -p /root/.ssh && echo "Host github.com\n\tStrictHostKeyChecking no\n" >> /root/.ssh/config
+# Mono tools
+&& git clone https://github.com/mono/mono-tools.git \
+&& cd mono-tools \
+&& export enable_gtkhtml=no \
+&& export enable_gecko=no \
+&& export enable_webkit=no \
+&& ./autogen.sh \
+&& make \
+&& make install \
 
 # Install extra python dependencies
-RUN pip install --upgrade pip && \
-pip install cffi && \
-pip install --upgrade autopep8 && \
-pip install fabric && \
-pip install json-spec
+&& pip install --upgrade pip \
+&& pip install cffi \
+&& pip install --upgrade autopep8 \
+&& pip install fabric \
+&& pip install json-spec \
 
 # Install extra npm dependencies
-RUN cd /usr/bin && \
-ln -s nodejs node && \
-npm install --global grunt-cli && \
-npm install --global gulp-cli && \
-npm install --global jquery && \
-npm install --global uglify-js && \
-npm install --global uglifyjs && \
-npm install --global csso && \
-npm install --global html-minifier
+&& cd /usr/bin \
+&& ln -s nodejs node \
+&& npm install --global grunt-cli \
+&& npm install --global gulp-cli \
+&& npm install --global jquery \
+&& npm install --global uglify-js \
+&& npm install --global uglifyjs \
+&& npm install --global csso \
+&& npm install --global html-minifier \
 
 # Install and configure GO
-RUN wget https://storage.googleapis.com/golang/go1.8.linux-amd64.tar.gz && \
-tar xvf go1.8.linux-amd64.tar.gz && \
-mv go /usr/local && \
-mkdir -p /root/bin && \
-mkdir -p /root/pkg && \
-mkdir -p /root/src && \
-echo 'export GOPATH=/root' >> /root/.profile && \
-echo 'export PATH=/usr/local/go/bin:$GOPATH/bin:$PATH' >> /root/.profile && \
-go version
+&& wget https://storage.googleapis.com/golang/go1.8.linux-amd64.tar.gz \
+&& tar xvf go1.8.linux-amd64.tar.gz \
+&& mv go /usr/local \
+&& mkdir -p /root/bin \
+&& mkdir -p /root/pkg \
+&& mkdir -p /root/src \
+&& echo 'export GOPATH=/root' >> /root/.profile \
+&& echo 'export PATH=/usr/local/go/bin:$GOPATH/bin:$PATH' >> /root/.profile \
+&& go version \
+
+# Cleanup temporary data and cache
+&& apt-get clean \
+&& rm -rf /root/.npm/cache/* \
+&& rm -rf /root/.composer/cache/* \
+&& rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
