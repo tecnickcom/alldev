@@ -108,6 +108,8 @@ mysql-utilities \
 nano \
 npm \
 nuget \
+nsis \
+nsis-pluginapi \
 openssh-client \
 openssh-server \
 openssl \
