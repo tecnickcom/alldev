@@ -213,8 +213,8 @@ zlib1g-dev \
 && npm install --global html-minifier \
 
 # Install and configure GO
-&& wget https://storage.googleapis.com/golang/go1.8.linux-amd64.tar.gz \
-&& tar xvf go1.8.linux-amd64.tar.gz \
+&& wget https://storage.googleapis.com/golang/go1.8.1.linux-amd64.tar.gz \
+&& tar xvf go1.8.1.linux-amd64.tar.gz \
 && mv go /usr/local \
 && mkdir -p /root/bin \
 && mkdir -p /root/pkg \
