@@ -210,6 +210,7 @@ zlib1g-dev \
 && npm install --global uglify-js \
 && npm install --global uglifyjs \
 && npm install --global csso \
+&& npm install --global csso-cli \
 && npm install --global html-minifier \
 
 # Install and configure GO
