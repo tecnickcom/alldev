@@ -216,11 +216,11 @@ zlib1g-dev \
 # HTML Tidy
 && cd /tmp \
 && wget https://github.com/htacg/tidy-html5/releases/download/5.4.0/tidy-5.4.0-64bit.deb \
-&& dpkg -i tidy-5.4.0-64bit.deb
+&& dpkg -i tidy-5.4.0-64bit.deb \
 
 # Composer
 && cd /tmp \
-&& curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+&& curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
 
 # Install and configure GO
 && wget https://storage.googleapis.com/golang/go1.8.3.linux-amd64.tar.gz \
@@ -236,7 +236,7 @@ zlib1g-dev \
 # hugo
 && cd /tmp \
 && wget https://github.com/spf13/hugo/releases/download/v0.21/hugo_0.21_Linux-64bit.deb \
-&& dpkg -i hugo_0.21_Linux-64bit.deb
+&& dpkg -i hugo_0.21_Linux-64bit.deb \
 
 # Cleanup temporary data and cache
 && apt-get clean \
