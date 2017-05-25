@@ -213,9 +213,18 @@ zlib1g-dev \
 && npm install --global csso-cli \
 && npm install --global html-minifier \
 
+# HTML Tidy
+&& cd /tmp \
+&& wget https://github.com/htacg/tidy-html5/releases/download/5.4.0/tidy-5.4.0-64bit.deb \
+&& dpkg -i tidy-5.4.0-64bit.deb
+
+# Composer
+&& cd /tmp \
+&& curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
 # Install and configure GO
-&& wget https://storage.googleapis.com/golang/go1.8.1.linux-amd64.tar.gz \
-&& tar xvf go1.8.1.linux-amd64.tar.gz \
+&& wget https://storage.googleapis.com/golang/go1.8.3.linux-amd64.tar.gz \
+&& tar xvf go1.8.3.linux-amd64.tar.gz \
 && mv go /usr/local \
 && mkdir -p /root/bin \
 && mkdir -p /root/pkg \
@@ -223,6 +232,11 @@ zlib1g-dev \
 && echo 'export GOPATH=/root' >> /root/.profile \
 && echo 'export PATH=/usr/local/go/bin:$GOPATH/bin:$PATH' >> /root/.profile \
 && go version \
+
+# hugo
+&& cd /tmp \
+&& wget https://github.com/spf13/hugo/releases/download/v0.21/hugo_0.21_Linux-64bit.deb \
+&& dpkg -i hugo_0.21_Linux-64bit.deb
 
 # Cleanup temporary data and cache
 && apt-get clean \
