@@ -110,6 +110,7 @@ npm \
 nuget \
 nsis \
 nsis-pluginapi \
+openjdk-8-jdk \
 openssh-client \
 openssh-server \
 openssl \
