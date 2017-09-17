@@ -49,11 +49,6 @@ make build
 
 ## Useful Docker commands
 
-To manually create the container you can execute:
-```
-docker build --tag="tecnickcom/alldev" .
-```
-
 To log into the newly created container:
 ```
 docker run -t -i tecnickcom/alldev /bin/bash
@@ -76,12 +71,12 @@ docker rmi -f tecnickcom/alldev
 
 To delete all containers
 ```
-docker rm $(docker ps -a -q)
+docker rm -f $(docker ps -a -q)
 ```
 
 To delete all images
 ```
-docker rmi $(docker images -q)
+docker rmi -f $(docker images -q)
 ```
 
 ## Developer(s) Contact

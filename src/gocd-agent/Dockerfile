@@ -8,17 +8,34 @@
 # @link        https://github.com/tecnickcom/alldev
 # ------------------------------------------------------------------------------
 
-FROM phusion/baseimage
+FROM gocd/gocd-agent-ubuntu-16.04:v17.8.0
 MAINTAINER info@tecnick.com
 
 ENV DEBIAN_FRONTEND noninteractive
 ENV TERM linux
-ENV HOME /root
+ENV HOME /home/go
 ENV DISPLAY :0
-ENV GOPATH=/root
+ENV GOPATH=/home/go/GO
 ENV PATH=/usr/local/go/bin:$GOPATH/bin:$PATH
 
+# Add SSH keys
+ADD id_rsa /home/go/.ssh/id_rsa
+ADD id_rsa.pub /home/go/.ssh/id_rsa.pub
+
 RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections \
+
+# Configure SSH
+&& echo "Host *" >> /home/go/.ssh/config \
+&& echo "    StrictHostKeyChecking no" >> /home/go/.ssh/config \
+&& echo "    GlobalKnownHostsFile  /dev/null" >> /home/go/.ssh/config \
+&& echo "    UserKnownHostsFile    /dev/null" >> /home/go/.ssh/config \
+&& chmod 600 /home/go/.ssh/id_rsa \
+&& chmod 644 /home/go/.ssh/id_rsa.pub \
+
+# Configure default git user
+&& echo "[user]" >> /home/go/.gitconfig \
+&& echo "	email = gocd@example.com" >> /home/go/.gitconfig \
+&& echo "	name = gocd" >> /home/go/.gitconfig \
 
 # Add i386 architecture
 && dpkg --add-architecture i386 \
@@ -35,8 +52,10 @@ RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selectio
 # Repository for node
 && curl -sL https://deb.nodesource.com/setup_6.x | bash - \
 
-# Configure SSH
-&& mkdir -p /root/.ssh && echo "Host github.com\n\tStrictHostKeyChecking no\n" >> /root/.ssh/config \
+# Set Locale
+&& apt-get install -y language-pack-en-base \
+&& locale-gen en_US en_US.UTF-8 \
+&& dpkg-reconfigure locales \
 
 # install development packages and debugging tools
 && apt-get install -y \
