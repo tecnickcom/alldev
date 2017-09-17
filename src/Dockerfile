@@ -32,6 +32,9 @@ RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selectio
 && apt-add-repository multiverse \
 && apt-get update \
 
+# Repository for node
+&& curl -sL https://deb.nodesource.com/setup_6.x | bash - \
+
 # Configure SSH
 && mkdir -p /root/.ssh && echo "Host github.com\n\tStrictHostKeyChecking no\n" >> /root/.ssh/config \
 
@@ -106,7 +109,7 @@ mysql-client \
 mysql-server \
 mysql-utilities \
 nano \
-npm \
+nodejs \
 nuget \
 nsis \
 nsis-pluginapi \
@@ -197,22 +200,19 @@ zlib1g-dev \
 
 # Install extra python dependencies
 && pip install --upgrade pip \
-&& pip install cffi \
+&& pip install --upgrade cffi \
 && pip install --upgrade autopep8 \
-&& pip install fabric \
-&& pip install json-spec \
+&& pip install --upgrade fabric \
+&& pip install --upgrade json-spec \
+&& pip install --upgrade pypandoc \
 
 # Install extra npm dependencies
-&& cd /usr/bin \
-&& ln -s nodejs node \
 && npm install --global grunt-cli \
 && npm install --global gulp-cli \
 && npm install --global jquery \
 && npm install --global uglify-js \
-&& npm install --global uglifyjs \
 && npm install --global csso \
 && npm install --global csso-cli \
-&& npm install --global html-minifier \
 
 # HTML Tidy
 && cd /tmp \
@@ -237,8 +237,8 @@ zlib1g-dev \
 
 # hugo
 && cd /tmp \
-&& wget https://github.com/gohugoio/hugo/releases/download/v0.26/hugo_0.26_Linux-64bit.deb \
-&& dpkg -i hugo_0.26_Linux-64bit.deb \
+&& wget https://github.com/gohugoio/hugo/releases/download/v0.27.1/hugo_0.27.1_Linux-64bit.deb \
+&& dpkg -i hugo_0.27.1_Linux-64bit.deb \
 
 # Cleanup temporary data and cache
 && apt-get clean \
