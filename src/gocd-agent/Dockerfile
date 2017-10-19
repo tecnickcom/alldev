@@ -96,25 +96,33 @@ intltool \
 jq \
 lcov \
 libboost-all-dev \
+libbz2-dev \
 libc6 \
 libc6-dev \
 libc6-dev-i386 \
+libcurlpp-dev \
 libffi-dev \
 libglib2.0-0 \
 libglib2.0-dev \
+libgsl2 \
+libgsl-dev \
+liblapack-dev \
+liblzma-dev \
+libncurses5-dev \
 libreadline6 \
+libsane-extras \
 libssl1.0.0 \
 libssl-dev \
 libtool \
 libwine-development \
 libxml2 \
 libxml2-dev \
+libxml2-utils \
 libxmlsec1 \
 libxmlsec1-dev \
 libxmlsec1-openssl \
 libxslt1.1 \
 libxslt1-dev \
-liblzma-dev \
 lsof \
 make \
 memcached \
@@ -188,17 +196,23 @@ ruby-all-dev \
 screen \
 ssh \
 strace \
+sudo \
 swig \
 texlive-base \
+time \
+tree \
 ubuntu-restricted-addons \
 ubuntu-restricted-extras \
 upx-ucl \
 valgrind \
 vim \
+virtualenv \
 wget \
 wine \
 wine64-development-tools \
 winetricks \
+xmldiff \
+xmlindent \
 xmlsec1 \
 zbar-tools \
 zip \
@@ -243,8 +257,8 @@ zlib1g-dev \
 && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
 
 # Install and configure GO
-&& wget https://storage.googleapis.com/golang/go1.9.linux-amd64.tar.gz \
-&& tar xvf go1.9.linux-amd64.tar.gz \
+&& wget https://storage.googleapis.com/golang/go1.9.1.linux-amd64.tar.gz \
+&& tar xvf go1.9.1.linux-amd64.tar.gz \
 && rm -rf /usr/local/go \
 && mv go /usr/local \
 && mkdir -p /root/bin \
@@ -254,10 +268,14 @@ zlib1g-dev \
 && echo 'export PATH=/usr/local/go/bin:$GOPATH/bin:$PATH' >> /root/.profile \
 && go version \
 
+# Allow go user to run root commands via sudo
+&& usermod -aG sudo go \
+&& echo "go ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers \
+
 # hugo
 && cd /tmp \
-&& wget https://github.com/gohugoio/hugo/releases/download/v0.28/hugo_0.28_Linux-64bit.deb \
-&& dpkg -i hugo_0.28_Linux-64bit.deb \
+&& wget https://github.com/gohugoio/hugo/releases/download/v0.30.1/hugo_0.30.1_Linux-64bit.deb \
+&& dpkg -i hugo_0.30.1_Linux-64bit.deb \
 
 # Cleanup temporary data and cache
 && apt-get clean \
