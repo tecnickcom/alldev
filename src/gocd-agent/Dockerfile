@@ -63,12 +63,18 @@ alien \
 apache2 \
 astyle \
 autoconf \
-autotools-dev \
 automake \
+autotools-dev \
 binfmt-support \
 binutils-mingw-w64 \
 build-essential \
+bzip2 \
+checkinstall \
+clang \
+clang-format \
+clang-tidy \
 cmake \
+cppcheck \
 curl \
 debhelper \
 devscripts \
@@ -77,11 +83,14 @@ dh-make \
 dos2unix \
 doxygen \
 doxygen-latex \
+dpkg \
 fabric \
 fastjar \
 flawfinder \
 g++ \
 gcc \
+gcc-4.8 \
+gcc-4.9 \
 gdb \
 gettext \
 ghostscript \
@@ -91,6 +100,7 @@ golang \
 golang-golang-x-tools \
 gsfonts \
 gtk-sharp2 \
+htop \
 imagemagick \
 intltool \
 jq \
@@ -137,14 +147,16 @@ mysql-server \
 mysql-utilities \
 nano \
 nodejs \
-nuget \
 nsis \
 nsis-pluginapi \
+nuget \
 openjdk-8-jdk \
 openssh-client \
 openssh-server \
 openssl \
+pandoc \
 parallel \
+pass \
 pbuilder \
 perl \
 php \
@@ -188,6 +200,7 @@ python-lxml \
 python-nose \
 python-pip \
 python-setuptools \
+python-yaml \
 redis-server \
 redis-tools \
 rpm \
@@ -257,8 +270,8 @@ zlib1g-dev \
 && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
 
 # Install and configure GO
-&& wget https://storage.googleapis.com/golang/go1.9.1.linux-amd64.tar.gz \
-&& tar xvf go1.9.1.linux-amd64.tar.gz \
+&& wget https://storage.googleapis.com/golang/go1.9.2.linux-amd64.tar.gz \
+&& tar xvf go1.9.2.linux-amd64.tar.gz \
 && rm -rf /usr/local/go \
 && mv go /usr/local \
 && mkdir -p /root/bin \
@@ -274,8 +287,8 @@ zlib1g-dev \
 
 # hugo
 && cd /tmp \
-&& wget https://github.com/gohugoio/hugo/releases/download/v0.30.1/hugo_0.30.1_Linux-64bit.deb \
-&& dpkg -i hugo_0.30.1_Linux-64bit.deb \
+&& wget https://github.com/gohugoio/hugo/releases/download/v0.30.2/hugo_0.30.2_Linux-64bit.deb \
+&& dpkg -i hugo_0.30.2_Linux-64bit.deb \
 
 # Cleanup temporary data and cache
 && apt-get clean \
