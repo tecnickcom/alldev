@@ -8,7 +8,7 @@
 # @link        https://github.com/tecnickcom/alldev
 # ------------------------------------------------------------------------------
 
-FROM gocd/gocd-agent-ubuntu-16.04:v17.8.0
+FROM gocd/gocd-agent-ubuntu-16.04:v17.12.0
 MAINTAINER info@tecnick.com
 
 ENV DEBIAN_FRONTEND noninteractive
@@ -270,8 +270,8 @@ zlib1g-dev \
 && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
 
 # Install and configure GO
-&& wget https://storage.googleapis.com/golang/go1.9.2.linux-amd64.tar.gz \
-&& tar xvf go1.9.2.linux-amd64.tar.gz \
+&& wget https://storage.googleapis.com/golang/go1.9.3.linux-amd64.tar.gz \
+&& tar xvf go1.9.3.linux-amd64.tar.gz \
 && rm -rf /usr/local/go \
 && mv go /usr/local \
 && mkdir -p /root/bin \
@@ -281,14 +281,17 @@ zlib1g-dev \
 && echo 'export PATH=/usr/local/go/bin:$GOPATH/bin:$PATH' >> /root/.profile \
 && go version \
 
+# Haskell
+&& curl -sSL https://get.haskellstack.org/ | sh \
+
 # Allow go user to run root commands via sudo
 && usermod -aG sudo go \
 && echo "go ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers \
 
 # hugo
 && cd /tmp \
-&& wget https://github.com/gohugoio/hugo/releases/download/v0.30.2/hugo_0.30.2_Linux-64bit.deb \
-&& dpkg -i hugo_0.30.2_Linux-64bit.deb \
+&& wget https://github.com/gohugoio/hugo/releases/download/v0.34/hugo_0.34_Linux-64bit.deb \
+&& dpkg -i hugo_0.34_Linux-64bit.deb \
 
 # Cleanup temporary data and cache
 && apt-get clean \
