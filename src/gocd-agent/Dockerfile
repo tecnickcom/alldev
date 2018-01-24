@@ -282,6 +282,7 @@ zlib1g-dev \
 && go version \
 
 # Haskell
+&& cd /tmp \
 && curl -sSL https://get.haskellstack.org/ | sh \
 
 # Allow go user to run root commands via sudo
@@ -295,6 +296,8 @@ zlib1g-dev \
 
 # Cleanup temporary data and cache
 && apt-get clean \
+&& apt-get autoclean \
+&& apt-get -y autoremove \
 && rm -rf /root/.npm/cache/* \
 && rm -rf /root/.composer/cache/* \
 && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
