@@ -3,7 +3,7 @@
 # @since       2016-09-23
 # @category    Docker
 # @author      Nicola Asuni <info@tecnick.com>
-# @copyright   2015-2017 Nicola Asuni - Tecnick.com LTD
+# @copyright   2015-2018 Nicola Asuni - Tecnick.com LTD
 # @license     MIT (see LICENSE)
 # @link        https://github.com/tecnickcom/alldev
 #
@@ -59,7 +59,7 @@ all: help
 
 # Build the specified Docker image
 builditem:
-	docker build --no-cache -t ${DOCKER_REPOSITORY}/${DIMG}:latest ./src/${DIMG}
+	docker build --squash --compress --no-cache -t ${DOCKER_REPOSITORY}/${DIMG}:latest ./src/${DIMG}
 	docker tag ${DOCKER_REPOSITORY}/${DIMG}:latest ${DOCKER_REPOSITORY}/${DIMG}:${VERSION}-${RELEASE}
 
 # Build the Docker image

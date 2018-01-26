@@ -7,7 +7,7 @@
 
 * **category**    Docker
 * **author**      Nicola Asuni <info@tecnick.com>
-* **copyright**   2016-2017 Nicola Asuni - Tecnick.com LTD
+* **copyright**   2016-2018 Nicola Asuni - Tecnick.com LTD
 * **license**     MIT (see LICENSE)
 * **link**        https://github.com/tecnickcom/alldev
 * **docker**      https://hub.docker.com/r/tecnickcom/alldev/
@@ -34,6 +34,11 @@ sudo gpasswd -a <YOURUSER> docker
 sudo service docker restart
 ```
 
+The default docker build command in the Makefile requires Docker experimental features:
+```
+sudo sh -c 'echo '\''{"experimental":true}'\'' > /etc/docker/daemon.json'
+sudo service docker restart
+```
 
 ## Getting started
 
