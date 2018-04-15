@@ -140,6 +140,7 @@ mingw-w64-tools \
 mingw-w64-x86-64-dev \
 mongodb \
 mono-complete \
+mono-tools-devel \
 mysql-client \
 mysql-server \
 mysql-utilities \
@@ -192,25 +193,15 @@ postgresql-contrib-9.5 \
 pyflakes \
 pylint \
 python \
+python-all \
+python-all-dev \
+python-dev \
+python-setuptools \
 python3 \
 python3-all \
 python3-all-dev \
-python3-coverage \
 python3-dev \
-python3-lxml \
-python3-nose \
-python3-pip \
 python3-setuptools \
-python3-yaml \
-python-all \
-python-all-dev \
-python-coverage \
-python-dev \
-python-lxml \
-python-nose \
-python-pip \
-python-setuptools \
-python-yaml \
 redis-server \
 redis-tools \
 rpm \
@@ -242,52 +233,40 @@ zip \
 zlib1g \
 zlib1g-dev \
 && nuget update -self \
-# Mono tools
-&& git clone https://github.com/mono/mono-tools.git \
-&& cd mono-tools \
-&& export enable_gtkhtml=no \
-&& export enable_gecko=no \
-&& export enable_webkit=no \
-&& ./autogen.sh \
-&& make \
-&& make install \
-# Install extra python2 dependencies
-&& pip install --upgrade pip \
-&& pip install --upgrade setuptools \
-&& pip install --upgrade cffi \
-&& pip install --upgrade autopep8 \
-&& pip install --upgrade fabric \
-&& pip install --upgrade json-spec \
-&& pip install --upgrade pypandoc \
-&& pip install --upgrade coverage \
-&& pip install --upgrade pytest \
-&& pip install --upgrade pytest-cov \
-&& pip install --upgrade pytest-benchmark \
-&& pip install --upgrade ansible \
-&& pip install --upgrade shade \
-&& pip install --upgrade dnspython \
-# Install extra python3 dependencies
-&& pip3 install --upgrade pip \
-&& pip3 install --upgrade setuptools \
-&& pip3 install --upgrade cffi \
-&& pip3 install --upgrade autopep8 \
-&& pip3 install --upgrade fabric \
-&& pip3 install --upgrade json-spec \
-&& pip3 install --upgrade pypandoc \
-&& pip3 install --upgrade coverage \
-&& pip3 install --upgrade pytest \
-&& pip3 install --upgrade pytest-cov \
-&& pip3 install --upgrade pytest-benchmark \
+# Install extra Python2 dependencies
+&& easy_install --upgrade pip \
+&& pip2 install --upgrade ansible \
+pyyaml \
+dnspython \
+pyOpenSSL \
+python-novaclient \
+shade \
+# Install extra Python3 dependencies
+&& easy_install3 --upgrade pip \
 && pip3 install --upgrade ansible \
-&& pip3 install --upgrade shade \
-&& pip3 install --upgrade dnspython \
+pyyaml \
+autopep8 \
+cffi \
+coverage \
+dnspython \
+fabric \
+json-spec \
+lxml \
+nose \
+pyOpenSSL \
+pypandoc \
+pytest \
+pytest-benchmark \
+pytest-cov \
+python-novaclient \
+shade \
 # Install extra npm dependencies
 && npm install --global grunt-cli \
-&& npm install --global gulp-cli \
-&& npm install --global jquery \
-&& npm install --global uglify-js \
-&& npm install --global csso \
-&& npm install --global csso-cli \
+gulp-cli \
+jquery \
+uglify-js \
+csso \
+csso-cli \
 # HTML Tidy
 && cd /tmp \
 && wget https://github.com/htacg/tidy-html5/releases/download/5.4.0/tidy-5.4.0-64bit.deb \
@@ -296,8 +275,8 @@ zlib1g-dev \
 && cd /tmp \
 && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
 # Install and configure GO
-&& wget https://storage.googleapis.com/golang/go1.9.3.linux-amd64.tar.gz \
-&& tar xvf go1.9.3.linux-amd64.tar.gz \
+&& wget https://storage.googleapis.com/golang/go1.10.1.linux-amd64.tar.gz \
+&& tar xvf go1.10.1.linux-amd64.tar.gz \
 && rm -rf /usr/local/go \
 && mv go /usr/local \
 && mkdir -p /root/bin \
@@ -314,8 +293,8 @@ zlib1g-dev \
 && echo "go ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers \
 # hugo
 && cd /tmp \
-&& wget https://github.com/gohugoio/hugo/releases/download/v0.34/hugo_0.34_Linux-64bit.deb \
-&& dpkg -i hugo_0.34_Linux-64bit.deb \
+&& wget https://github.com/gohugoio/hugo/releases/download/v0.38.2/hugo_0.38.2_Linux-64bit.deb \
+&& dpkg -i hugo_0.38.2_Linux-64bit.deb \
 # Cleanup temporary data and cache
 && apt-get clean \
 && apt-get autoclean \
