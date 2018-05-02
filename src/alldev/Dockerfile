@@ -291,8 +291,8 @@ csso-cli \
 && curl -sSL https://get.haskellstack.org/ | sh \
 # hugo
 && cd /tmp \
-&& wget https://github.com/gohugoio/hugo/releases/download/v0.38.2/hugo_0.38.2_Linux-64bit.deb \
-&& dpkg -i hugo_0.38.2_Linux-64bit.deb \
+&& wget https://github.com/gohugoio/hugo/releases/download/v0.40.2/hugo_0.40.2_Linux-64bit.deb \
+&& dpkg -i hugo_0.40.2_Linux-64bit.deb \
 # Cleanup temporary data and cache
 && apt-get clean \
 && apt-get autoclean \
