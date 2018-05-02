@@ -8,7 +8,7 @@
 # @link        https://github.com/tecnickcom/alldev
 # ------------------------------------------------------------------------------
 
-FROM gocd/gocd-agent-ubuntu-16.04:v17.12.0
+FROM gocd/gocd-agent-ubuntu-16.04:v18.3.0
 MAINTAINER info@tecnick.com
 ENV DEBIAN_FRONTEND noninteractive
 ENV TERM linux
@@ -275,8 +275,8 @@ csso-cli \
 && cd /tmp \
 && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
 # Install and configure GO
-&& wget https://storage.googleapis.com/golang/go1.10.1.linux-amd64.tar.gz \
-&& tar xvf go1.10.1.linux-amd64.tar.gz \
+&& wget https://storage.googleapis.com/golang/go1.10.2.linux-amd64.tar.gz \
+&& tar xvf go1.10.2.linux-amd64.tar.gz \
 && rm -rf /usr/local/go \
 && mv go /usr/local \
 && mkdir -p /root/bin \
