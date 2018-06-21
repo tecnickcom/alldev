@@ -50,6 +50,7 @@ RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selectio
 && dpkg-reconfigure locales \
 # install development packages and debugging tools
 && apt-get install -y \
+
 alien \
 apache2 \
 astyle \
@@ -64,12 +65,18 @@ checkinstall \
 clang \
 clang-3.6 \
 clang-3.9 \
+clang-4.0 \
+clang-5.0 \
 clang-format \
 clang-format-3.6 \
 clang-format-3.9 \
+clang-format-4.0 \
+clang-format-5.0 \
 clang-tidy \
 clang-tidy-3.6 \
 clang-tidy-3.9 \
+clang-tidy-4.0 \
+clang-tidy-5.0 \
 cmake \
 cppcheck \
 curl \
@@ -86,9 +93,11 @@ fabric \
 fastjar \
 flawfinder \
 g++ \
+gawk \
 gcc \
 gcc-4.8 \
 gcc-4.9 \
+gcc-5 \
 gdb \
 gettext \
 ghostscript \
@@ -109,12 +118,14 @@ libbz2-dev \
 libc6 \
 libc6-dev \
 libc6-dev-i386 \
+libcurl4-openssl-dev \
 libcurlpp-dev \
 libffi-dev \
 libglib2.0-0 \
 libglib2.0-dev \
 libgsl2 \
 libgsl-dev \
+libicu-dev \
 liblapack-dev \
 liblzma-dev \
 libncurses5-dev \
@@ -132,8 +143,10 @@ libxmlsec1-dev \
 libxmlsec1-openssl \
 libxslt1.1 \
 libxslt1-dev \
+llvm-5.0 \
 lsof \
 make \
+mawk \
 memcached \
 mingw-w64 \
 mingw-w64-i686-dev \
@@ -194,15 +207,16 @@ postgresql-contrib-9.5 \
 pyflakes \
 pylint \
 python \
-python-all \
-python-all-dev \
-python-dev \
-python-setuptools \
 python3 \
 python3-all \
 python3-all-dev \
 python3-dev \
 python3-setuptools \
+python-all \
+python-all-dev \
+python-dev \
+python-setuptools \
+r-base \
 redis-server \
 redis-tools \
 rpm \
@@ -236,7 +250,7 @@ zlib1g-dev \
 && nuget update -self \
 # Install extra Python2 dependencies
 && easy_install --upgrade pip \
-&& pip2 install --upgrade ansible \
+&& pip2 install --ignore-installed --upgrade ansible \
 pyyaml \
 dnspython \
 pyOpenSSL \
@@ -244,7 +258,7 @@ python-novaclient \
 shade \
 # Install extra Python3 dependencies
 && easy_install3 --upgrade pip \
-&& pip3 install --upgrade ansible \
+&& pip3 install --ignore-installed --upgrade ansible \
 pyyaml \
 autopep8 \
 cffi \
@@ -268,6 +282,9 @@ jquery \
 uglify-js \
 csso \
 csso-cli \
+js-beautify \
+# Install R packages
+&& Rscript -e "install.packages(c('testthat', 'inline', 'pryr', 'Rcpp'), repos = 'http://cran.us.r-project.org')" \
 # HTML Tidy
 && cd /tmp \
 && wget https://github.com/htacg/tidy-html5/releases/download/5.4.0/tidy-5.4.0-64bit.deb \
@@ -276,8 +293,8 @@ csso-cli \
 && cd /tmp \
 && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
 # Install and configure GO
-&& wget https://storage.googleapis.com/golang/go1.10.2.linux-amd64.tar.gz \
-&& tar xvf go1.10.2.linux-amd64.tar.gz \
+&& wget https://storage.googleapis.com/golang/go1.10.3.linux-amd64.tar.gz \
+&& tar xvf go1.10.3.linux-amd64.tar.gz \
 && rm -rf /usr/local/go \
 && mv go /usr/local \
 && mkdir -p /root/bin \
@@ -291,8 +308,8 @@ csso-cli \
 && curl -sSL https://get.haskellstack.org/ | sh \
 # hugo
 && cd /tmp \
-&& wget https://github.com/gohugoio/hugo/releases/download/v0.40.2/hugo_0.40.2_Linux-64bit.deb \
-&& dpkg -i hugo_0.40.2_Linux-64bit.deb \
+&& wget https://github.com/gohugoio/hugo/releases/download/v0.42.1/hugo_0.42.1_Linux-64bit.deb \
+&& dpkg -i hugo_0.42.1_Linux-64bit.deb \
 # Cleanup temporary data and cache
 && apt-get clean \
 && apt-get autoclean \
