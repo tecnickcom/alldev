@@ -43,14 +43,13 @@ RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selectio
 && apt-add-repository multiverse \
 && apt-get update \
 # Repository for node
-&& curl -sL https://deb.nodesource.com/setup_6.x | bash - \
+&& curl -sL https://deb.nodesource.com/setup_8.x | bash - \
 # Set Locale
 && apt-get install -y language-pack-en-base \
 && locale-gen en_US en_US.UTF-8 \
 && dpkg-reconfigure locales \
 # install development packages and debugging tools
 && apt-get install -y \
-
 alien \
 apache2 \
 astyle \
@@ -67,16 +66,19 @@ clang-3.6 \
 clang-3.9 \
 clang-4.0 \
 clang-5.0 \
+clang-6.0 \
 clang-format \
 clang-format-3.6 \
 clang-format-3.9 \
 clang-format-4.0 \
 clang-format-5.0 \
+clang-format-6.0 \
 clang-tidy \
 clang-tidy-3.6 \
 clang-tidy-3.9 \
 clang-tidy-4.0 \
 clang-tidy-5.0 \
+clang-tidy-6.0 \
 cmake \
 cppcheck \
 curl \
@@ -293,8 +295,8 @@ js-beautify \
 && cd /tmp \
 && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
 # Install and configure GO
-&& wget https://storage.googleapis.com/golang/go1.10.3.linux-amd64.tar.gz \
-&& tar xvf go1.10.3.linux-amd64.tar.gz \
+&& wget https://storage.googleapis.com/golang/go1.11.linux-amd64.tar.gz \
+&& tar xvf go1.11.linux-amd64.tar.gz \
 && rm -rf /usr/local/go \
 && mv go /usr/local \
 && mkdir -p /root/bin \
@@ -308,8 +310,8 @@ js-beautify \
 && curl -sSL https://get.haskellstack.org/ | sh \
 # hugo
 && cd /tmp \
-&& wget https://github.com/gohugoio/hugo/releases/download/v0.42.1/hugo_0.42.1_Linux-64bit.deb \
-&& dpkg -i hugo_0.42.1_Linux-64bit.deb \
+&& wget https://github.com/gohugoio/hugo/releases/download/v0.47.1/hugo_0.47.1_Linux-64bit.deb \
+&& dpkg -i hugo_0.47.1_Linux-64bit.deb \
 # Cleanup temporary data and cache
 && apt-get clean \
 && apt-get autoclean \
