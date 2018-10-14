@@ -59,7 +59,7 @@ all: help
 
 # Build the specified Docker image
 builditem:
-	docker build --squash --compress --no-cache -t ${DOCKER_REPOSITORY}/${DIMG}:latest ./src/${DIMG}
+	docker build --compress --no-cache -t ${DOCKER_REPOSITORY}/${DIMG}:latest ./src/${DIMG}
 	docker tag ${DOCKER_REPOSITORY}/${DIMG}:latest ${DOCKER_REPOSITORY}/${DIMG}:${VERSION}-${RELEASE}
 
 # Build the Docker image
