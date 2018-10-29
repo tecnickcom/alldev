@@ -3,12 +3,12 @@
 # GoCD elastic agent based on Ubuntu 16.04 (Xenial)
 #
 # @author      Nicola Asuni <info@tecnick.com>
-# @copyright   2016-2017 Nicola Asuni - Tecnick.com LTD
+# @copyright   2016-2018 Nicola Asuni - Tecnick.com LTD
 # @license     MIT (see LICENSE)
 # @link        https://github.com/tecnickcom/alldev
 # ------------------------------------------------------------------------------
 
-FROM gocd/gocd-agent-ubuntu-16.04:v18.9.0
+FROM gocd/gocd-agent-ubuntu-16.04:v18.10.0
 MAINTAINER info@tecnick.com
 ENV DEBIAN_FRONTEND noninteractive
 ENV TERM linux
@@ -312,8 +312,8 @@ js-beautify \
 && echo "go ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers \
 # hugo
 && cd /tmp \
-&& wget https://github.com/gohugoio/hugo/releases/download/v0.49.2/hugo_0.49.2_Linux-64bit.deb \
-&& dpkg -i hugo_0.49.2_Linux-64bit.deb \
+&& wget https://github.com/gohugoio/hugo/releases/download/v0.50/hugo_0.50_Linux-64bit.deb \
+&& dpkg -i hugo_0.50_Linux-64bit.deb \
 # Cleanup temporary data and cache
 && apt-get clean \
 && apt-get autoclean \
