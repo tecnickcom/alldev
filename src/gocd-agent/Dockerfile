@@ -1,14 +1,14 @@
 # Dockerfile
 #
-# GoCD elastic agent based on Ubuntu 16.04 (Xenial)
+# GoCD elastic agent based on Ubuntu 18.04 (Bionic)
 #
 # @author      Nicola Asuni <info@tecnick.com>
-# @copyright   2016-2018 Nicola Asuni - Tecnick.com LTD
+# @copyright   2016-2019 Nicola Asuni - Tecnick.com LTD
 # @license     MIT (see LICENSE)
 # @link        https://github.com/tecnickcom/alldev
 # ------------------------------------------------------------------------------
 
-FROM gocd/gocd-agent-ubuntu-16.04:v18.10.0
+FROM gocd/gocd-agent-ubuntu-18.04:v18.12.0
 MAINTAINER info@tecnick.com
 ENV DEBIAN_FRONTEND noninteractive
 ENV TERM linux
@@ -34,16 +34,15 @@ RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selectio
 # Add i386 architecture
 && dpkg --add-architecture i386 \
 # Add repositories and update
-&& apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF \
-&& echo "deb http://download.mono-project.com/repo/debian wheezy main" | tee /etc/apt/sources.list.d/mono-xamarin.list \
 && apt-get update && apt-get -y dist-upgrade \
-&& apt-get install -y apt-utils software-properties-common python-software-properties \
+&& apt-get install -y gnupg apt-utils software-properties-common \
 && apt-add-repository universe \
 && apt-add-repository multiverse \
+&& apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF \
+&& echo "deb http://download.mono-project.com/repo/ubuntu bionic main" | tee /etc/apt/sources.list.d/mono-xamarin.list \
 && apt-get update \
 # Repository for node
-&& curl -sL https://deb.nodesource.com/setup_8.x | bash - \
-# Set Locale
+&& curl -sL https://deb.nodesource.com/setup_11.x | bash - \
 && apt-get install -y language-pack-en-base \
 && locale-gen en_US en_US.UTF-8 \
 && dpkg-reconfigure locales \
@@ -61,23 +60,8 @@ build-essential \
 bzip2 \
 checkinstall \
 clang \
-clang-3.6 \
-clang-3.9 \
-clang-4.0 \
-clang-5.0 \
-clang-6.0 \
 clang-format \
-clang-format-3.6 \
-clang-format-3.9 \
-clang-format-4.0 \
-clang-format-5.0 \
-clang-format-6.0 \
 clang-tidy \
-clang-tidy-3.6 \
-clang-tidy-3.9 \
-clang-tidy-4.0 \
-clang-tidy-5.0 \
-clang-tidy-6.0 \
 cmake \
 cppcheck \
 curl \
@@ -96,9 +80,7 @@ flawfinder \
 g++ \
 gawk \
 gcc \
-gcc-4.8 \
-gcc-4.9 \
-gcc-5 \
+gcc-8 \
 gdb \
 gettext \
 ghostscript \
@@ -124,13 +106,11 @@ libcurlpp-dev \
 libffi-dev \
 libglib2.0-0 \
 libglib2.0-dev \
-libgsl2 \
 libgsl-dev \
 libicu-dev \
 liblapack-dev \
 liblzma-dev \
 libncurses5-dev \
-libreadline6 \
 libsane-extras \
 libssl1.0.0 \
 libssl-dev \
@@ -204,7 +184,6 @@ php-xml \
 pkg-config \
 postgresql \
 postgresql-contrib \
-postgresql-contrib-9.5 \
 pyflakes \
 pylint \
 python \
@@ -212,10 +191,12 @@ python3 \
 python3-all \
 python3-all-dev \
 python3-dev \
+python3-pip \
 python3-setuptools \
 python-all \
 python-all-dev \
 python-dev \
+python-pip \
 python-setuptools \
 r-base \
 redis-server \
@@ -238,7 +219,7 @@ valgrind \
 vim \
 virtualenv \
 wget \
-wine \
+wine1.6 \
 wine64-development-tools \
 winetricks \
 xmldiff \
@@ -250,7 +231,6 @@ zlib1g \
 zlib1g-dev \
 && nuget update -self \
 # Install extra Python2 dependencies
-&& easy_install --upgrade pip \
 && pip2 install --ignore-installed --upgrade ansible \
 pyyaml \
 dnspython \
@@ -258,8 +238,6 @@ pyOpenSSL \
 python-novaclient \
 shade \
 # Install extra Python3 dependencies
-&& easy_install3 --upgrade pip \
-&& pip3 install --ignore-installed --upgrade ansible \
 pyyaml \
 autopep8 \
 cffi \
@@ -294,8 +272,8 @@ js-beautify \
 && cd /tmp \
 && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
 # Install and configure GO
-&& wget https://storage.googleapis.com/golang/go1.11.1.linux-amd64.tar.gz \
-&& tar xvf go1.11.1.linux-amd64.tar.gz \
+&& wget https://storage.googleapis.com/golang/go1.11.5.linux-amd64.tar.gz \
+&& tar xvf go1.11.5.linux-amd64.tar.gz \
 && rm -rf /usr/local/go \
 && mv go /usr/local \
 && mkdir -p /root/bin \
@@ -312,8 +290,8 @@ js-beautify \
 && echo "go ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers \
 # hugo
 && cd /tmp \
-&& wget https://github.com/gohugoio/hugo/releases/download/v0.50/hugo_0.50_Linux-64bit.deb \
-&& dpkg -i hugo_0.50_Linux-64bit.deb \
+&& wget https://github.com/gohugoio/hugo/releases/download/v0.53/hugo_0.53_Linux-64bit.deb \
+&& dpkg -i hugo_0.53_Linux-64bit.deb \
 # Cleanup temporary data and cache
 && apt-get clean \
 && apt-get autoclean \
