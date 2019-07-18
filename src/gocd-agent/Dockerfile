@@ -8,7 +8,7 @@
 # @link        https://github.com/tecnickcom/alldev
 # ------------------------------------------------------------------------------
 
-FROM gocd/gocd-agent-ubuntu-18.04:v19.2.0
+FROM gocd/gocd-agent-ubuntu-18.04:v19.5.0
 MAINTAINER info@tecnick.com
 ENV DEBIAN_FRONTEND noninteractive
 ENV TERM linux
@@ -42,7 +42,7 @@ RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selectio
 && echo "deb http://download.mono-project.com/repo/ubuntu bionic main" | tee /etc/apt/sources.list.d/mono-xamarin.list \
 && apt-get update \
 # Repository for node
-&& curl -sL https://deb.nodesource.com/setup_11.x | bash - \
+&& curl -sL https://deb.nodesource.com/setup_12.x | bash - \
 && apt-get install -y language-pack-en-base \
 && locale-gen en_US en_US.UTF-8 \
 && dpkg-reconfigure locales \
@@ -266,14 +266,15 @@ js-beautify \
 && Rscript -e "install.packages(c('testthat', 'inline', 'pryr', 'Rcpp'), repos = 'http://cran.us.r-project.org')" \
 # HTML Tidy
 && cd /tmp \
-&& wget https://github.com/htacg/tidy-html5/releases/download/5.4.0/tidy-5.4.0-64bit.deb \
-&& dpkg -i tidy-5.4.0-64bit.deb \
+&& wget http://launchpadlibrarian.net/413419656/libtidy5deb1_5.6.0-10_amd64.deb \
+&& wget http://launchpadlibrarian.net/413419657/tidy_5.6.0-10_amd64.deb \
+&& dpkg -i libtidy5deb1_5.6.0-10_amd64.deb tidy_5.6.0-10_amd64.deb \
 # Composer
 && cd /tmp \
 && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
 # Install and configure GO
-&& wget https://storage.googleapis.com/golang/go1.12.3.linux-amd64.tar.gz \
-&& tar xvf go1.12.3.linux-amd64.tar.gz \
+&& wget https://storage.googleapis.com/golang/go1.12.7.linux-amd64.tar.gz \
+&& tar xvf go1.12.7.linux-amd64.tar.gz \
 && rm -rf /usr/local/go \
 && mv go /usr/local \
 && mkdir -p /root/bin \
@@ -290,8 +291,8 @@ js-beautify \
 && echo "go ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers \
 # hugo
 && cd /tmp \
-&& wget https://github.com/gohugoio/hugo/releases/download/v0.55.0/hugo_0.55.0_Linux-64bit.deb \
-&& dpkg -i hugo_0.55.0_Linux-64bit.deb \
+&& wget https://github.com/gohugoio/hugo/releases/download/v0.55.6/hugo_0.55.6_Linux-64bit.deb \
+&& dpkg -i hugo_0.55.6_Linux-64bit.deb \
 # Cleanup temporary data and cache
 && apt-get clean \
 && apt-get autoclean \
