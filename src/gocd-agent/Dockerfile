@@ -8,7 +8,7 @@
 # @link        https://github.com/tecnickcom/alldev
 # ------------------------------------------------------------------------------
 
-FROM gocd/gocd-agent-ubuntu-18.04:v19.5.0
+FROM gocd/gocd-agent-ubuntu-18.04:v19.7.0
 MAINTAINER info@tecnick.com
 ENV DEBIAN_FRONTEND noninteractive
 ENV TERM linux
@@ -270,8 +270,8 @@ js-beautify \
 && cd /tmp \
 && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
 # Install and configure GO
-&& wget https://storage.googleapis.com/golang/go1.12.7.linux-amd64.tar.gz \
-&& tar xvf go1.12.7.linux-amd64.tar.gz \
+&& wget https://storage.googleapis.com/golang/go1.13.linux-amd64.tar.gz \
+&& tar xvf go1.13.linux-amd64.tar.gz \
 && rm -rf /usr/local/go \
 && mv go /usr/local \
 && mkdir -p /root/bin \
@@ -288,8 +288,8 @@ js-beautify \
 && echo "go ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers \
 # hugo
 && cd /tmp \
-&& wget https://github.com/gohugoio/hugo/releases/download/v0.55.6/hugo_0.55.6_Linux-64bit.deb \
-&& dpkg -i hugo_0.55.6_Linux-64bit.deb \
+&& wget https://github.com/gohugoio/hugo/releases/download/v0.57.2/hugo_0.57.2_Linux-64bit.deb \
+&& dpkg -i hugo_0.57.2_Linux-64bit.deb \
 # Cleanup temporary data and cache
 && apt-get clean \
 && apt-get autoclean \
