@@ -10,6 +10,7 @@
 
 FROM gocd/gocd-agent-ubuntu-18.04:v19.7.0
 MAINTAINER info@tecnick.com
+USER root
 ENV DEBIAN_FRONTEND noninteractive
 ENV TERM linux
 ENV HOME /home/go
@@ -297,3 +298,4 @@ js-beautify \
 && rm -rf /root/.npm/cache/* \
 && rm -rf /root/.composer/cache/* \
 && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+USER go
