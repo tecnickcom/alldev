@@ -3,12 +3,12 @@
 # GoCD elastic agent based on Ubuntu 18.04 (Bionic)
 #
 # @author      Nicola Asuni <info@tecnick.com>
-# @copyright   2016-2019 Nicola Asuni - Tecnick.com LTD
+# @copyright   2016-2020 Nicola Asuni - Tecnick.com LTD
 # @license     MIT (see LICENSE)
 # @link        https://github.com/tecnickcom/alldev
 # ------------------------------------------------------------------------------
 
-FROM gocd/gocd-agent-ubuntu-18.04:v19.11.0
+FROM gocd/gocd-agent-ubuntu-18.04:v19.12.0
 MAINTAINER info@tecnick.com
 USER root
 ENV DEBIAN_FRONTEND noninteractive
@@ -243,6 +243,7 @@ coverage \
 dnspython \
 fabric \
 json-spec \
+jsonschema \
 lxml \
 nose \
 pyOpenSSL \

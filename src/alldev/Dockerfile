@@ -3,7 +3,7 @@
 # Development environment based on phusion/baseimage (Ubuntu)
 #
 # @author      Nicola Asuni <info@tecnick.com>
-# @copyright   2016-2019 Nicola Asuni - Tecnick.com LTD
+# @copyright   2016-2020 Nicola Asuni - Tecnick.com LTD
 # @license     MIT (see LICENSE)
 # @link        https://github.com/tecnickcom/alldev
 # ------------------------------------------------------------------------------
@@ -244,6 +244,7 @@ coverage \
 dnspython \
 fabric \
 json-spec \
+jsonschema \
 lxml \
 nose \
 pyOpenSSL \
