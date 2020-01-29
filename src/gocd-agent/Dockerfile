@@ -243,7 +243,6 @@ coverage \
 dnspython \
 fabric \
 json-spec \
-jsonschema \
 lxml \
 nose \
 pyOpenSSL \
@@ -261,6 +260,7 @@ uglify-js \
 csso \
 csso-cli \
 js-beautify \
+&& pip install --upgrade --user jsonschema \
 # Install R packages
 && Rscript -e "install.packages(c('testthat', 'inline', 'pryr', 'Rcpp'), repos = 'http://cran.us.r-project.org')" \
 # HTML Tidy
