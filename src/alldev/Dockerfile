@@ -273,8 +273,8 @@ js-beautify \
 && cd /tmp \
 && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
 # Install and configure GO
-&& wget https://storage.googleapis.com/golang/go1.13.6.linux-amd64.tar.gz \
-&& tar xvf go1.13.6.linux-amd64.tar.gz \
+&& wget https://storage.googleapis.com/golang/go1.13.7.linux-amd64.tar.gz \
+&& tar xvf go1.13.7.linux-amd64.tar.gz \
 && rm -rf /usr/local/go \
 && mv go /usr/local \
 && mkdir -p /root/bin \
@@ -288,8 +288,8 @@ js-beautify \
 && curl -sSL https://get.haskellstack.org/ | sh \
 # hugo
 && cd /tmp \
-&& wget https://github.com/gohugoio/hugo/releases/download/v0.62.2/hugo_0.62.2_Linux-64bit.deb \
-&& dpkg -i hugo_0.62.2_Linux-64bit.deb \
+&& wget https://github.com/gohugoio/hugo/releases/download/v0.63.2/hugo_0.63.2_Linux-64bit.deb \
+&& dpkg -i hugo_0.63.2_Linux-64bit.deb \
 # Cleanup temporary data and cache
 && apt-get clean \
 && apt-get autoclean \
