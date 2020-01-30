@@ -251,6 +251,8 @@ pytest \
 pytest-benchmark \
 pytest-cov \
 python-novaclient \
+python-jsonschema \
+python3-jsonschema \
 shade \
 # Install extra npm dependencies
 && npm install --global grunt-cli \
@@ -260,7 +262,6 @@ uglify-js \
 csso \
 csso-cli \
 js-beautify \
-&& pip install --upgrade --user jsonschema \
 # Install R packages
 && Rscript -e "install.packages(c('testthat', 'inline', 'pryr', 'Rcpp'), repos = 'http://cran.us.r-project.org')" \
 # HTML Tidy

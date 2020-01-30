@@ -23,4 +23,4 @@ dh-golang \
 upx-ucl \
 python \
 python-pip \
-&& pip install --upgrade --user jsonschema
+python-jsonschema

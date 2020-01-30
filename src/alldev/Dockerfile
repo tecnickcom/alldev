@@ -244,7 +244,6 @@ coverage \
 dnspython \
 fabric \
 json-spec \
-jsonschema \
 lxml \
 nose \
 pyOpenSSL \
@@ -253,6 +252,8 @@ pytest \
 pytest-benchmark \
 pytest-cov \
 python-novaclient \
+python-jsonschema \
+python3-jsonschema \
 shade \
 # Install extra npm dependencies
 && npm install --global grunt-cli \

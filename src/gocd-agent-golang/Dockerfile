@@ -56,13 +56,13 @@ make \
 pkg-config \
 python \
 python-pip \
+python-jsonschema \
 rpm \
 rsync \
 ssh \
 sudo \
 tree \
 upx-ucl \
-&& pip install --upgrade --user jsonschema \
 # Install and configure GO
 && wget https://storage.googleapis.com/golang/go1.13.7.linux-amd64.tar.gz \
 && tar xvf go1.13.7.linux-amd64.tar.gz \
