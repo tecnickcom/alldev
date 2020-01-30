@@ -251,8 +251,7 @@ pytest \
 pytest-benchmark \
 pytest-cov \
 python-novaclient \
-python-jsonschema \
-python3-jsonschema \
+jsonschema \
 shade \
 # Install extra npm dependencies
 && npm install --global grunt-cli \
