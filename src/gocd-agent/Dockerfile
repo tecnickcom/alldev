@@ -212,6 +212,7 @@ time \
 tree \
 ubuntu-restricted-addons \
 ubuntu-restricted-extras \
+unzip \
 upx-ucl \
 valgrind \
 vim \

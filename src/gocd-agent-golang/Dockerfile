@@ -7,7 +7,6 @@
 # @license     MIT (see LICENSE)
 # @link        https://github.com/tecnickcom/alldev
 # ------------------------------------------------------------------------------
-
 FROM gocd/gocd-agent-ubuntu-18.04:v19.12.0
 MAINTAINER info@tecnick.com
 USER root
@@ -62,6 +61,7 @@ rsync \
 ssh \
 sudo \
 tree \
+unzip \
 upx-ucl \
 # Install and configure GO
 && wget https://storage.googleapis.com/golang/go1.13.7.linux-amd64.tar.gz \
@@ -78,7 +78,7 @@ upx-ucl \
 && chown -R go:root /home/go \
 && usermod -aG sudo go \
 && echo "go ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers \
-# Cleanup temporary data and cache
+# Cleanup temporary data and cache \
 && apt-get clean \
 && apt-get autoclean \
 && apt-get -y autoremove \
