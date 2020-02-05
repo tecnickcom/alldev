@@ -8,7 +8,7 @@
 # @link        https://github.com/tecnickcom/alldev
 # ------------------------------------------------------------------------------
 
-FROM gocd/gocd-agent-ubuntu-18.04:v19.12.0
+FROM gocd/gocd-agent-ubuntu-18.04:v20.1.0
 MAINTAINER info@tecnick.com
 USER root
 ENV DEBIAN_FRONTEND noninteractive
