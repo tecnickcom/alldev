@@ -66,6 +66,8 @@ cmake \
 cppcheck \
 curl \
 debhelper \
+default-jdk \
+default-jre \
 devscripts \
 dh-golang \
 dh-make \
@@ -142,7 +144,6 @@ nodejs \
 nsis \
 nsis-pluginapi \
 nuget \
-openjdk-8-jdk \
 openssh-client \
 openssh-server \
 openssl \
