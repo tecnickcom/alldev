@@ -32,8 +32,6 @@ RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selectio
 && echo "[user]" >> /home/go/.gitconfig \
 && echo "	email = gocd@example.com" >> /home/go/.gitconfig \
 && echo "	name = gocd" >> /home/go/.gitconfig \
-# Add i386 architecture
-&& dpkg --add-architecture i386 \
 # Add repositories and update
 && apt-get update && apt-get -y dist-upgrade \
 && apt-get install -y gnupg apt-utils software-properties-common \
@@ -143,7 +141,6 @@ nano \
 nodejs \
 nsis \
 nsis-pluginapi \
-nuget \
 openssh-client \
 openssh-server \
 openssl \
@@ -229,7 +226,6 @@ zbar-tools \
 zip \
 zlib1g \
 zlib1g-dev \
-&& nuget update -self \
 # Install extra Python2 dependencies
 && pip2 install --ignore-installed --upgrade ansible \
 pyyaml \
@@ -238,6 +234,7 @@ pyOpenSSL \
 python-novaclient \
 shade \
 # Install extra Python3 dependencies
+&& pip3 install --ignore-installed --upgrade \
 pyyaml \
 autopep8 \
 cffi \
@@ -255,6 +252,7 @@ pytest-cov \
 python-novaclient \
 jsonschema \
 shade \
+schemathesis \
 # Install extra npm dependencies
 && npm install --global grunt-cli \
 gulp-cli \
@@ -293,8 +291,8 @@ js-beautify \
 && echo "go ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers \
 # hugo
 && cd /tmp \
-&& wget https://github.com/gohugoio/hugo/releases/download/v0.63.2/hugo_0.63.2_Linux-64bit.deb \
-&& dpkg -i hugo_0.63.2_Linux-64bit.deb \
+&& wget https://github.com/gohugoio/hugo/releases/download/v0.64.1/hugo_0.64.1_Linux-64bit.deb \
+&& dpkg -i hugo_0.64.1_Linux-64bit.deb \
 # Cleanup temporary data and cache
 && apt-get clean \
 && apt-get autoclean \

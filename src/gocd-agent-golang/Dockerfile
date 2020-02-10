@@ -54,7 +54,9 @@ jq \
 make \
 pkg-config \
 python \
+python3 \
 python-pip \
+python3-pip \
 python-jsonschema \
 rpm \
 rsync \
@@ -63,6 +65,7 @@ sudo \
 tree \
 unzip \
 upx-ucl \
+&& pip3 install schemathesis \
 # Install and configure GO
 && wget https://storage.googleapis.com/golang/go1.13.7.linux-amd64.tar.gz \
 && tar xvf go1.13.7.linux-amd64.tar.gz \
