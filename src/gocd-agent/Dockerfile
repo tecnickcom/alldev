@@ -253,6 +253,8 @@ python-novaclient \
 jsonschema \
 shade \
 schemathesis \
+&& wget https://releases.hashicorp.com/nomad/0.10.3/nomad_0.10.3_linux_amd64.zip \
+&& unzip nomad_0.10.3_linux_amd64.zip -d /usr/bin/ \
 # Install extra npm dependencies
 && npm install --global grunt-cli \
 gulp-cli \
