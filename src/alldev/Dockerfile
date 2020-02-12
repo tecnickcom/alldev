@@ -257,6 +257,8 @@ shade \
 schemathesis \
 && wget https://releases.hashicorp.com/nomad/0.10.3/nomad_0.10.3_linux_amd64.zip \
 && unzip nomad_0.10.3_linux_amd64.zip -d /usr/bin/ \
+&& wget -O /usr/bin/venom https://github.com/ovh/venom/releases/download/v0.27.0/venom.linux-amd64 \
+&& chmod +x /usr/bin/venom \
 # Install extra npm dependencies
 && npm install --global grunt-cli \
 gulp-cli \

@@ -68,6 +68,8 @@ upx-ucl \
 && pip3 install schemathesis \
 && wget https://releases.hashicorp.com/nomad/0.10.3/nomad_0.10.3_linux_amd64.zip \
 && unzip nomad_0.10.3_linux_amd64.zip -d /usr/bin/ \
+&& wget -O /usr/bin/venom https://github.com/ovh/venom/releases/download/v0.27.0/venom.linux-amd64 \
+&& chmod +x /usr/bin/venom \
 # Install and configure GO
 && wget https://storage.googleapis.com/golang/go1.13.7.linux-amd64.tar.gz \
 && tar xvf go1.13.7.linux-amd64.tar.gz \
