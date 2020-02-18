@@ -73,10 +73,11 @@ virtualenv \
 pyflakes \
 pylint \
 librdkafka-dev \
-&& pip install --ignore-installed --upgrade pip pipenv \
-# Install extra Python3 dependencies
+# Install extra Python dependencies
 && pip3 install --ignore-installed --upgrade \
 pip \
+setuptools \
+pipenv \
 pyyaml \
 autopep8 \
 cffi \
