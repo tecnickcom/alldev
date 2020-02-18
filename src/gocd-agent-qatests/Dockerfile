@@ -1,13 +1,13 @@
 # Dockerfile
 #
-# GoCD elastic agent based on Ubuntu 18.04 (Bionic)
+# GoCD elastic agent based on Ubuntu 16.04
 #
 # @author      Nicola Asuni <info@tecnick.com>
 # @copyright   2016-2020 Nicola Asuni - Tecnick.com LTD
 # @license     MIT (see LICENSE)
 # @link        https://github.com/tecnickcom/alldev
 # ------------------------------------------------------------------------------
-FROM gocd/gocd-agent-ubuntu-18.04:v20.1.0
+FROM gocd/gocd-agent-ubuntu-16.04:v20.1.0
 MAINTAINER info@tecnick.com
 USER root
 ENV DEBIAN_FRONTEND noninteractive
@@ -37,6 +37,8 @@ RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selectio
 && apt-add-repository universe \
 && apt-add-repository multiverse \
 && apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF \
+&& apt-key adv --fetch-keys http://packages.confluent.io/deb/4.0/archive.key \
+&& add-apt-repository "deb [arch=amd64] http://packages.confluent.io/deb/4.0 stable main" \
 && apt-get update \
 && apt-get install -y language-pack-en-base \
 && locale-gen en_US en_US.UTF-8 \
@@ -93,6 +95,11 @@ pytest-cov \
 python-novaclient \
 jsonschema \
 schemathesis \
+&& wget http://packages.couchbase.com/releases/couchbase-release/couchbase-release-1.0-4-amd64.deb \
+&& dpkg -i couchbase-release-1.0-4-amd64.deb \
+&& apt-get update \
+&& apt-get install -y libcouchbase-dev \
+# Allow go user to run root comman
 # Allow go user to run root commands via sudo
 && chown -R go:root /home/go \
 && usermod -aG sudo go \

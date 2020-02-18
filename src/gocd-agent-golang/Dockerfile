@@ -89,7 +89,5 @@ upx-ucl \
 && apt-get clean \
 && apt-get autoclean \
 && apt-get -y autoremove \
-&& rm -rf /root/.npm/cache/* \
-&& rm -rf /root/.composer/cache/* \
 && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 USER go
