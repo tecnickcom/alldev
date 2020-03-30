@@ -8,7 +8,7 @@
 # @link        https://github.com/tecnickcom/alldev
 # ------------------------------------------------------------------------------
 
-FROM gocd/gocd-agent-ubuntu-18.04:v20.1.0
+FROM gocd/gocd-agent-ubuntu-18.04:v20.2.0
 MAINTAINER info@tecnick.com
 USER root
 ENV DEBIAN_FRONTEND noninteractive
@@ -253,8 +253,8 @@ python-novaclient \
 jsonschema \
 shade \
 schemathesis \
-&& wget https://releases.hashicorp.com/nomad/0.10.3/nomad_0.10.3_linux_amd64.zip \
-&& unzip nomad_0.10.3_linux_amd64.zip -d /usr/bin/ \
+&& wget https://releases.hashicorp.com/nomad/0.10.5/nomad_0.10.5_linux_amd64.zip \
+&& unzip nomad_0.10.5_linux_amd64.zip -d /usr/bin/ \
 && wget -O /usr/bin/venom https://github.com/ovh/venom/releases/download/v0.27.0/venom.linux-amd64 \
 && chmod +x /usr/bin/venom \
 # Install extra npm dependencies
@@ -295,8 +295,8 @@ js-beautify \
 && echo "go ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers \
 # hugo
 && cd /tmp \
-&& wget https://github.com/gohugoio/hugo/releases/download/v0.68.0/hugo_0.68.0_Linux-64bit.deb \
-&& dpkg -i hugo_0.68.0_Linux-64bit.deb \
+&& wget https://github.com/gohugoio/hugo/releases/download/v0.68.3/hugo_0.68.3_Linux-64bit.deb \
+&& dpkg -i hugo_0.68.3_Linux-64bit.deb \
 # Cleanup temporary data and cache
 && apt-get clean \
 && apt-get autoclean \
