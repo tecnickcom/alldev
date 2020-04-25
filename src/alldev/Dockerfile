@@ -255,8 +255,8 @@ python-jsonschema \
 python3-jsonschema \
 shade \
 schemathesis \
-&& wget https://releases.hashicorp.com/nomad/0.11.0/nomad_0.11.0_linux_amd64.zip \
-&& unzip nomad_0.11.0_linux_amd64.zip -d /usr/bin/ \
+&& wget https://releases.hashicorp.com/nomad/0.11.1/nomad_0.11.1_linux_amd64.zip \
+&& unzip nomad_0.11.1_linux_amd64.zip -d /usr/bin/ \
 && wget -O /usr/bin/venom https://github.com/ovh/venom/releases/download/v0.27.0/venom.linux-amd64 \
 && chmod +x /usr/bin/venom \
 # Install extra npm dependencies
@@ -293,8 +293,8 @@ js-beautify \
 && curl -sSL https://get.haskellstack.org/ | sh \
 # hugo
 && cd /tmp \
-&& wget https://github.com/gohugoio/hugo/releases/download/v0.68.3/hugo_0.68.3_Linux-64bit.deb \
-&& dpkg -i hugo_0.68.3_Linux-64bit.deb \
+&& wget https://github.com/gohugoio/hugo/releases/download/v0.69.2/hugo_0.69.2_Linux-64bit.deb \
+&& dpkg -i hugo_0.69.2_Linux-64bit.deb \
 # Cleanup temporary data and cache
 && apt-get clean \
 && apt-get autoclean \
