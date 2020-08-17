@@ -8,7 +8,7 @@
 # @link        https://github.com/tecnickcom/alldev
 # ------------------------------------------------------------------------------
 
-FROM gocd/gocd-agent-ubuntu-18.04:v20.5.0
+FROM gocd/gocd-agent-ubuntu-18.04:v20.6.0
 MAINTAINER info@tecnick.com
 USER root
 ENV DEBIAN_FRONTEND noninteractive
@@ -253,8 +253,8 @@ python-novaclient \
 jsonschema \
 shade \
 schemathesis \
-&& wget https://releases.hashicorp.com/nomad/0.11.3/nomad_0.11.3_linux_amd64.zip \
-&& unzip nomad_0.11.3_linux_amd64.zip -d /usr/bin/ \
+&& wget https://releases.hashicorp.com/nomad/0.12.3/nomad_0.12.3_linux_amd64.zip \
+&& unzip nomad_0.12.3_linux_amd64.zip -d /usr/bin/ \
 && wget -O /usr/bin/venom https://github.com/ovh/venom/releases/download/v0.27.0/venom.linux-amd64 \
 && chmod +x /usr/bin/venom \
 # Install extra npm dependencies
@@ -276,8 +276,8 @@ js-beautify \
 && cd /tmp \
 && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
 # Install and configure GO
-&& wget https://storage.googleapis.com/golang/go1.14.4.linux-amd64.tar.gz \
-&& tar xvf go1.14.4.linux-amd64.tar.gz \
+&& wget https://storage.googleapis.com/golang/go1.15.linux-amd64.tar.gz \
+&& tar xvf go1.15.linux-amd64.tar.gz \
 && rm -rf /usr/local/go \
 && mv go /usr/local \
 && mkdir -p /root/bin \
@@ -295,8 +295,8 @@ js-beautify \
 && echo "go ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers \
 # hugo
 && cd /tmp \
-&& wget https://github.com/gohugoio/hugo/releases/download/v0.73.0/hugo_0.73.0_Linux-64bit.deb \
-&& dpkg -i hugo_0.73.0_Linux-64bit.deb \
+&& wget https://github.com/gohugoio/hugo/releases/download/v0.74.3/hugo_0.74.3_Linux-64bit.deb \
+&& dpkg -i hugo_0.74.3_Linux-64bit.deb \
 # Cleanup temporary data and cache
 && apt-get clean \
 && apt-get autoclean \
