@@ -10,9 +10,6 @@
 # This file is part of alldev project.
 # ----------------------------------------------------------------------------------------------------------------------
 
-# List special make targets that are not associated with files
-.PHONY: help all builditem build uploaditem upload
-
 # Project owner
 OWNER=tecnickcom
 
@@ -43,6 +40,7 @@ IMAGES="alldev gocd-agent"
 # --- MAKE TARGETS ---
 
 # Display general help about this command
+.PHONY: help
 help:
 	@echo ""
 	@echo "${PROJECT} Makefile."
@@ -55,22 +53,27 @@ help:
 	@echo ""
 
 # Alias for help target
+.PHONY: all
 all: help
 
 # Build the specified Docker image
+.PHONY: builditem
 builditem:
 	docker build --compress --no-cache -t ${DOCKER_REPOSITORY}/${DIMG}:latest ./src/${DIMG}
 	docker tag ${DOCKER_REPOSITORY}/${DIMG}:latest ${DOCKER_REPOSITORY}/${DIMG}:${VERSION}-${RELEASE}
 
 # Build the Docker image
+.PHONY: build
 build:
 	for DIR in ${IMAGES} ; do make builditem DIMG=$$DIR ; done
 
 # Upload the specified docker image
+.PHONY: uploaditem
 uploaditem:
 	docker push ${DOCKER_REPOSITORY}/${DIMG}:latest
 	docker push ${DOCKER_REPOSITORY}/${DIMG}:${VERSION}-${RELEASE}
 
 # Upload docker image
+.PHONY: upload
 upload:
 	for DIR in ${IMAGES} ; do make uploaditem DIMG=$$DIR ; done
