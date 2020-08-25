@@ -7,7 +7,6 @@
 # @license     MIT (see LICENSE)
 # @link        https://github.com/tecnickcom/alldev
 # ------------------------------------------------------------------------------
-
 FROM phusion/baseimage:master
 MAINTAINER info@tecnick.com
 ENV DEBIAN_FRONTEND noninteractive
