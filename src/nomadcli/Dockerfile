@@ -24,8 +24,8 @@ parallel \
 sudo \
 wget \
 unzip \
-&& wget https://releases.hashicorp.com/nomad/0.12.3/nomad_0.12.3_linux_amd64.zip \
-&& unzip nomad_0.12.3_linux_amd64.zip -d /usr/bin/ \
+&& wget https://releases.hashicorp.com/nomad/0.12.5/nomad_0.12.5_linux_amd64.zip \
+&& unzip nomad_0.12.5_linux_amd64.zip -d /usr/bin/ \
 # Cleanup temporary data and cache
 && apt-get clean \
 && apt-get autoclean \
