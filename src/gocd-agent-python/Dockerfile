@@ -7,7 +7,7 @@
 # @license     MIT (see LICENSE)
 # @link        https://github.com/tecnickcom/alldev
 # ------------------------------------------------------------------------------
-FROM gocd/gocd-agent-ubuntu-18.04:v20.7.0
+FROM gocd/gocd-agent-ubuntu-18.04:v20.8.0
 MAINTAINER info@tecnick.com
 USER root
 ENV DEBIAN_FRONTEND noninteractive
