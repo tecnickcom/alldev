@@ -24,6 +24,7 @@ parallel \
 sudo \
 wget \
 unzip \
+&& cd /tmp \
 && wget https://releases.hashicorp.com/nomad/0.12.7/nomad_0.12.7_linux_amd64.zip \
 && unzip nomad_0.12.7_linux_amd64.zip -d /usr/bin/ \
 # Cleanup temporary data and cache

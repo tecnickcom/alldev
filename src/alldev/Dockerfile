@@ -254,10 +254,13 @@ python-jsonschema \
 python3-jsonschema \
 shade \
 schemathesis \
+&& cd /tmp \
 && wget https://releases.hashicorp.com/nomad/0.12.7/nomad_0.12.7_linux_amd64.zip \
 && unzip nomad_0.12.7_linux_amd64.zip -d /usr/bin/ \
+&& cd /tmp \
 && wget -O /usr/bin/venom https://github.com/ovh/venom/releases/download/v0.27.0/venom.linux-amd64 \
 && chmod +x /usr/bin/venom \
+&& cd /tmp \
 # Install extra npm dependencies
 && npm install --global grunt-cli \
 gulp-cli \
@@ -277,6 +280,7 @@ js-beautify \
 && cd /tmp \
 && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
 # Install and configure GO
+&& cd /tmp \
 && wget https://storage.googleapis.com/golang/go1.15.3.linux-amd64.tar.gz \
 && tar xvf go1.15.3.linux-amd64.tar.gz \
 && rm -rf /usr/local/go \
