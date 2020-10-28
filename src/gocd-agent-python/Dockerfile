@@ -20,6 +20,7 @@ ENV PATH=/usr/local/go/bin:$GOPATH/bin:$PATH
 ADD id_rsa /home/go/.ssh/id_rsa
 ADD id_rsa.pub /home/go/.ssh/id_rsa.pub
 RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections \
+&& mkdir -p /go \
 # Configure SSH
 && echo "Host *" >> /home/go/.ssh/config \
 && echo "    StrictHostKeyChecking no" >> /home/go/.ssh/config \

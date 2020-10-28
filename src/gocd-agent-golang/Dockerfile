@@ -20,6 +20,7 @@ ENV PATH=/usr/local/go/bin:$GOPATH/bin:$PATH
 ADD id_rsa /home/go/.ssh/id_rsa
 ADD id_rsa.pub /home/go/.ssh/id_rsa.pub
 RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections \
+&& mkdir -p /go \
 # Configure SSH
 && echo "Host *" >> /home/go/.ssh/config \
 && echo "    StrictHostKeyChecking no" >> /home/go/.ssh/config \
@@ -86,11 +87,11 @@ schemathesis \
 && tar xvf go1.15.3.linux-amd64.tar.gz \
 && rm -rf /usr/local/go \
 && mv go /usr/local \
-&& mkdir -p /root/bin \
-&& mkdir -p /root/pkg \
-&& mkdir -p /root/src \
-&& echo 'export GOPATH=/root' >> /root/.profile \
-&& echo 'export PATH=/usr/local/go/bin:$GOPATH/bin:$PATH' >> /root/.profile \
+&& mkdir -p /home/go/GO/bin \
+&& mkdir -p /home/go/GO/pkg \
+&& mkdir -p /home/go/GO/src \
+&& echo 'export GOPATH=/home/go/GO' >> /home/go/.profile \
+&& echo 'export PATH=/usr/local/go/bin:$GOPATH/bin:$PATH' >> /home/go/.profile \
 && go version \
 && wget -O /usr/bin/venom https://github.com/ovh/venom/releases/download/v0.28.0/venom.linux-amd64 \
 && chmod +x /usr/bin/venom \
