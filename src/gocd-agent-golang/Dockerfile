@@ -44,34 +44,30 @@ RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selectio
 # install development packages and debugging tools
 && apt-get install -y \
 alien \
-astyle \
-autoconf \
-automake \
-autotools-dev \
 build-essential \
 checkinstall \
 curl \
 debhelper \
 default-jdk \
-default-jre \
 devscripts \
-dh-make \
-dnsutils \
 fakeroot \
 gawk \
 git \
 jq \
-lsof \
+libffi-dev \
+libssl-dev \
 make \
-mawk \
 openssl \
 parallel \
 perl \
 pkg-config \
+python \
+python3 \
 python3-all-dev \
 python3-pip \
 python-jsonschema \
 rpm \
+rsync \
 ssh \
 sudo \
 time \
@@ -79,16 +75,12 @@ tree \
 unzip \
 wget \
 zip \
-# Install extra Python3 dependencies
+# Install extra Python dependencies
 && pip3 install --ignore-installed --upgrade \
-pyyaml \
-json-spec \
+pip \
+setuptools \
 jsonschema \
 schemathesis \
-&& wget https://releases.hashicorp.com/nomad/0.12.7/nomad_0.12.7_linux_amd64.zip \
-&& unzip nomad_0.12.7_linux_amd64.zip -d /usr/bin/ \
-&& wget -O /usr/bin/venom https://github.com/ovh/venom/releases/download/v0.28.0/venom.linux-amd64 \
-&& chmod +x /usr/bin/venom \
 # Install and configure GO
 && wget https://storage.googleapis.com/golang/go1.15.3.linux-amd64.tar.gz \
 && tar xvf go1.15.3.linux-amd64.tar.gz \
@@ -100,11 +92,15 @@ schemathesis \
 && echo 'export GOPATH=/root' >> /root/.profile \
 && echo 'export PATH=/usr/local/go/bin:$GOPATH/bin:$PATH' >> /root/.profile \
 && go version \
+&& wget -O /usr/bin/venom https://github.com/ovh/venom/releases/download/v0.28.0/venom.linux-amd64 \
+&& chmod +x /usr/bin/venom \
+&& wget https://releases.hashicorp.com/nomad/0.12.7/nomad_0.12.7_linux_amd64.zip \
+&& unzip nomad_0.12.7_linux_amd64.zip -d /usr/bin/ \
 # Allow go user to run root commands via sudo
 && chown -R go:root /home/go \
 && usermod -aG sudo go \
 && echo "go ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers \
-# Cleanup temporary data and cache
+# Cleanup temporary data and cache \
 && apt-get clean \
 && apt-get autoclean \
 && apt-get -y autoremove \
