@@ -44,35 +44,54 @@ RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selectio
 # install development packages and debugging tools
 && apt-get install -y \
 alien \
+astyle \
+autoconf \
+automake \
+autotools-dev \
+build-essential \
+checkinstall \
 curl \
 debhelper \
+default-jdk \
+default-jre \
 devscripts \
-dh-golang \
 dh-make \
+dnsutils \
 fakeroot \
+gawk \
+git \
 jq \
+lsof \
 make \
+mawk \
+openssl \
+parallel \
+perl \
 pkg-config \
-python \
-python3 \
-python-pip \
+python3-all-dev \
 python3-pip \
 python-jsonschema \
 rpm \
-rsync \
 ssh \
 sudo \
+time \
 tree \
 unzip \
-upx-ucl \
-&& pip3 install schemathesis \
-&& wget https://releases.hashicorp.com/nomad/0.12.5/nomad_0.12.5_linux_amd64.zip \
-&& unzip nomad_0.12.5_linux_amd64.zip -d /usr/bin/ \
-&& wget -O /usr/bin/venom https://github.com/ovh/venom/releases/download/v0.27.0/venom.linux-amd64 \
+wget \
+zip \
+# Install extra Python3 dependencies
+&& pip3 install --ignore-installed --upgrade \
+pyyaml \
+json-spec \
+jsonschema \
+schemathesis \
+&& wget https://releases.hashicorp.com/nomad/0.12.7/nomad_0.12.7_linux_amd64.zip \
+&& unzip nomad_0.12.7_linux_amd64.zip -d /usr/bin/ \
+&& wget -O /usr/bin/venom https://github.com/ovh/venom/releases/download/v0.28.0/venom.linux-amd64 \
 && chmod +x /usr/bin/venom \
 # Install and configure GO
-&& wget https://storage.googleapis.com/golang/go1.15.2.linux-amd64.tar.gz \
-&& tar xvf go1.15.2.linux-amd64.tar.gz \
+&& wget https://storage.googleapis.com/golang/go1.15.3.linux-amd64.tar.gz \
+&& tar xvf go1.15.3.linux-amd64.tar.gz \
 && rm -rf /usr/local/go \
 && mv go /usr/local \
 && mkdir -p /root/bin \
@@ -85,7 +104,7 @@ upx-ucl \
 && chown -R go:root /home/go \
 && usermod -aG sudo go \
 && echo "go ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers \
-# Cleanup temporary data and cache \
+# Cleanup temporary data and cache
 && apt-get clean \
 && apt-get autoclean \
 && apt-get -y autoremove \
