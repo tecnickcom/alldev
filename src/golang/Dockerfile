@@ -8,7 +8,7 @@
 # @link        https://github.com/tecnickcom/alldev
 # ------------------------------------------------------------------------------
 
-FROM golang
+FROM golang:1.15.5
 ENV PATH=/root/.local/bin:$PATH
 RUN apt-get update \
 && apt-get -y install \
