@@ -111,8 +111,6 @@ libicu-dev \
 liblapack-dev \
 liblzma-dev \
 libncurses5-dev \
-libsane-extras \
-libssl1.0.0 \
 libssl-dev \
 libtool \
 libwine-development \
@@ -124,7 +122,7 @@ libxmlsec1-dev \
 libxmlsec1-openssl \
 libxslt1.1 \
 libxslt1-dev \
-llvm-5.0 \
+llvm \
 lsof \
 make \
 mawk \
@@ -136,7 +134,6 @@ mingw-w64-x86-64-dev \
 mongodb \
 mysql-client \
 mysql-server \
-mysql-utilities \
 nano \
 nodejs \
 nsis \
@@ -192,7 +189,6 @@ python3-setuptools \
 python-all \
 python-all-dev \
 python-dev \
-python-pip \
 python-setuptools \
 r-base \
 redis-server \
@@ -216,7 +212,7 @@ valgrind \
 vim \
 virtualenv \
 wget \
-wine1.6 \
+wine \
 wine64-development-tools \
 winetricks \
 xmldiff \
