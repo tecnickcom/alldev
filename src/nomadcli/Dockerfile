@@ -25,8 +25,8 @@ sudo \
 wget \
 unzip \
 && cd /tmp \
-&& wget https://releases.hashicorp.com/nomad/1.0.0/nomad_1.0.0_linux_amd64.zip \
-&& unzip nomad_1.0.0_linux_amd64.zip -d /usr/bin/ \
+&& wget https://releases.hashicorp.com/nomad/1.0.1/nomad_1.0.1_linux_amd64.zip \
+&& unzip nomad_1.0.1_linux_amd64.zip -d /usr/bin/ \
 # Cleanup temporary data and cache
 && apt-get clean \
 && apt-get autoclean \

@@ -56,6 +56,7 @@ libffi-dev \
 libssl-dev \
 default-jdk \
 libmysqlclient-dev \
+mysql-client \
 python \
 python3 \
 python3-all \
