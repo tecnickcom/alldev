@@ -92,8 +92,8 @@ schemathesis \
 && chmod +x /usr/bin/venom \
 && cd /tmp \
 # Install and configure GO
-&& wget https://storage.googleapis.com/golang/go1.15.6.linux-amd64.tar.gz \
-&& tar xvf go1.15.6.linux-amd64.tar.gz \
+&& wget https://storage.googleapis.com/golang/go1.15.7.linux-amd64.tar.gz \
+&& tar xvf go1.15.7.linux-amd64.tar.gz \
 && rm -rf /usr/local/go \
 && mv go /usr/local \
 && mkdir -p /home/go/GO/bin \
