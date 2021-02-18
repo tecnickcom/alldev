@@ -135,8 +135,6 @@ mysql-client \
 mysql-server \
 mysql-utilities \
 nano \
-nodejs \
-npm \
 nsis \
 nsis-pluginapi \
 openssh-client \
@@ -253,14 +251,6 @@ schemathesis \
 && wget -O /usr/bin/venom https://github.com/ovh/venom/releases/download/v0.28.0/venom.linux-amd64 \
 && chmod +x /usr/bin/venom \
 && cd /tmp \
-# Install extra npm dependencies
-&& npm install --global grunt-cli \
-gulp-cli \
-jquery \
-uglify-js \
-csso \
-csso-cli \
-js-beautify \
 # Install R packages
 && Rscript -e "install.packages(c('testthat', 'inline', 'pryr', 'Rcpp'), repos = 'http://cran.us.r-project.org')" \
 # HTML Tidy
@@ -298,7 +288,6 @@ js-beautify \
 && apt clean \
 && apt autoclean \
 && apt -y autoremove \
-&& rm -rf /root/.npm/cache/* \
 && rm -rf /root/.composer/cache/* \
 && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 USER go
