@@ -136,6 +136,7 @@ mysql-server \
 mysql-utilities \
 nano \
 nodejs \
+npm \
 nsis \
 nsis-pluginapi \
 openssh-client \
