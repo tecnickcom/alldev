@@ -280,8 +280,8 @@ js-beautify \
 && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
 # Install and configure GO
 && cd /tmp \
-&& wget https://storage.googleapis.com/golang/go1.15.7.linux-amd64.tar.gz \
-&& tar xvf go1.15.7.linux-amd64.tar.gz \
+&& wget https://storage.googleapis.com/golang/go1.16.linux-amd64.tar.gz \
+&& tar xvf go1.16.linux-amd64.tar.gz \
 && rm -rf /usr/local/go \
 && mv go /usr/local \
 && mkdir -p /home/go/GO/bin \
