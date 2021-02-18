@@ -32,7 +32,7 @@ RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selectio
 && echo "	email = gocd@example.com" >> /home/go/.gitconfig \
 && echo "	name = gocd" >> /home/go/.gitconfig \
 # Add repositories and update
-&& curl -sL https://raw.githubusercontent.com/nodesource/distributions/master/deb/setup_15.x | bash - \
+&& curl -sL https://raw.githubusercontent.com/nodesource/distributions/master/deb/setup_12.x | bash - \
 && apt update && apt -y dist-upgrade \
 && apt install -y gnupg apt-utils software-properties-common \
 && apt-add-repository universe \
