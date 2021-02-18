@@ -80,8 +80,8 @@ xmldiff \
 xmlindent \
 zip \
 # Install extra Python dependencies
+&& pip3 install --ignore-installed --upgrade pip \
 && pip3 install --ignore-installed --upgrade \
-pip \
 jsonschema \
 schemathesis \
 && cd /tmp \

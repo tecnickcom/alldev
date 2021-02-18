@@ -57,26 +57,17 @@ libssl-dev \
 default-jdk \
 libmysqlclient-dev \
 mysql-client \
-python \
-python3 \
-python3-all \
-python3-all-dev \
-python3-dev \
-python3-pip \
-python3-setuptools \
-python-all \
 python-all-dev \
-python-dev \
 python-pip \
-python-setuptools \
-python-jsonschema \
+python3-all-dev \
+python3-pip \
 virtualenv \
 pyflakes \
 pylint \
 librdkafka-dev \
 # Install extra Python dependencies
+&& pip3 install --ignore-installed --upgrade pip \
 && pip3 install --ignore-installed --upgrade \
-pip \
 setuptools \
 pipenv \
 pyyaml \

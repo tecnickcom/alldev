@@ -179,17 +179,9 @@ postgresql \
 postgresql-contrib \
 pyflakes \
 pylint \
-python \
-python3 \
-python3-all \
-python3-all-dev \
-python3-dev \
-python3-pip \
-python3-setuptools \
-python-all \
 python-all-dev \
-python-dev \
-python-setuptools \
+python3-all-dev \
+python3-pip \
 r-base \
 redis-server \
 redis-tools \
@@ -230,7 +222,9 @@ pyOpenSSL \
 python-novaclient \
 shade \
 # Install extra Python3 dependencies
+&& pip3 install --ignore-installed --upgrade pip \
 && pip3 install --ignore-installed --upgrade \
+setuptools \
 pyyaml \
 autopep8 \
 cffi \
