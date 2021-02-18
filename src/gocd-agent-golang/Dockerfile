@@ -85,8 +85,8 @@ pip \
 jsonschema \
 schemathesis \
 && cd /tmp \
-&& wget https://releases.hashicorp.com/nomad/1.0.2/nomad_1.0.2_linux_amd64.zip \
-&& unzip nomad_1.0.2_linux_amd64.zip -d /usr/bin/ \
+&& wget https://releases.hashicorp.com/nomad/1.0.3/nomad_1.0.3_linux_amd64.zip \
+&& unzip nomad_1.0.3_linux_amd64.zip -d /usr/bin/ \
 && cd /tmp \
 && wget -O /usr/bin/venom https://github.com/ovh/venom/releases/download/v0.28.0/venom.linux-amd64 \
 && chmod +x /usr/bin/venom \
