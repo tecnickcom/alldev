@@ -32,14 +32,12 @@ RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selectio
 && echo "	email = gocd@example.com" >> /home/go/.gitconfig \
 && echo "	name = gocd" >> /home/go/.gitconfig \
 # Add repositories and update
+&& curl -sL https://deb.nodesource.com/setup_15.x | bash - \
 && apt update && apt -y dist-upgrade \
 && apt install -y gnupg apt-utils software-properties-common \
 && apt-add-repository universe \
 && apt-add-repository multiverse \
-&& apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF \
 && apt update \
-# Repository for node
-&& curl -sL https://deb.nodesource.com/setup_15.x | bash - \
 && apt install -y language-pack-en-base \
 && locale-gen en_US en_US.UTF-8 \
 && dpkg-reconfigure locales \

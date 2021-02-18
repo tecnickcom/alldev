@@ -36,7 +36,6 @@ RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selectio
 && apt install -y gnupg apt-utils software-properties-common \
 && apt-add-repository universe \
 && apt-add-repository multiverse \
-&& apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF \
 && apt update \
 && apt install -y language-pack-en-base \
 && locale-gen en_US en_US.UTF-8 \
