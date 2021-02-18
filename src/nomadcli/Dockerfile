@@ -16,8 +16,8 @@ ENV HOME /root
 ENV DISPLAY :0
 RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections \
 # Add repositories and update
-&& apt-get update && apt-get -y dist-upgrade \
-&& apt-get install -y \
+&& apt update && apt -y dist-upgrade \
+&& apt install -y \
 build-essential \
 make \
 parallel \
@@ -28,7 +28,7 @@ unzip \
 && wget https://releases.hashicorp.com/nomad/1.0.3/nomad_1.0.3_linux_amd64.zip \
 && unzip nomad_1.0.3_linux_amd64.zip -d /usr/bin/ \
 # Cleanup temporary data and cache
-&& apt-get clean \
-&& apt-get autoclean \
-&& apt-get -y autoremove \
+&& apt clean \
+&& apt autoclean \
+&& apt -y autoremove \
 && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*

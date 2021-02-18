@@ -10,8 +10,8 @@
 
 FROM golang:1.16
 ENV PATH=/root/.local/bin:$PATH
-RUN apt-get update \
-&& apt-get -y install \
+RUN apt update \
+&& apt -y install \
 devscripts \
 fakeroot \
 debhelper \

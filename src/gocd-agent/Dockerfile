@@ -32,19 +32,19 @@ RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selectio
 && echo "	email = gocd@example.com" >> /home/go/.gitconfig \
 && echo "	name = gocd" >> /home/go/.gitconfig \
 # Add repositories and update
-&& apt-get update && apt-get -y dist-upgrade \
-&& apt-get install -y gnupg apt-utils software-properties-common \
+&& apt update && apt -y dist-upgrade \
+&& apt install -y gnupg apt-utils software-properties-common \
 && apt-add-repository universe \
 && apt-add-repository multiverse \
 && apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF \
-&& apt-get update \
+&& apt update \
 # Repository for node
-&& curl -sL https://deb.nodesource.com/setup_12.x | bash - \
-&& apt-get install -y language-pack-en-base \
+&& curl -sL https://deb.nodesource.com/setup_15.x | bash - \
+&& apt install -y language-pack-en-base \
 && locale-gen en_US en_US.UTF-8 \
 && dpkg-reconfigure locales \
 # install development packages and debugging tools
-&& apt-get install -y \
+&& apt install -y \
 alien \
 apache2 \
 astyle \
@@ -297,9 +297,9 @@ js-beautify \
 && wget https://github.com/gohugoio/hugo/releases/download/v0.80.0/hugo_0.80.0_Linux-64bit.deb \
 && dpkg -i hugo_0.80.0_Linux-64bit.deb \
 # Cleanup temporary data and cache
-&& apt-get clean \
-&& apt-get autoclean \
-&& apt-get -y autoremove \
+&& apt clean \
+&& apt autoclean \
+&& apt -y autoremove \
 && rm -rf /root/.npm/cache/* \
 && rm -rf /root/.composer/cache/* \
 && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
