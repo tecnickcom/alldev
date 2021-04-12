@@ -87,7 +87,7 @@ schemathesis \
 && wget https://releases.hashicorp.com/nomad/1.0.4/nomad_1.0.4_linux_amd64.zip \
 && unzip nomad_1.0.4_linux_amd64.zip -d /usr/bin/ \
 && cd /tmp \
-&& wget -O /usr/bin/venom https://github.com/ovh/venom/releases/download/v0.28.0/venom.linux-amd64 \
+&& wget -O /usr/bin/venom https://github.com/ovh/venom/releases/download/v1.0.0-rc.4/venom.linux-amd64 \
 && chmod +x /usr/bin/venom \
 && cd /tmp \
 # Install and configure GO
