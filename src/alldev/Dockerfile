@@ -243,8 +243,8 @@ python3-jsonschema \
 shade \
 schemathesis \
 && cd /tmp \
-&& wget https://releases.hashicorp.com/nomad/1.0.5/nomad_1.0.5_linux_amd64.zip \
-&& unzip nomad_1.0.5_linux_amd64.zip -d /usr/bin/ \
+&& wget https://releases.hashicorp.com/nomad/1.1.0/nomad_1.1.0_linux_amd64.zip \
+&& unzip nomad_1.1.0_linux_amd64.zip -d /usr/bin/ \
 && cd /tmp \
 && wget -O /usr/bin/venom https://github.com/ovh/venom/releases/download/v1.0.0-rc.4/venom.linux-amd64 \
 && chmod +x /usr/bin/venom \
