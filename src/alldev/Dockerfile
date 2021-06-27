@@ -213,7 +213,8 @@ zip \
 zlib1g \
 zlib1g-dev \
 # Install extra Python2 dependencies
-&& pip2 install --ignore-installed --upgrade ansible \
+&& pip install --ignore-installed --upgrade \
+ansible \
 pyyaml \
 dnspython \
 pyOpenSSL \
@@ -238,8 +239,7 @@ pytest \
 pytest-benchmark \
 pytest-cov \
 python-novaclient \
-python-jsonschema \
-python3-jsonschema \
+jsonschema \
 shade \
 schemathesis \
 && cd /tmp \

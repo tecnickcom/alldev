@@ -216,7 +216,8 @@ zip \
 zlib1g \
 zlib1g-dev \
 # Install extra Python2 dependencies
-&& pip2 install --ignore-installed --upgrade ansible \
+&& pip install --ignore-installed --upgrade \
+ansible \
 pyyaml \
 dnspython \
 pyOpenSSL \
