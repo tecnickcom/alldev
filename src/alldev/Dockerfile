@@ -32,7 +32,7 @@ RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selectio
 && echo "	email = gocd@example.com" >> /home/go/.gitconfig \
 && echo "	name = gocd" >> /home/go/.gitconfig \
 # Add repositories and update
-&& curl -sL https://deb.nodesource.com/setup_15.x | bash - \
+&& curl -sL https://deb.nodesource.com/setup_16.x | bash - \
 && apt update && apt -y dist-upgrade \
 && apt install -y apt-utils software-properties-common \
 && apt-add-repository universe \
@@ -243,8 +243,8 @@ python3-jsonschema \
 shade \
 schemathesis \
 && cd /tmp \
-&& wget https://releases.hashicorp.com/nomad/1.1.0/nomad_1.1.0_linux_amd64.zip \
-&& unzip nomad_1.1.0_linux_amd64.zip -d /usr/bin/ \
+&& wget https://releases.hashicorp.com/nomad/1.1.2/nomad_1.1.2_linux_amd64.zip \
+&& unzip nomad_1.1.2_linux_amd64.zip -d /usr/bin/ \
 && cd /tmp \
 && wget -O /usr/bin/venom https://github.com/ovh/venom/releases/download/v1.0.0-rc.4/venom.linux-amd64 \
 && chmod +x /usr/bin/venom \
