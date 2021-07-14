@@ -264,8 +264,8 @@ schemathesis \
 && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
 # Install and configure GO
 && cd /tmp \
-&& wget https://storage.googleapis.com/golang/go1.16.5.linux-amd64.tar.gz \
-&& tar xvf go1.16.5.linux-amd64.tar.gz \
+&& wget https://storage.googleapis.com/golang/go1.16.6.linux-amd64.tar.gz \
+&& tar xvf go1.16.6.linux-amd64.tar.gz \
 && rm -rf /usr/local/go \
 && mv go /usr/local \
 && mkdir -p /home/go/GO/bin \
@@ -283,8 +283,8 @@ schemathesis \
 && echo "go ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers \
 # hugo
 && cd /tmp \
-&& wget https://github.com/gohugoio/hugo/releases/download/v0.84.1/hugo_0.84.1_Linux-64bit.deb \
-&& dpkg -i hugo_0.84.1_Linux-64bit.deb \
+&& wget https://github.com/gohugoio/hugo/releases/download/v0.85.0/hugo_0.85.0_Linux-64bit.deb \
+&& dpkg -i hugo_0.85.0_Linux-64bit.deb \
 # Cleanup temporary data and cache
 && apt clean \
 && apt autoclean \
