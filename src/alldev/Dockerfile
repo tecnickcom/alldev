@@ -243,8 +243,8 @@ jsonschema \
 shade \
 schemathesis \
 && cd /tmp \
-&& wget https://releases.hashicorp.com/nomad/1.1.2/nomad_1.1.2_linux_amd64.zip \
-&& unzip nomad_1.1.2_linux_amd64.zip -d /usr/bin/ \
+&& wget https://releases.hashicorp.com/nomad/1.1.3/nomad_1.1.3_linux_amd64.zip \
+&& unzip nomad_1.1.3_linux_amd64.zip -d /usr/bin/ \
 && cd /tmp \
 && wget -O /usr/bin/venom https://github.com/ovh/venom/releases/download/v1.0.0-rc.4/venom.linux-amd64 \
 && chmod +x /usr/bin/venom \
@@ -269,8 +269,8 @@ js-beautify \
 && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
 # Install and configure GO
 && cd /tmp \
-&& wget https://storage.googleapis.com/golang/go1.16.6.linux-amd64.tar.gz \
-&& tar xvf go1.16.6.linux-amd64.tar.gz \
+&& wget https://storage.googleapis.com/golang/go1.16.7.linux-amd64.tar.gz \
+&& tar xvf go1.16.7.linux-amd64.tar.gz \
 && rm -rf /usr/local/go \
 && mv go /usr/local \
 && mkdir -p /root/bin \
@@ -284,8 +284,8 @@ js-beautify \
 && curl -sSL https://get.haskellstack.org/ | sh \
 # hugo
 && cd /tmp \
-&& wget https://github.com/gohugoio/hugo/releases/download/v0.85.0/hugo_0.85.0_Linux-64bit.deb \
-&& dpkg -i hugo_0.85.0_Linux-64bit.deb \
+&& wget https://github.com/gohugoio/hugo/releases/download/v0.87.0/hugo_0.87.0_Linux-64bit.deb \
+&& dpkg -i hugo_0.87.0_Linux-64bit.deb \
 # Cleanup temporary data and cache
 && apt clean \
 && apt autoclean \
