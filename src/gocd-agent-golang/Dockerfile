@@ -86,13 +86,15 @@ schemathesis \
 && cd /tmp \
 && wget https://releases.hashicorp.com/nomad/1.1.3/nomad_1.1.3_linux_amd64.zip \
 && unzip nomad_1.1.3_linux_amd64.zip -d /usr/bin/ \
+&& rm -f nomad_1.1.3_linux_amd64.zip \
 && cd /tmp \
 && wget -O /usr/bin/venom https://github.com/ovh/venom/releases/download/v1.0.0-rc.4/venom.linux-amd64 \
 && chmod +x /usr/bin/venom \
 && cd /tmp \
 # Install and configure GO
-&& wget https://storage.googleapis.com/golang/go1.16.7.linux-amd64.tar.gz \
-&& tar xvf go1.16.7.linux-amd64.tar.gz \
+&& wget https://storage.googleapis.com/golang/go1.17.linux-amd64.tar.gz \
+&& tar xvf go1.17.linux-amd64.tar.gz \
+&& rm -f go1.17.linux-amd64.tar.gz \
 && rm -rf /usr/local/go \
 && mv go /usr/local \
 && mkdir -p /home/go/GO/bin \
