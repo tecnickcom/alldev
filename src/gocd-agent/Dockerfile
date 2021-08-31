@@ -250,7 +250,7 @@ schemathesis \
 && unzip nomad_1.1.4_linux_amd64.zip -d /usr/bin/ \
 && rm -f nomad_1.1.4_linux_amd64.zip \
 && cd /tmp \
-&& wget -O /usr/bin/venom https://github.com/ovh/venom/releases/download/v1.0.0-rc.6/venom.linux-amd64 \
+&& wget -O /usr/bin/venom https://github.com/ovh/venom/releases/download/v1.0.0-rc.7/venom.linux-amd64 \
 && chmod +x /usr/bin/venom \
 && cd /tmp \
 # Install R packages
