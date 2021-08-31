@@ -246,9 +246,9 @@ jsonschema \
 shade \
 schemathesis \
 && cd /tmp \
-&& wget https://releases.hashicorp.com/nomad/1.1.3/nomad_1.1.3_linux_amd64.zip \
-&& unzip nomad_1.1.3_linux_amd64.zip -d /usr/bin/ \
-&& rm -f nomad_1.1.3_linux_amd64.zip \
+&& wget https://releases.hashicorp.com/nomad/1.1.4/nomad_1.1.4_linux_amd64.zip \
+&& unzip nomad_1.1.4_linux_amd64.zip -d /usr/bin/ \
+&& rm -f nomad_1.1.4_linux_amd64.zip \
 && cd /tmp \
 && wget -O /usr/bin/venom https://github.com/ovh/venom/releases/download/v1.0.0-rc.6/venom.linux-amd64 \
 && chmod +x /usr/bin/venom \
