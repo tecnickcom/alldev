@@ -89,9 +89,9 @@ zip \
 && pip3 install --ignore-installed --upgrade pip \
 && pip3 install --ignore-installed --upgrade jsonschema \
 && cd /tmp \
-&& wget https://releases.hashicorp.com/nomad/1.1.4/nomad_1.1.4_linux_amd64.zip \
-&& unzip nomad_1.1.4_linux_amd64.zip -d /usr/bin/ \
-&& rm -f nomad_1.1.4_linux_amd64.zip \
+&& wget https://releases.hashicorp.com/nomad/1.1.5/nomad_1.1.5_linux_amd64.zip \
+&& unzip nomad_1.1.5_linux_amd64.zip -d /usr/bin/ \
+&& rm -f nomad_1.1.5_linux_amd64.zip \
 && cd /tmp \
 # Allow go user to run root commands via sudo
 && chown -R go:root /home/go \
