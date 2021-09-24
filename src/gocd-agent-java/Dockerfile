@@ -11,6 +11,7 @@ ARG UBUNTU_VERSION="18.04"
 ARG GOCD_VERSION="v21.2.0"
 FROM gocd/gocd-agent-ubuntu-${UBUNTU_VERSION}:${GOCD_VERSION}
 ARG NOMAD_VERSION="1.1.5"
+ARG KOTLIN_VERSION="1.5.31"
 MAINTAINER info@tecnick.com
 USER root
 ENV DEBIAN_FRONTEND noninteractive
@@ -18,7 +19,7 @@ ENV TERM linux
 ENV HOME /home/go
 ENV DISPLAY :0
 ENV GOPATH=/home/go/GO
-ENV PATH=/usr/local/go/bin:$GOPATH/bin:$PATH
+ENV PATH=/usr/local/go/bin:$GOPATH/bin:/home/go/kotlinc/bin:$PATH
 # Add SSH keys
 ADD id_rsa /home/go/.ssh/id_rsa
 ADD id_rsa.pub /home/go/.ssh/id_rsa.pub
@@ -55,6 +56,7 @@ checkinstall \
 curl \
 debhelper \
 default-jdk \
+default-jre \
 devscripts \
 dpkg \
 fakeroot \
@@ -68,6 +70,8 @@ make \
 mysql-client \
 openjdk-8-jdk \
 openjdk-8-jre \
+openjdk-11-jdk \
+openjdk-11-jre \
 openssl \
 parallel \
 perl \
@@ -86,8 +90,12 @@ wget \
 xmldiff \
 xmlindent \
 zip \
-&& update-java-alternatives -s java-1.8.0-openjdk-amd64 \
 && java -version \
+&& cd /home/go/ \
+&& wget https://github.com/JetBrains/kotlin/releases/download/v${KOTLIN_VERSION}/kotlin-compiler-${KOTLIN_VERSION}.zip \
+&& unzip kotlin-compiler-${KOTLIN_VERSION}.zip \
+&& rm -f kotlin-compiler-${KOTLIN_VERSION}.zip \
+&& kotlin -version \
 # Install extra Python dependencies
 && pip3 install --ignore-installed --upgrade pip \
 && pip3 install --ignore-installed --upgrade jsonschema \

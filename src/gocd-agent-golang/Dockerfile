@@ -7,7 +7,12 @@
 # @license     MIT (see LICENSE)
 # @link        https://github.com/tecnickcom/alldev
 # ------------------------------------------------------------------------------
-FROM gocd/gocd-agent-ubuntu-18.04:v21.2.0
+ARG UBUNTU_VERSION="18.04"
+ARG GOCD_VERSION="v21.2.0"
+FROM gocd/gocd-agent-ubuntu-${UBUNTU_VERSION}:${GOCD_VERSION}
+ARG NOMAD_VERSION="1.1.5"
+ARG GO_VERSION="1.17.1"
+ARG VENOM_VERSION="v1.0.0-rc.7"
 MAINTAINER info@tecnick.com
 USER root
 ENV DEBIAN_FRONTEND noninteractive
@@ -84,17 +89,17 @@ zip \
 jsonschema \
 schemathesis \
 && cd /tmp \
-&& wget https://releases.hashicorp.com/nomad/1.1.5/nomad_1.1.5_linux_amd64.zip \
-&& unzip nomad_1.1.5_linux_amd64.zip -d /usr/bin/ \
-&& rm -f nomad_1.1.5_linux_amd64.zip \
+&& wget https://releases.hashicorp.com/nomad/${NOMAD_VERSION}/nomad_${NOMAD_VERSION}_linux_amd64.zip \
+&& unzip nomad_${NOMAD_VERSION}_linux_amd64.zip -d /usr/bin/ \
+&& rm -f nomad_${NOMAD_VERSION}_linux_amd64.zip \
 && cd /tmp \
-&& wget -O /usr/bin/venom https://github.com/ovh/venom/releases/download/v1.0.0-rc.7/venom.linux-amd64 \
+&& wget -O /usr/bin/venom https://github.com/ovh/venom/releases/download/${VENOM_VERSION}/venom.linux-amd64 \
 && chmod +x /usr/bin/venom \
 && cd /tmp \
 # Install and configure GO
-&& wget https://storage.googleapis.com/golang/go1.17.1.linux-amd64.tar.gz \
-&& tar xvf go1.17.1.linux-amd64.tar.gz \
-&& rm -f go1.17.1.linux-amd64.tar.gz \
+&& wget https://storage.googleapis.com/golang/go${GO_VERSION}.linux-amd64.tar.gz \
+&& tar xvf go${GO_VERSION}.linux-amd64.tar.gz \
+&& rm -f go${GO_VERSION}.linux-amd64.tar.gz \
 && rm -rf /usr/local/go \
 && mv go /usr/local \
 && mkdir -p /home/go/GO/bin \

@@ -7,8 +7,8 @@
 # @license     MIT (see LICENSE)
 # @link        https://github.com/tecnickcom/alldev
 # ------------------------------------------------------------------------------
-
-FROM golang:1.17
+ARG GO_VERSION="1.17"
+FROM golang:${GO_VERSION}
 ENV PATH=/root/.local/bin:$PATH
 RUN apt update \
 && apt -y install \

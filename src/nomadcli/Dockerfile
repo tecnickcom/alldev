@@ -7,8 +7,8 @@
 # @license     MIT (see LICENSE)
 # @link        https://github.com/tecnickcom/nomadcli
 # ------------------------------------------------------------------------------
-
 FROM phusion/baseimage:master
+ARG NOMAD_VERSION="1.1.5"
 MAINTAINER info@tecnick.com
 ENV DEBIAN_FRONTEND noninteractive
 ENV TERM linux
@@ -25,9 +25,9 @@ sudo \
 wget \
 unzip \
 && cd /tmp \
-&& wget https://releases.hashicorp.com/nomad/1.1.5/nomad_1.1.5_linux_amd64.zip \
-&& unzip nomad_1.1.5_linux_amd64.zip -d /usr/bin/ \
-&& rm -f nomad_1.1.5_linux_amd64.zip \
+&& wget https://releases.hashicorp.com/nomad/${NOMAD_VERSION}/nomad_${NOMAD_VERSION}_linux_amd64.zip \
+&& unzip nomad_${NOMAD_VERSION}_linux_amd64.zip -d /usr/bin/ \
+&& rm -f nomad_${NOMAD_VERSION}_linux_amd64.zip \
 # Cleanup temporary data and cache
 && apt clean \
 && apt autoclean \

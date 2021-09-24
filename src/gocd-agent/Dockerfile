@@ -7,7 +7,14 @@
 # @license     MIT (see LICENSE)
 # @link        https://github.com/tecnickcom/alldev
 # ------------------------------------------------------------------------------
-FROM gocd/gocd-agent-ubuntu-18.04:v21.2.0
+ARG UBUNTU_VERSION="18.04"
+ARG GOCD_VERSION="v21.2.0"
+FROM gocd/gocd-agent-ubuntu-${UBUNTU_VERSION}:${GOCD_VERSION}
+ARG NOMAD_VERSION="1.1.5"
+ARG KOTLIN_VERSION="1.5.31"
+ARG GO_VERSION="1.17.1"
+ARG VENOM_VERSION="v1.0.0-rc.7"
+ARG HUGO_VERSION="0.88.1"
 MAINTAINER info@tecnick.com
 USER root
 ENV DEBIAN_FRONTEND noninteractive
@@ -15,7 +22,7 @@ ENV TERM linux
 ENV HOME /home/go
 ENV DISPLAY :0
 ENV GOPATH=/home/go/GO
-ENV PATH=/usr/local/go/bin:$GOPATH/bin:$PATH
+ENV PATH=/usr/local/go/bin:$GOPATH/bin:/home/go/kotlinc/bin:$PATH
 # Add SSH keys
 ADD id_rsa /home/go/.ssh/id_rsa
 ADD id_rsa.pub /home/go/.ssh/id_rsa.pub
@@ -32,6 +39,7 @@ RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selectio
 && echo "	email = gocd@example.com" >> /home/go/.gitconfig \
 && echo "	name = gocd" >> /home/go/.gitconfig \
 # Add repositories and update
+&& curl -sL https://deb.nodesource.com/setup_16.x | bash - \
 && apt update && apt -y dist-upgrade \
 && apt install -y gnupg apt-utils software-properties-common \
 && apt-add-repository universe \
@@ -135,6 +143,7 @@ mysql-client \
 mysql-server \
 mysql-utilities \
 nano \
+nodejs \
 nsis \
 nsis-pluginapi \
 openssh-client \
@@ -245,14 +254,28 @@ python-novaclient \
 jsonschema \
 shade \
 schemathesis \
+&& cd /home/go/ \
+&& wget https://github.com/JetBrains/kotlin/releases/download/v${KOTLIN_VERSION}/kotlin-compiler-${KOTLIN_VERSION}.zip \
+&& unzip kotlin-compiler-${KOTLIN_VERSION}.zip \
+&& rm -f kotlin-compiler-${KOTLIN_VERSION}.zip \
+&& kotlin -version \
 && cd /tmp \
-&& wget https://releases.hashicorp.com/nomad/1.1.5/nomad_1.1.5_linux_amd64.zip \
-&& unzip nomad_1.1.5_linux_amd64.zip -d /usr/bin/ \
-&& rm -f nomad_1.1.5_linux_amd64.zip \
+&& wget https://releases.hashicorp.com/nomad/${NOMAD_VERSION}/nomad_${NOMAD_VERSION}_linux_amd64.zip \
+&& unzip nomad_${NOMAD_VERSION}_linux_amd64.zip -d /usr/bin/ \
+&& rm -f nomad_${NOMAD_VERSION}_linux_amd64.zip \
 && cd /tmp \
-&& wget -O /usr/bin/venom https://github.com/ovh/venom/releases/download/v1.0.0-rc.7/venom.linux-amd64 \
+&& wget -O /usr/bin/venom https://github.com/ovh/venom/releases/download/${VENOM_VERSION}/venom.linux-amd64 \
 && chmod +x /usr/bin/venom \
 && cd /tmp \
+# Install extra npm dependencies
+&& npm install --global \
+grunt-cli \
+gulp-cli \
+jquery \
+uglify-js \
+csso \
+csso-cli \
+js-beautify \
 # Install R packages
 && Rscript -e "install.packages(c('testthat', 'inline', 'pryr', 'Rcpp'), repos = 'http://cran.us.r-project.org')" \
 # HTML Tidy
@@ -266,9 +289,9 @@ schemathesis \
 && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
 # Install and configure GO
 && cd /tmp \
-&& wget https://storage.googleapis.com/golang/go1.17.1.linux-amd64.tar.gz \
-&& tar xvf go1.17.1.linux-amd64.tar.gz \
-&& rm -f go1.17.1.linux-amd64.tar.gz \
+&& wget https://storage.googleapis.com/golang/go${GO_VERSION}.linux-amd64.tar.gz \
+&& tar xvf go${GO_VERSION}.linux-amd64.tar.gz \
+&& rm -f go${GO_VERSION}.linux-amd64.tar.gz \
 && rm -rf /usr/local/go \
 && mv go /usr/local \
 && mkdir -p /home/go/GO/bin \
@@ -286,9 +309,9 @@ schemathesis \
 && echo "go ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers \
 # hugo
 && cd /tmp \
-&& wget https://github.com/gohugoio/hugo/releases/download/v0.88.1/hugo_0.88.1_Linux-64bit.deb \
-&& dpkg -i hugo_0.88.1_Linux-64bit.deb \
-&& rm -f hugo_0.88.1_Linux-64bit.deb \
+&& wget https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_${HUGO_VERSION}_Linux-64bit.deb \
+&& dpkg -i hugo_${HUGO_VERSION}_Linux-64bit.deb \
+&& rm -f hugo_${HUGO_VERSION}_Linux-64bit.deb \
 # Cleanup temporary data and cache
 && apt clean \
 && apt autoclean \

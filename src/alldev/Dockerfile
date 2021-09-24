@@ -8,13 +8,17 @@
 # @link        https://github.com/tecnickcom/alldev
 # ------------------------------------------------------------------------------
 FROM phusion/baseimage:master
+ARG NOMAD_VERSION="1.1.5"
+ARG GO_VERSION="1.17.1"
+ARG VENOM_VERSION="v1.0.0-rc.7"
+ARG HUGO_VERSION="0.88.1"
 MAINTAINER info@tecnick.com
 ENV DEBIAN_FRONTEND noninteractive
 ENV TERM linux
 ENV HOME /root
 ENV DISPLAY :0
 ENV GOPATH=/root
-ENV PATH=/usr/local/go/bin:$GOPATH/bin:$PATH
+ENV PATH=/usr/local/go/bin:$GOPATH/bin:/root/kotlinc/bin:$PATH
 # Add SSH keys
 ADD id_rsa /home/go/.ssh/id_rsa
 ADD id_rsa.pub /home/go/.ssh/id_rsa.pub
@@ -242,16 +246,22 @@ python-novaclient \
 jsonschema \
 shade \
 schemathesis \
+&& cd /root/ \
+&& wget https://github.com/JetBrains/kotlin/releases/download/v${KOTLIN_VERSION}/kotlin-compiler-${KOTLIN_VERSION}.zip \
+&& unzip kotlin-compiler-${KOTLIN_VERSION}.zip \
+&& rm -f kotlin-compiler-${KOTLIN_VERSION}.zip \
+&& kotlin -version \
 && cd /tmp \
-&& wget https://releases.hashicorp.com/nomad/1.1.5/nomad_1.1.5_linux_amd64.zip \
-&& unzip nomad_1.1.5_linux_amd64.zip -d /usr/bin/ \
-&& rm -f nomad_1.1.5_linux_amd64.zip \
+&& wget https://releases.hashicorp.com/nomad/${NOMAD_VERSION}/nomad_${NOMAD_VERSION}_linux_amd64.zip \
+&& unzip nomad_${NOMAD_VERSION}_linux_amd64.zip -d /usr/bin/ \
+&& rm -f nomad_${NOMAD_VERSION}_linux_amd64.zip \
 && cd /tmp \
-&& wget -O /usr/bin/venom https://github.com/ovh/venom/releases/download/v1.0.0-rc.7/venom.linux-amd64 \
+&& wget -O /usr/bin/venom https://github.com/ovh/venom/releases/download/${VENOM_VERSION}/venom.linux-amd64 \
 && chmod +x /usr/bin/venom \
 && cd /tmp \
 # Install extra npm dependencies
-&& npm install --global grunt-cli \
+&& npm install --global \
+grunt-cli \
 gulp-cli \
 jquery \
 uglify-js \
@@ -271,9 +281,9 @@ js-beautify \
 && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
 # Install and configure GO
 && cd /tmp \
-&& wget https://storage.googleapis.com/golang/go1.17.1.linux-amd64.tar.gz \
-&& tar xvf go1.17.1.linux-amd64.tar.gz \
-&& rm -f go1.17.1.linux-amd64.tar.gz \
+&& wget https://storage.googleapis.com/golang/go${GO_VERSION}.linux-amd64.tar.gz \
+&& tar xvf go${GO_VERSION}.linux-amd64.tar.gz \
+&& rm -f go${GO_VERSION}.linux-amd64.tar.gz \
 && rm -rf /usr/local/go \
 && mv go /usr/local \
 && mkdir -p /root/bin \
@@ -287,9 +297,9 @@ js-beautify \
 && curl -sSL https://get.haskellstack.org/ | sh \
 # hugo
 && cd /tmp \
-&& wget https://github.com/gohugoio/hugo/releases/download/v0.88.1/hugo_0.88.1_Linux-64bit.deb \
-&& dpkg -i hugo_0.88.1_Linux-64bit.deb \
-&& rm -f hugo_0.88.1_Linux-64bit.deb \
+&& wget https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_${HUGO_VERSION}_Linux-64bit.deb \
+&& dpkg -i hugo_${HUGO_VERSION}_Linux-64bit.deb \
+&& rm -f hugo_${HUGO_VERSION}_Linux-64bit.deb \
 # Cleanup temporary data and cache
 && apt clean \
 && apt autoclean \
