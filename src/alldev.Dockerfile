@@ -296,7 +296,6 @@ js-beautify \
 # Docker
 && cd /tmp \
 && curl -sSL https://get.docker.com/ | sh \
-&& usermod --append --groups docker go \
 # Haskell
 && cd /tmp \
 && curl -sSL https://get.haskellstack.org/ | sh \

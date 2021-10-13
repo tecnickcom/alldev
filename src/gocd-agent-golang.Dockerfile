@@ -21,6 +21,7 @@ ENV HOME /home/go
 ENV DISPLAY :0
 ENV GOPATH=/home/go/GO
 ENV PATH=/usr/local/go/bin:$GOPATH/bin:$PATH
+ADD gocd_entrypoint.sh /
 # Add SSH keys
 ADD id_rsa /home/go/.ssh/id_rsa
 ADD id_rsa.pub /home/go/.ssh/id_rsa.pub
@@ -112,7 +113,6 @@ schemathesis \
 # Docker
 && cd /tmp \
 && curl -sSL https://get.docker.com/ | sh \
-&& usermod --append --groups docker go \
 # Allow go user to run root commands via sudo
 && chown -R go:root /home/go \
 && usermod -aG sudo go \
@@ -121,5 +121,8 @@ schemathesis \
 && apt clean \
 && apt autoclean \
 && apt -y autoremove \
-&& rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+&& rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
+&& chown -R go:root /gocd_entrypoint.sh \
+&& chmod -R g=u /gocd_entrypoint.sh
+ENTRYPOINT ["/gocd_entrypoint.sh"]
 USER go
