@@ -87,9 +87,11 @@ pytest-cov \
 python-novaclient \
 jsonschema \
 schemathesis \
+&& curl -sSL https://get.docker.com/ | sh \
 # Allow go user to run root commands via sudo
 && chown -R go:root /home/go \
 && usermod -aG sudo go \
+&& usermod -aG docker go \
 && echo "go ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers \
 # Cleanup temporary data and cache \
 && apt clean \

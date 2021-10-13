@@ -14,10 +14,9 @@
 
 ## Description
 
-Source configuration file to build a Docker container image with a generic development environment.
+Source configuration files to build Docker images with different development environment.
 
-The generated Docker image, available at https://hub.docker.com/r/tecnickcom/alldev/, 
-is quite large and it is intended to provide a ready-made development environment for different languages and technologies.
+The generated Docker images are available at https://hub.docker.com/r/tecnickcom/
 
 
 ## Requirements
@@ -40,6 +39,7 @@ sudo sh -c 'echo '\''{"experimental":true}'\'' > /etc/docker/daemon.json'
 sudo service docker restart
 ```
 
+
 ## Getting started
 
 This project include a Makefile that allows you to automate common operations.
@@ -47,10 +47,11 @@ To see all available options:
 ```
 make help
 ```
-To build the project
+To build an image:
 ```
-make build
+make builditem DIMG=<IMAGE_DIR>
 ```
+
 
 ## Useful Docker commands
 
@@ -83,6 +84,17 @@ To delete all images
 ```
 docker rmi -f $(docker images -q)
 ```
+
+
+## Docker-in-Docker (DooD, dind)
+
+To run Docker in docker in with the provided gocd-agent images,
+the docker socket must be mounted:
+```
+/var/run/docker.sock:/var/run/docker.sock
+```
+and the container must run in privileged mode.
+
 
 ## Developer(s) Contact
 
