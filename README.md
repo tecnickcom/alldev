@@ -33,11 +33,6 @@ sudo gpasswd -a <YOURUSER> docker
 sudo service docker restart
 ```
 
-The default docker build command in the Makefile requires Docker experimental features:
-```
-sudo sh -c 'echo '\''{"experimental":true}'\'' > /etc/docker/daemon.json'
-sudo service docker restart
-```
 
 
 ## Getting started
@@ -49,7 +44,7 @@ make help
 ```
 To build an image:
 ```
-make builditem DIMG=<IMAGE_DIR>
+make build DIMG=<IMAGE_DIR>
 ```
 
 

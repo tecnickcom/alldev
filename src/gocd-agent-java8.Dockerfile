@@ -11,8 +11,6 @@ ARG UBUNTU_VERSION="18.04"
 ARG GOCD_VERSION="v21.2.0"
 FROM gocd/gocd-agent-ubuntu-${UBUNTU_VERSION}:${GOCD_VERSION}
 ARG NOMAD_VERSION="1.1.6"
-ARG GO_VERSION="1.17.2"
-ARG VENOM_VERSION="v1.0.0-rc.7"
 MAINTAINER info@tecnick.com
 USER root
 ENV DEBIAN_FRONTEND noninteractive
@@ -48,6 +46,9 @@ RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selectio
 # install development packages and debugging tools
 && apt install -y \
 alien \
+ant \
+ant-contrib \
+ant-optional \
 build-essential \
 bzip2 \
 checkinstall \
@@ -65,6 +66,8 @@ libssl-dev \
 libxml2-utils \
 make \
 mysql-client \
+openjdk-8-jdk \
+openjdk-8-jre \
 openssl \
 parallel \
 perl \
@@ -77,43 +80,29 @@ ssh \
 sudo \
 time \
 tree \
+uidmap \
 unzip \
 upx-ucl \
 wget \
 xmldiff \
 xmlindent \
 zip \
+&& update-java-alternatives -s java-1.8.0-openjdk-amd64 \
+&& java -version \
 # Install extra Python dependencies
 && pip3 install --ignore-installed --upgrade pip \
-&& pip3 install --ignore-installed --upgrade \
-jsonschema \
-schemathesis \
+&& pip3 install --ignore-installed --upgrade jsonschema \
 && cd /tmp \
 && wget https://releases.hashicorp.com/nomad/${NOMAD_VERSION}/nomad_${NOMAD_VERSION}_linux_amd64.zip \
 && unzip nomad_${NOMAD_VERSION}_linux_amd64.zip -d /usr/bin/ \
 && rm -f nomad_${NOMAD_VERSION}_linux_amd64.zip \
-&& cd /tmp \
-&& wget -O /usr/bin/venom https://github.com/ovh/venom/releases/download/${VENOM_VERSION}/venom.linux-amd64 \
-&& chmod +x /usr/bin/venom \
-&& cd /tmp \
-# Install and configure GO
-&& wget https://storage.googleapis.com/golang/go${GO_VERSION}.linux-amd64.tar.gz \
-&& tar xvf go${GO_VERSION}.linux-amd64.tar.gz \
-&& rm -f go${GO_VERSION}.linux-amd64.tar.gz \
-&& rm -rf /usr/local/go \
-&& mv go /usr/local \
-&& mkdir -p /home/go/GO/bin \
-&& mkdir -p /home/go/GO/pkg \
-&& mkdir -p /home/go/GO/src \
-&& echo 'export GOPATH=/home/go/GO' >> /home/go/.profile \
-&& echo 'export PATH=/usr/local/go/bin:$GOPATH/bin:$PATH' >> /home/go/.profile \
-&& go version \
+# Docker
 && cd /tmp \
 && curl -sSL https://get.docker.com/ | sh \
+&& usermod --append --groups docker go \
 # Allow go user to run root commands via sudo
 && chown -R go:root /home/go \
 && usermod -aG sudo go \
-&& usermod -aG docker go \
 && echo "go ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers \
 # Cleanup temporary data and cache \
 && apt clean \

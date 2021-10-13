@@ -84,6 +84,7 @@ ssh \
 sudo \
 time \
 tree \
+uidmap \
 unzip \
 upx-ucl \
 wget \
@@ -103,12 +104,13 @@ zip \
 && wget https://releases.hashicorp.com/nomad/${NOMAD_VERSION}/nomad_${NOMAD_VERSION}_linux_amd64.zip \
 && unzip nomad_${NOMAD_VERSION}_linux_amd64.zip -d /usr/bin/ \
 && rm -f nomad_${NOMAD_VERSION}_linux_amd64.zip \
+# Docker
 && cd /tmp \
 && curl -sSL https://get.docker.com/ | sh \
+&& usermod --append --groups docker go \
 # Allow go user to run root commands via sudo
 && chown -R go:root /home/go \
 && usermod -aG sudo go \
-&& usermod -aG docker go \
 && echo "go ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers \
 # Cleanup temporary data and cache \
 && apt clean \

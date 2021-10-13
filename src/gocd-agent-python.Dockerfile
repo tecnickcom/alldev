@@ -52,6 +52,7 @@ rsync \
 ssh \
 sudo \
 tree \
+uidmap \
 unzip \
 libffi-dev \
 libssl-dev \
@@ -87,11 +88,12 @@ pytest-cov \
 python-novaclient \
 jsonschema \
 schemathesis \
+# Docker
+&& cd /tmp \
 && curl -sSL https://get.docker.com/ | sh \
+&& usermod --append --groups docker go \
 # Allow go user to run root commands via sudo
 && chown -R go:root /home/go \
-&& usermod -aG sudo go \
-&& usermod -aG docker go \
 && echo "go ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers \
 # Cleanup temporary data and cache \
 && apt clean \

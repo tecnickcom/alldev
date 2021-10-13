@@ -34,9 +34,6 @@ DOCKER_REGISTRY=
 # Docker repository
 DOCKER_REPOSITORY=${DOCKER_REGISTRY}${VENDOR}
 
-# List of Docker images to build
-IMAGES="alldev gocd-agent"
-
 # --- MAKE TARGETS ---
 
 # Display general help about this command
@@ -46,10 +43,8 @@ help:
 	@echo "${PROJECT} Makefile."
 	@echo "The following commands are available:"
 	@echo ""
-	@echo "    make build                       : Build all Docker images"
-	@echo "    make builditem DIMG=<IMAGE_DIR>  : Build the specified Docker images"
-	@echo "    make upload                      : Upload all Docker images (only with the right credentials)"
-	@echo "    make uploaditem DIMG=<IMAGE_DIR> : Upload the specified Docker images (only with the right credentials)"
+	@echo "    make build  DIMG=<IMAGE_DIR> : Build the specified Docker images"
+	@echo "    make upload DIMG=<IMAGE_DIR> : Upload the specified Docker images (only with the right credentials)"
 	@echo ""
 
 # Alias for help target
@@ -57,23 +52,13 @@ help:
 all: help
 
 # Build the specified Docker image
-.PHONY: builditem
-builditem:
-	docker build --compress --no-cache -t ${DOCKER_REPOSITORY}/${DIMG}:latest ./src/${DIMG}
-	docker tag ${DOCKER_REPOSITORY}/${DIMG}:latest ${DOCKER_REPOSITORY}/${DIMG}:${VERSION}-${RELEASE}
-
-# Build the Docker image
 .PHONY: build
 build:
-	for DIR in ${IMAGES} ; do make builditem DIMG=$$DIR ; done
+	docker build --compress --no-cache --tag ${DOCKER_REPOSITORY}/${DIMG}:latest --file ./src/${DIMG}.Dockerfile ./src/
+	docker tag ${DOCKER_REPOSITORY}/${DIMG}:latest ${DOCKER_REPOSITORY}/${DIMG}:${VERSION}-${RELEASE}
 
 # Upload the specified docker image
-.PHONY: uploaditem
-uploaditem:
-	docker push ${DOCKER_REPOSITORY}/${DIMG}:latest
-	docker push ${DOCKER_REPOSITORY}/${DIMG}:${VERSION}-${RELEASE}
-
-# Upload docker image
 .PHONY: upload
 upload:
-	for DIR in ${IMAGES} ; do make uploaditem DIMG=$$DIR ; done
+	docker push ${DOCKER_REPOSITORY}/${DIMG}:latest
+	docker push ${DOCKER_REPOSITORY}/${DIMG}:${VERSION}-${RELEASE}

@@ -1,37 +1,34 @@
 # Dockerfile
 #
-# GoCD elastic agent based on Ubuntu 18.04 (Bionic)
+# Development environment based on phusion/baseimage (Ubuntu)
 #
 # @author      Nicola Asuni <info@tecnick.com>
 # @copyright   2016-2021 Nicola Asuni - Tecnick.com LTD
 # @license     MIT (see LICENSE)
 # @link        https://github.com/tecnickcom/alldev
 # ------------------------------------------------------------------------------
-ARG UBUNTU_VERSION="18.04"
-ARG GOCD_VERSION="v21.2.0"
-FROM gocd/gocd-agent-ubuntu-${UBUNTU_VERSION}:${GOCD_VERSION}
+FROM phusion/baseimage:master
 ARG NOMAD_VERSION="1.1.6"
-ARG KOTLIN_VERSION="1.5.31"
 ARG GO_VERSION="1.17.2"
 ARG VENOM_VERSION="v1.0.0-rc.7"
 ARG HUGO_VERSION="0.88.1"
 MAINTAINER info@tecnick.com
-USER root
 ENV DEBIAN_FRONTEND noninteractive
 ENV TERM linux
-ENV HOME /home/go
+ENV HOME /root
 ENV DISPLAY :0
-ENV GOPATH=/home/go/GO
-ENV PATH=/usr/local/go/bin:$GOPATH/bin:/home/go/kotlinc/bin:$PATH
+ENV GOPATH=/root
+ENV PATH=/usr/bin/:/usr/local/bin:$GOPATH/bin:/root/kotlinc/bin:$PATH
 # Add SSH keys
 ADD id_rsa /home/go/.ssh/id_rsa
 ADD id_rsa.pub /home/go/.ssh/id_rsa.pub
 RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections \
 # Configure SSH
-&& echo "Host *" >> /home/go/.ssh/config \
-&& echo "    StrictHostKeyChecking no" >> /home/go/.ssh/config \
-&& echo "    GlobalKnownHostsFile  /dev/null" >> /home/go/.ssh/config \
-&& echo "    UserKnownHostsFile    /dev/null" >> /home/go/.ssh/config \
+&& mkdir -p /root/.ssh \
+&& echo "Host *" >> /root/.ssh/config \
+&& echo "    StrictHostKeyChecking no" >> /root/.ssh/config \
+&& echo "    GlobalKnownHostsFile  /dev/null" >> /root/.ssh/config \
+&& echo "    UserKnownHostsFile    /dev/null" >> /root/.ssh/config \
 && chmod 600 /home/go/.ssh/id_rsa \
 && chmod 644 /home/go/.ssh/id_rsa.pub \
 # Configure default git user
@@ -41,10 +38,11 @@ RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selectio
 # Add repositories and update
 && curl -sL https://deb.nodesource.com/setup_16.x | bash - \
 && apt update && apt -y dist-upgrade \
-&& apt install -y gnupg apt-utils software-properties-common \
+&& apt install -y apt-utils software-properties-common \
 && apt-add-repository universe \
 && apt-add-repository multiverse \
 && apt update \
+# Set Locale
 && apt install -y language-pack-en-base \
 && locale-gen en_US en_US.UTF-8 \
 && dpkg-reconfigure locales \
@@ -79,7 +77,6 @@ doxygen \
 doxygen-latex \
 dpkg \
 fabric \
-fakeroot \
 fastjar \
 flawfinder \
 g++ \
@@ -116,8 +113,6 @@ libicu-dev \
 liblapack-dev \
 liblzma-dev \
 libncurses5-dev \
-libsane-extras \
-libssl1.0.0 \
 libssl-dev \
 libtool \
 libwine-development \
@@ -129,7 +124,7 @@ libxmlsec1-dev \
 libxmlsec1-openssl \
 libxslt1.1 \
 libxslt1-dev \
-llvm-5.0 \
+llvm \
 lsof \
 make \
 mawk \
@@ -141,7 +136,6 @@ mingw-w64-x86-64-dev \
 mongodb \
 mysql-client \
 mysql-server \
-mysql-utilities \
 nano \
 nodejs \
 nsis \
@@ -188,8 +182,6 @@ postgresql-contrib \
 pyflakes \
 pylint \
 python-all-dev \
-python-pip \
-python-setuptools \
 python3-all-dev \
 python3-pip \
 r-base \
@@ -208,13 +200,14 @@ time \
 tree \
 ubuntu-restricted-addons \
 ubuntu-restricted-extras \
+uidmap \
 unzip \
 upx-ucl \
 valgrind \
 vim \
 virtualenv \
 wget \
-wine1.6 \
+wine \
 wine64-development-tools \
 winetricks \
 xmldiff \
@@ -254,7 +247,7 @@ python-novaclient \
 jsonschema \
 shade \
 schemathesis \
-&& cd /home/go/ \
+&& cd /root/ \
 && wget https://github.com/JetBrains/kotlin/releases/download/v${KOTLIN_VERSION}/kotlin-compiler-${KOTLIN_VERSION}.zip \
 && unzip kotlin-compiler-${KOTLIN_VERSION}.zip \
 && rm -f kotlin-compiler-${KOTLIN_VERSION}.zip \
@@ -294,21 +287,19 @@ js-beautify \
 && rm -f go${GO_VERSION}.linux-amd64.tar.gz \
 && rm -rf /usr/local/go \
 && mv go /usr/local \
-&& mkdir -p /home/go/GO/bin \
-&& mkdir -p /home/go/GO/pkg \
-&& mkdir -p /home/go/GO/src \
-&& echo 'export GOPATH=/home/go/GO' >> /home/go/.profile \
-&& echo 'export PATH=/usr/local/go/bin:$GOPATH/bin:$PATH' >> /home/go/.profile \
+&& mkdir -p /root/bin \
+&& mkdir -p /root/pkg \
+&& mkdir -p /root/src \
+&& echo 'export GOPATH=/root' >> /root/.profile \
+&& echo 'export PATH=/usr/local/go/bin:$GOPATH/bin:$PATH' >> /root/.profile \
 && go version \
-# Haskell
+# Docker
 && cd /tmp \
 && curl -sSL https://get.docker.com/ | sh \
+&& usermod --append --groups docker go \
+# Haskell
+&& cd /tmp \
 && curl -sSL https://get.haskellstack.org/ | sh \
-# Allow go user to run root commands via sudo
-&& chown -R go:root /home/go \
-&& usermod -aG sudo go \
-&& usermod -aG docker go \
-&& echo "go ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers \
 # hugo
 && cd /tmp \
 && wget https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_${HUGO_VERSION}_Linux-64bit.deb \
@@ -318,6 +309,6 @@ js-beautify \
 && apt clean \
 && apt autoclean \
 && apt -y autoremove \
+&& rm -rf /root/.npm/cache/* \
 && rm -rf /root/.composer/cache/* \
 && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-USER go
