@@ -19,7 +19,10 @@ ENV HOME /home/go
 ENV DISPLAY :0
 ENV GOPATH=/home/go/GO
 ENV PATH=/usr/local/go/bin:$GOPATH/bin:$PATH
-ADD gocd_entrypoint.sh /
+ENV TINI_SUBREAPER=
+ENV DOCKER_USER=go
+ENV DOCKER_ENTRYPOINT=/docker-entrypoint.sh
+ADD entrypoint-docker.sh /
 # Add SSH keys
 ADD id_rsa /home/go/.ssh/id_rsa
 ADD id_rsa.pub /home/go/.ssh/id_rsa.pub
@@ -109,7 +112,7 @@ zip \
 && apt autoclean \
 && apt -y autoremove \
 && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
-&& chown -R go:root /gocd_entrypoint.sh \
-&& chmod -R g=u /gocd_entrypoint.sh
-ENTRYPOINT ["/gocd_entrypoint.sh"]
+&& chown -R go:root /entrypoint-docker.sh \
+&& chmod -R g=u /entrypoint-docker.sh
+ENTRYPOINT ["/entrypoint-docker.sh"]
 USER go

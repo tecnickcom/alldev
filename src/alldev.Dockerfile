@@ -19,6 +19,10 @@ ENV HOME /root
 ENV DISPLAY :0
 ENV GOPATH=/root
 ENV PATH=/usr/bin/:/usr/local/bin:$GOPATH/bin:/root/kotlinc/bin:$PATH
+ENV TINI_SUBREAPER=
+ENV DOCKER_USER=root
+ENV DOCKER_ENTRYPOINT=
+ADD entrypoint-docker.sh /
 # Add SSH keys
 ADD id_rsa /home/go/.ssh/id_rsa
 ADD id_rsa.pub /home/go/.ssh/id_rsa.pub
@@ -310,4 +314,7 @@ js-beautify \
 && apt -y autoremove \
 && rm -rf /root/.npm/cache/* \
 && rm -rf /root/.composer/cache/* \
-&& rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+&& rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
+&& chown -R root:root /entrypoint-docker.sh \
+&& chmod -R g=u /entrypoint-docker.sh
+ENTRYPOINT ["/entrypoint-docker.sh"]

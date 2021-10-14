@@ -10,17 +10,19 @@
 ARG GO_VERSION="1.17"
 FROM golang:${GO_VERSION}
 ENV PATH=/root/.local/bin:$PATH
+ENV USER=root
 RUN apt update \
 && apt -y install \
-devscripts \
-fakeroot \
-debhelper \
-pkg-config \
 alien \
-rpm \
-dh-make \
+debhelper \
+devscripts \
 dh-golang \
+dh-make \
+fakeroot \
+pkg-config \
+python3-all-dev \
+python3-pip \
+rpm \
+sudo \
 upx-ucl \
-python \
-python-pip \
-python-jsonschema
+&& pip install jsonschema
