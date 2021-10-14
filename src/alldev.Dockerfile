@@ -9,6 +9,7 @@
 # ------------------------------------------------------------------------------
 FROM phusion/baseimage:master
 ARG NOMAD_VERSION="1.1.6"
+ARG KOTLIN_VERSION="1.5.31"
 ARG GO_VERSION="1.17.2"
 ARG VENOM_VERSION="v1.0.0-rc.7"
 ARG HUGO_VERSION="0.88.1"
