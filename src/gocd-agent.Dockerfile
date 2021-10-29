@@ -311,6 +311,7 @@ js-beautify \
 # Haskell
 && curl -sSL https://get.haskellstack.org/ | sh \
 # Allow go user to run root commands via sudo
+&& mkdir /home/go/shared \
 && chown -R go:root /home/go \
 && usermod -aG sudo go \
 && echo "go ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers \
