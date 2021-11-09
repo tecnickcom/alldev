@@ -7,8 +7,8 @@
 # @license     MIT (see LICENSE)
 # @link        https://github.com/tecnickcom/alldev
 # ------------------------------------------------------------------------------
-ARG UBUNTU_VERSION="18.04"
-ARG GOCD_VERSION="v21.2.0"
+ARG UBUNTU_VERSION="20.04"
+ARG GOCD_VERSION="v21.3.0"
 FROM gocd/gocd-agent-ubuntu-${UBUNTU_VERSION}:${GOCD_VERSION}
 ARG NOMAD_VERSION="1.1.6"
 ARG KOTLIN_VERSION="1.5.31"
@@ -75,7 +75,6 @@ debhelper \
 default-jdk \
 default-jre \
 devscripts \
-dh-golang \
 dh-make \
 dnsutils \
 dos2unix \
@@ -95,8 +94,6 @@ gettext \
 ghostscript \
 git \
 g++-multilib \
-golang \
-golang-golang-x-tools \
 gridengine-drmaa-dev \
 gsfonts \
 gtk-sharp2 \
@@ -120,8 +117,7 @@ libicu-dev \
 liblapack-dev \
 liblzma-dev \
 libncurses5-dev \
-libsane-extras \
-libssl1.0.0 \
+libssl1.1 \
 libssl-dev \
 libtool \
 libwine-development \
@@ -133,7 +129,7 @@ libxmlsec1-dev \
 libxmlsec1-openssl \
 libxslt1.1 \
 libxslt1-dev \
-llvm-5.0 \
+llvm \
 lsof \
 make \
 mawk \
@@ -145,11 +141,20 @@ mingw-w64-x86-64-dev \
 mongodb \
 mysql-client \
 mysql-server \
-mysql-utilities \
 nano \
 nodejs \
 nsis \
 nsis-pluginapi \
+openjdk-8-jdk \
+openjdk-8-jre \
+openjdk-11-jdk \
+openjdk-11-jre \
+openjdk-13-jdk \
+openjdk-13-jre \
+openjdk-16-jdk \
+openjdk-16-jre \
+openjdk-17-jdk \
+openjdk-17-jre \
 openssh-client \
 openssh-server \
 openssl \
@@ -192,7 +197,6 @@ postgresql-contrib \
 pyflakes \
 pylint \
 python-all-dev \
-python-pip \
 python-setuptools \
 python3-all-dev \
 python3-pip \
@@ -219,8 +223,9 @@ valgrind \
 vim \
 virtualenv \
 wget \
-wine1.6 \
+wine64 \
 wine64-development-tools \
+wine64-tools \
 winetricks \
 xmldiff \
 xmlindent \
@@ -230,7 +235,7 @@ zip \
 zlib1g \
 zlib1g-dev \
 # Install extra Python2 dependencies
-&& pip install --ignore-installed --upgrade \
+&& pip install --upgrade \
 ansible \
 pyyaml \
 dnspython \
@@ -238,8 +243,8 @@ pyOpenSSL \
 python-novaclient \
 shade \
 # Install extra Python3 dependencies
-&& pip3 install --ignore-installed --upgrade pip \
-&& pip3 install --ignore-installed --upgrade \
+&& pip3 install --upgrade pip \
+&& pip3 install --upgrade \
 setuptools \
 pyyaml \
 autopep8 \
@@ -258,7 +263,7 @@ pytest-cov \
 python-novaclient \
 jsonschema \
 shade \
-schemathesis \
+&& pip3 install --upgrade schemathesis \
 && cd /home/go/ \
 && wget https://github.com/JetBrains/kotlin/releases/download/v${KOTLIN_VERSION}/kotlin-compiler-${KOTLIN_VERSION}.zip \
 && unzip kotlin-compiler-${KOTLIN_VERSION}.zip \
@@ -304,7 +309,7 @@ js-beautify \
 && mkdir -p /home/go/GO/src \
 && echo 'export GOPATH=/home/go/GO' >> /home/go/.profile \
 && echo 'export PATH=/usr/local/go/bin:$GOPATH/bin:$PATH' >> /home/go/.profile \
-&& go version \
+&& /usr/local/go/bin/go version \
 # Docker
 && cd /tmp \
 && curl -sSL https://get.docker.com/ | sh \

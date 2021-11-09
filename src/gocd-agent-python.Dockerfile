@@ -7,8 +7,8 @@
 # @license     MIT (see LICENSE)
 # @link        https://github.com/tecnickcom/alldev
 # ------------------------------------------------------------------------------
-ARG UBUNTU_VERSION="18.04"
-ARG GOCD_VERSION="v21.2.0"
+ARG UBUNTU_VERSION="20.04"
+ARG GOCD_VERSION="v21.3.0"
 FROM gocd/gocd-agent-ubuntu-${UBUNTU_VERSION}:${GOCD_VERSION}
 MAINTAINER info@tecnick.com
 USER root
@@ -64,7 +64,6 @@ default-jdk \
 libmysqlclient-dev \
 mysql-client \
 python-all-dev \
-python-pip \
 python3-all-dev \
 python3-pip \
 virtualenv \
@@ -73,7 +72,7 @@ pylint \
 librdkafka-dev \
 # Install extra Python dependencies
 && pip3 install --ignore-installed --upgrade pip \
-&& pip3 install --ignore-installed --upgrade \
+&& pip3 install --upgrade \
 setuptools \
 pipenv \
 pyyaml \
@@ -91,7 +90,7 @@ pytest-benchmark \
 pytest-cov \
 python-novaclient \
 jsonschema \
-schemathesis \
+&& pip3 install --upgrade schemathesis \
 # Docker
 && cd /tmp \
 && curl -sSL https://get.docker.com/ | sh \

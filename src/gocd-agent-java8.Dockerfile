@@ -7,8 +7,8 @@
 # @license     MIT (see LICENSE)
 # @link        https://github.com/tecnickcom/alldev
 # ------------------------------------------------------------------------------
-ARG UBUNTU_VERSION="18.04"
-ARG GOCD_VERSION="v21.2.0"
+ARG UBUNTU_VERSION="20.04"
+ARG GOCD_VERSION="v21.3.0"
 FROM gocd/gocd-agent-ubuntu-${UBUNTU_VERSION}:${GOCD_VERSION}
 ARG NOMAD_VERSION="1.1.6"
 MAINTAINER info@tecnick.com
@@ -95,7 +95,7 @@ zip \
 && java -version \
 # Install extra Python dependencies
 && pip3 install --ignore-installed --upgrade pip \
-&& pip3 install --ignore-installed --upgrade jsonschema \
+&& pip3 install --upgrade jsonschema \
 && cd /tmp \
 && wget https://releases.hashicorp.com/nomad/${NOMAD_VERSION}/nomad_${NOMAD_VERSION}_linux_amd64.zip \
 && unzip nomad_${NOMAD_VERSION}_linux_amd64.zip -d /usr/bin/ \

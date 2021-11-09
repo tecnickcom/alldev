@@ -25,4 +25,4 @@ python3-pip \
 rpm \
 sudo \
 upx-ucl \
-&& pip install jsonschema
+&& pip install --upgrade jsonschema

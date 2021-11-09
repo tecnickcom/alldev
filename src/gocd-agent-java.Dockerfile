@@ -7,8 +7,8 @@
 # @license     MIT (see LICENSE)
 # @link        https://github.com/tecnickcom/alldev
 # ------------------------------------------------------------------------------
-ARG UBUNTU_VERSION="18.04"
-ARG GOCD_VERSION="v21.2.0"
+ARG UBUNTU_VERSION="20.04"
+ARG GOCD_VERSION="v21.3.0"
 FROM gocd/gocd-agent-ubuntu-${UBUNTU_VERSION}:${GOCD_VERSION}
 ARG NOMAD_VERSION="1.1.6"
 ARG KOTLIN_VERSION="1.5.31"
@@ -76,6 +76,12 @@ openjdk-8-jdk \
 openjdk-8-jre \
 openjdk-11-jdk \
 openjdk-11-jre \
+openjdk-13-jdk \
+openjdk-13-jre \
+openjdk-16-jdk \
+openjdk-16-jre \
+openjdk-17-jdk \
+openjdk-17-jre \
 openssl \
 parallel \
 perl \
@@ -103,7 +109,7 @@ zip \
 && kotlin -version \
 # Install extra Python dependencies
 && pip3 install --ignore-installed --upgrade pip \
-&& pip3 install --ignore-installed --upgrade jsonschema \
+&& pip3 install --upgrade jsonschema \
 && cd /tmp \
 && wget https://releases.hashicorp.com/nomad/${NOMAD_VERSION}/nomad_${NOMAD_VERSION}_linux_amd64.zip \
 && unzip nomad_${NOMAD_VERSION}_linux_amd64.zip -d /usr/bin/ \

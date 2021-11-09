@@ -74,7 +74,6 @@ debhelper \
 default-jdk \
 default-jre \
 devscripts \
-dh-golang \
 dh-make \
 dnsutils \
 dos2unix \
@@ -93,8 +92,6 @@ gettext \
 ghostscript \
 git \
 g++-multilib \
-golang \
-golang-golang-x-tools \
 gridengine-drmaa-dev \
 gsfonts \
 gtk-sharp2 \
@@ -145,6 +142,16 @@ nano \
 nodejs \
 nsis \
 nsis-pluginapi \
+openjdk-8-jdk \
+openjdk-8-jre \
+openjdk-11-jdk \
+openjdk-11-jre \
+openjdk-13-jdk \
+openjdk-13-jre \
+openjdk-16-jdk \
+openjdk-16-jre \
+openjdk-17-jdk \
+openjdk-17-jre \
 openssh-client \
 openssh-server \
 openssl \
@@ -212,8 +219,9 @@ valgrind \
 vim \
 virtualenv \
 wget \
-wine \
+wine64 \
 wine64-development-tools \
+wine64-tools \
 winetricks \
 xmldiff \
 xmlindent \
@@ -223,7 +231,7 @@ zip \
 zlib1g \
 zlib1g-dev \
 # Install extra Python2 dependencies
-&& pip install --ignore-installed --upgrade \
+&& pip install --upgrade \
 ansible \
 pyyaml \
 dnspython \
@@ -232,7 +240,7 @@ python-novaclient \
 shade \
 # Install extra Python3 dependencies
 && pip3 install --ignore-installed --upgrade pip \
-&& pip3 install --ignore-installed --upgrade \
+&& pip3 install --upgrade \
 setuptools \
 pyyaml \
 autopep8 \
@@ -251,7 +259,7 @@ pytest-cov \
 python-novaclient \
 jsonschema \
 shade \
-schemathesis \
+&& pip3 install --upgrade schemathesis \
 && cd /root/ \
 && wget https://github.com/JetBrains/kotlin/releases/download/v${KOTLIN_VERSION}/kotlin-compiler-${KOTLIN_VERSION}.zip \
 && unzip kotlin-compiler-${KOTLIN_VERSION}.zip \
@@ -297,7 +305,7 @@ js-beautify \
 && mkdir -p /root/src \
 && echo 'export GOPATH=/root' >> /root/.profile \
 && echo 'export PATH=/usr/local/go/bin:$GOPATH/bin:$PATH' >> /root/.profile \
-&& go version \
+&& /usr/local/go/bin/go version \
 # Docker
 && cd /tmp \
 && curl -sSL https://get.docker.com/ | sh \
