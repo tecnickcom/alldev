@@ -110,6 +110,38 @@ zip \
 && sed -i 's|\.11|.12|g;s|-11|-12|g' .java-1.12.0-openjdk-amd64.jinfo \
 && update-alternatives --install "/usr/bin/java" "java" "/usr/lib/jvm/java-12-openjdk-amd64/bin/java" 1 \
 && update-alternatives --install "/usr/bin/javac" "javac" "/usr/lib/jvm/java-12-openjdk-amd64/bin/javac" 1 \
+&& update-alternatives --install "/usr/bin/jexec" "jexec" "/usr/lib/jvm/java-12-openjdk-amd64/lib/jexec" 1 \
+&& update-alternatives --install "/usr/bin/jjs" "jjs" "/usr/lib/jvm/java-12-openjdk-amd64/bin/jjs" 1 \
+&& update-alternatives --install "/usr/bin/keytool" "keytool" "/usr/lib/jvm/java-12-openjdk-amd64/bin/keytool" 1 \
+&& update-alternatives --install "/usr/bin/pack200" "pack200" "/usr/lib/jvm/java-12-openjdk-amd64/bin/pack200" 1 \
+&& update-alternatives --install "/usr/bin/rmid" "rmid" "/usr/lib/jvm/java-12-openjdk-amd64/bin/rmid" 1 \
+&& update-alternatives --install "/usr/bin/rmiregistry" "rmiregistry" "/usr/lib/jvm/java-12-openjdk-amd64/bin/rmiregistry" 1 \
+&& update-alternatives --install "/usr/bin/unpack200" "unpack200" "/usr/lib/jvm/java-12-openjdk-amd64/bin/unpack200" 1 \
+&& update-alternatives --install "/usr/bin/jaotc" "jaotc" "/usr/lib/jvm/java-12-openjdk-amd64/bin/jaotc" 1 \
+&& update-alternatives --install "/usr/bin/jarsigner" "jarsigner" "/usr/lib/jvm/java-12-openjdk-amd64/bin/jarsigner" 1 \
+&& update-alternatives --install "/usr/bin/jar" "jar" "/usr/lib/jvm/java-12-openjdk-amd64/bin/jar" 1 \
+&& update-alternatives --install "/usr/bin/javadoc" "javadoc" "/usr/lib/jvm/java-12-openjdk-amd64/bin/javadoc" 1 \
+&& update-alternatives --install "/usr/bin/javap" "javap" "/usr/lib/jvm/java-12-openjdk-amd64/bin/javap" 1 \
+&& update-alternatives --install "/usr/bin/jcmd" "jcmd" "/usr/lib/jvm/java-12-openjdk-amd64/bin/jcmd" 1 \
+&& update-alternatives --install "/usr/bin/jdb" "jdb" "/usr/lib/jvm/java-12-openjdk-amd64/bin/jdb" 1 \
+&& update-alternatives --install "/usr/bin/jdeprscan" "jdeprscan" "/usr/lib/jvm/java-12-openjdk-amd64/bin/jdeprscan" 1 \
+&& update-alternatives --install "/usr/bin/jdeps" "jdeps" "/usr/lib/jvm/java-12-openjdk-amd64/bin/jdeps" 1 \
+&& update-alternatives --install "/usr/bin/jfr" "jfr" "/usr/lib/jvm/java-12-openjdk-amd64/bin/jfr" 1 \
+&& update-alternatives --install "/usr/bin/jhsdb" "jhsdb" "/usr/lib/jvm/java-12-openjdk-amd64/bin/jhsdb" 1 \
+&& update-alternatives --install "/usr/bin/jimage" "jimage" "/usr/lib/jvm/java-12-openjdk-amd64/bin/jimage" 1 \
+&& update-alternatives --install "/usr/bin/jinfo" "jinfo" "/usr/lib/jvm/java-12-openjdk-amd64/bin/jinfo" 1 \
+&& update-alternatives --install "/usr/bin/jlink" "jlink" "/usr/lib/jvm/java-12-openjdk-amd64/bin/jlink" 1 \
+&& update-alternatives --install "/usr/bin/jmap" "jmap" "/usr/lib/jvm/java-12-openjdk-amd64/bin/jmap" 1 \
+&& update-alternatives --install "/usr/bin/jmod" "jmod" "/usr/lib/jvm/java-12-openjdk-amd64/bin/jmod" 1 \
+&& update-alternatives --install "/usr/bin/jps" "jps" "/usr/lib/jvm/java-12-openjdk-amd64/bin/jps" 1 \
+&& update-alternatives --install "/usr/bin/jrunscript" "jrunscript" "/usr/lib/jvm/java-12-openjdk-amd64/bin/jrunscript" 1 \
+&& update-alternatives --install "/usr/bin/jshell" "jshell" "/usr/lib/jvm/java-12-openjdk-amd64/bin/jshell" 1 \
+&& update-alternatives --install "/usr/bin/jstack" "jstack" "/usr/lib/jvm/java-12-openjdk-amd64/bin/jstack" 1 \
+&& update-alternatives --install "/usr/bin/jstatd" "jstatd" "/usr/lib/jvm/java-12-openjdk-amd64/bin/jstatd" 1 \
+&& update-alternatives --install "/usr/bin/jstat" "jstat" "/usr/lib/jvm/java-12-openjdk-amd64/bin/jstat" 1 \
+&& update-alternatives --install "/usr/bin/rmic" "rmic" "/usr/lib/jvm/java-12-openjdk-amd64/bin/rmic" 1 \
+&& update-alternatives --install "/usr/bin/serialver" "serialver" "/usr/lib/jvm/java-12-openjdk-amd64/bin/serialver" 1 \
+&& update-alternatives --install "/usr/bin/jconsole" "jconsole" "/usr/lib/jvm/java-12-openjdk-amd64/bin/jconsole" 1 \
 && update-java-alternatives -s java-1.11.0-openjdk-amd64 \
 && java -version \
 && cd /home/go/ \
