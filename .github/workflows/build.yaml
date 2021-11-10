@@ -79,18 +79,6 @@ jobs:
       - name: upload
         run: make upload DIMG=gocd-agent-java
 
-  build-gocd-agent-java8:
-    runs-on: ubuntu-latest
-    steps:
-      - name: checkout repository
-        uses: actions/checkout@v2
-      - name: docker login
-        run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}
-      - name: build
-        run: make build DIMG=gocd-agent-java8
-      - name: upload
-        run: make upload DIMG=gocd-agent-java8
-
   build-gocd-agent-python:
     runs-on: ubuntu-latest
     steps:

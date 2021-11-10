@@ -12,6 +12,7 @@ ARG GOCD_VERSION="v21.3.0"
 FROM gocd/gocd-agent-ubuntu-${UBUNTU_VERSION}:${GOCD_VERSION}
 ARG NOMAD_VERSION="1.1.6"
 ARG KOTLIN_VERSION="1.5.31"
+ARG VENOM_VERSION="v1.0.0-rc.7"
 MAINTAINER info@tecnick.com
 USER root
 ENV DEBIAN_FRONTEND noninteractive
@@ -111,6 +112,9 @@ zip \
 && wget https://releases.hashicorp.com/nomad/${NOMAD_VERSION}/nomad_${NOMAD_VERSION}_linux_amd64.zip \
 && unzip nomad_${NOMAD_VERSION}_linux_amd64.zip -d /usr/bin/ \
 && rm -f nomad_${NOMAD_VERSION}_linux_amd64.zip \
+&& cd /tmp \
+&& wget -O /usr/bin/venom https://github.com/ovh/venom/releases/download/${VENOM_VERSION}/venom.linux-amd64 \
+&& chmod +x /usr/bin/venom \
 # Docker
 && cd /tmp \
 && curl -sSL https://get.docker.com/ | sh \
