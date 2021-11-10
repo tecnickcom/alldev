@@ -76,10 +76,6 @@ openjdk-8-jdk \
 openjdk-8-jre \
 openjdk-11-jdk \
 openjdk-11-jre \
-openjdk-13-jdk \
-openjdk-13-jre \
-openjdk-16-jdk \
-openjdk-16-jre \
 openjdk-17-jdk \
 openjdk-17-jre \
 openssl \
@@ -101,6 +97,7 @@ wget \
 xmldiff \
 xmlindent \
 zip \
+&& update-java-alternatives -s java-1.11.0-openjdk-amd64 \
 && java -version \
 && cd /home/go/ \
 && wget https://github.com/JetBrains/kotlin/releases/download/v${KOTLIN_VERSION}/kotlin-compiler-${KOTLIN_VERSION}.zip \

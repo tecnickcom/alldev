@@ -146,10 +146,6 @@ openjdk-8-jdk \
 openjdk-8-jre \
 openjdk-11-jdk \
 openjdk-11-jre \
-openjdk-13-jdk \
-openjdk-13-jre \
-openjdk-16-jdk \
-openjdk-16-jre \
 openjdk-17-jdk \
 openjdk-17-jre \
 openssh-client \
@@ -238,6 +234,8 @@ dnspython \
 pyOpenSSL \
 python-novaclient \
 shade \
+&& update-java-alternatives -s java-1.11.0-openjdk-amd64 \
+&& java -version \
 # Install extra Python3 dependencies
 && pip3 install --ignore-installed --upgrade pip \
 && pip3 install --upgrade \
