@@ -98,6 +98,18 @@ wget \
 xmldiff \
 xmlindent \
 zip \
+# Install Java JDK 12
+&& mkdir -p /usr/lib/jvm/ \
+&& wget -O /usr/lib/jvm/openjdk-12+32_linux-x64_bin.tar.gz https://download.java.net/openjdk/jdk12/ri/openjdk-12+32_linux-x64_bin.tar.gz \
+&& cd /usr/lib/jvm/ \
+&& tar -xzvf openjdk-12+32_linux-x64_bin.tar.gz \
+&& rm -f openjdk-12+32_linux-x64_bin.tar.gz \
+&& mv jdk-12 java-12-openjdk-amd64 \
+&& ln -s java-12-openjdk-amd64 java-1.12.0-openjdk-amd64 \
+&& cp .java-1.11.0-openjdk-amd64.jinfo .java-1.12.0-openjdk-amd64.jinfo \
+&& sed -i 's|\.11|.12|g;s|-11|-12|g' .java-1.12.0-openjdk-amd64.jinfo \
+&& update-alternatives --install "/usr/bin/java" "java" "/usr/lib/jvm/java-12-openjdk-amd64/bin/java" 1 \
+&& update-alternatives --install "/usr/bin/javac" "javac" "/usr/lib/jvm/java-12-openjdk-amd64/bin/javac" 1 \
 && update-java-alternatives -s java-1.11.0-openjdk-amd64 \
 && java -version \
 && cd /home/go/ \
