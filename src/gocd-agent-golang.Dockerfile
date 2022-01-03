@@ -8,7 +8,7 @@
 # @link        https://github.com/tecnickcom/alldev
 # ------------------------------------------------------------------------------
 ARG UBUNTU_VERSION="20.04"
-ARG GOCD_VERSION="v21.3.0"
+ARG GOCD_VERSION="v21.4.0"
 FROM gocd/gocd-agent-ubuntu-${UBUNTU_VERSION}:${GOCD_VERSION}
 ARG NOMAD_VERSION="1.2.3"
 ARG GO_VERSION="1.17.5"
