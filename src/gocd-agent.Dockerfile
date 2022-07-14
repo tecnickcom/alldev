@@ -3,18 +3,18 @@
 # GoCD elastic agent based on Ubuntu 18.04 (Bionic)
 #
 # @author      Nicola Asuni <info@tecnick.com>
-# @copyright   2016-2021 Nicola Asuni - Tecnick.com LTD
+# @copyright   2016-2022 Nicola Asuni - Tecnick.com LTD
 # @license     MIT (see LICENSE)
 # @link        https://github.com/tecnickcom/alldev
 # ------------------------------------------------------------------------------
 ARG UBUNTU_VERSION="20.04"
 ARG GOCD_VERSION="v22.1.0"
 FROM gocd/gocd-agent-ubuntu-${UBUNTU_VERSION}:${GOCD_VERSION}
-ARG NOMAD_VERSION="1.3.1"
-ARG  KOTLIN_VERSION="1.6.21"
-ARG GO_VERSION="1.18.3"
+ARG NOMAD_VERSION="1.3.2"
+ARG  KOTLIN_VERSION="1.7.10"
+ARG GO_VERSION="1.18.4"
 ARG VENOM_VERSION="v1.0.1"
-ARG HUGO_VERSION="0.100.1"
+ARG HUGO_VERSION="0.101.0"
 MAINTAINER info@tecnick.com
 USER root
 ENV DEBIAN_FRONTEND noninteractive

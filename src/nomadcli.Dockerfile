@@ -3,12 +3,12 @@
 # Nomad cli and make command - based on phusion/baseimage (Ubuntu)
 #
 # @author      Nicola Asuni <info@tecnick.com>
-# @copyright   2016-2021 Nicola Asuni - Tecnick.com LTD
+# @copyright   2016-2022 Nicola Asuni - Tecnick.com LTD
 # @license     MIT (see LICENSE)
 # @link        https://github.com/tecnickcom/nomadcli
 # ------------------------------------------------------------------------------
 FROM phusion/baseimage:master
-ARG NOMAD_VERSION="1.3.1"
+ARG NOMAD_VERSION="1.3.2"
 MAINTAINER info@tecnick.com
 ENV DEBIAN_FRONTEND noninteractive
 ENV TERM linux
