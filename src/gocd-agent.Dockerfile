@@ -88,7 +88,6 @@ flawfinder \
 g++ \
 gawk \
 gcc \
-gcc-8 \
 gdb \
 gettext \
 ghostscript \
@@ -117,7 +116,6 @@ libicu-dev \
 liblapack-dev \
 liblzma-dev \
 libncurses5-dev \
-libssl1.1 \
 libssl-dev \
 libtool \
 libwine-development \
@@ -138,7 +136,6 @@ mingw-w64 \
 mingw-w64-i686-dev \
 mingw-w64-tools \
 mingw-w64-x86-64-dev \
-mongodb \
 mysql-client \
 mysql-server \
 nano \
@@ -180,7 +177,6 @@ php-json \
 php-mbstring \
 php-memcache \
 php-memcached \
-php-mongodb \
 php-msgpack \
 php-mysql \
 php-pear \
@@ -190,7 +186,6 @@ php-xml \
 pkg-config \
 postgresql \
 postgresql-contrib \
-pyflakes \
 pylint \
 python-all-dev \
 python-setuptools \
@@ -221,7 +216,6 @@ virtualenv \
 wget \
 wine64 \
 wine64-development-tools \
-wine64-tools \
 winetricks \
 xmldiff \
 xmlindent \
@@ -261,7 +255,9 @@ pytest-cov \
 python-novaclient \
 jsonschema \
 shade \
-&& pip3 install --upgrade schemathesis \
+&& pip3 install --upgrade \
+schemathesis \
+pyflakes \
 && cd /home/go/ \
 && wget https://github.com/JetBrains/kotlin/releases/download/v${KOTLIN_VERSION}/kotlin-compiler-${KOTLIN_VERSION}.zip \
 && unzip kotlin-compiler-${KOTLIN_VERSION}.zip \
