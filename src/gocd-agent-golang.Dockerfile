@@ -7,7 +7,7 @@
 # @license     MIT (see LICENSE)
 # @link        https://github.com/tecnickcom/alldev
 # ------------------------------------------------------------------------------
-ARG UBUNTU_VERSION="20.04"
+ARG UBUNTU_VERSION="22.04"
 ARG GOCD_VERSION="v22.1.0"
 FROM gocd/gocd-agent-ubuntu-${UBUNTU_VERSION}:${GOCD_VERSION}
 ARG NOMAD_VERSION="1.3.3"
