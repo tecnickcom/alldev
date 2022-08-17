@@ -45,6 +45,7 @@ help:
 	@echo ""
 	@echo "    make build  DIMG=<IMAGE_DIR> : Build the specified Docker images"
 	@echo "    make upload DIMG=<IMAGE_DIR> : Upload the specified Docker images (only with the right credentials)"
+	@echo "    make tag                     : Tag the Git repository"
 	@echo ""
 
 # Alias for help target
@@ -62,3 +63,9 @@ build:
 upload:
 	docker push ${DOCKER_REPOSITORY}/${DIMG}:latest
 	docker push ${DOCKER_REPOSITORY}/${DIMG}:${VERSION}-${RELEASE}
+
+# Tag the Git repository
+.PHONY: tag
+tag:
+	git tag -a "v$(VERSION)" -m "Version $(VERSION)" && \
+	git push origin --tags
