@@ -67,7 +67,6 @@ python-all-dev \
 python3-all-dev \
 python3-pip \
 virtualenv \
-pyflakes \
 pylint \
 librdkafka-dev \
 # Install extra Python dependencies
@@ -90,7 +89,9 @@ pytest-benchmark \
 pytest-cov \
 python-novaclient \
 jsonschema \
-&& pip3 install --upgrade schemathesis \
+&& pip3 install --upgrade \
+schemathesis \
+pyflakes \
 # Docker
 && cd /tmp \
 && curl -sSL https://get.docker.com/ | sh \
