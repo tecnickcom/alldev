@@ -7,7 +7,7 @@
 # @license     MIT (see LICENSE)
 # @link        https://github.com/tecnickcom/alldev
 # ------------------------------------------------------------------------------
-ARG GO_VERSION="1.19"
+ARG GO_VERSION="1.19.1"
 FROM golang:${GO_VERSION}
 ENV PATH=/root/.local/bin:$PATH
 ENV USER=root
