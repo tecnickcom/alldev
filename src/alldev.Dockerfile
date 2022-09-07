@@ -8,7 +8,7 @@
 # @link        https://github.com/tecnickcom/alldev
 # ------------------------------------------------------------------------------
 FROM phusion/baseimage:master
-ARG NOMAD_VERSION="1.3.3"
+ARG NOMAD_VERSION="1.3.5"
 ARG KOTLIN_VERSION="1.7.10"
 ARG GO_VERSION="1.19.1"
 ARG VENOM_VERSION="v1.0.1"
