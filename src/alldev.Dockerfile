@@ -231,7 +231,6 @@ zlib1g-dev \
 ansible \
 pyyaml \
 dnspython \
-python-novaclient \
 shade \
 && update-java-alternatives -s java-1.11.0-openjdk-amd64 \
 && java -version \
@@ -248,7 +247,7 @@ fabric \
 json-spec \
 lxml \
 nose \
-pyOpenSSL \
+pyOpenSSL==22.0.0 \
 pypandoc \
 pytest \
 pytest-benchmark \
@@ -258,6 +257,7 @@ jsonschema \
 shade \
 && pip3 install --upgrade \
 schemathesis \
+pyflakes \
 && cd /root/ \
 && wget https://github.com/JetBrains/kotlin/releases/download/v${KOTLIN_VERSION}/kotlin-compiler-${KOTLIN_VERSION}.zip \
 && unzip kotlin-compiler-${KOTLIN_VERSION}.zip \
