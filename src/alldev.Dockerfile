@@ -257,7 +257,7 @@ pytest-cov \
 python-novaclient \
 jsonschema \
 shade \
-&& pip3 install --upgrade schemathesis \
+schemathesis \
 && cd /root/ \
 && wget https://github.com/JetBrains/kotlin/releases/download/v${KOTLIN_VERSION}/kotlin-compiler-${KOTLIN_VERSION}.zip \
 && unzip kotlin-compiler-${KOTLIN_VERSION}.zip \
@@ -312,7 +312,7 @@ js-beautify \
 && curl -sSL https://get.haskellstack.org/ | sh \
 # hugo
 && cd /tmp \
-&& wget https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_${HUGO_VERSION}_Linux-64bit.deb \
+&& wget https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_${HUGO_VERSION}_linux-amd64.deb \
 && dpkg -i hugo_${HUGO_VERSION}_Linux-64bit.deb \
 && rm -f hugo_${HUGO_VERSION}_Linux-64bit.deb \
 # Cleanup temporary data and cache

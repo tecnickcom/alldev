@@ -316,7 +316,7 @@ js-beautify \
 && echo "go ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers \
 # hugo
 && cd /tmp \
-&& wget https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_${HUGO_VERSION}_Linux-64bit.deb \
+&& wget https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_${HUGO_VERSION}_linux-amd64.deb \
 && dpkg -i hugo_${HUGO_VERSION}_Linux-64bit.deb \
 && rm -f hugo_${HUGO_VERSION}_Linux-64bit.deb \
 # Cleanup temporary data and cache
