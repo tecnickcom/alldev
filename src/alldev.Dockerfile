@@ -231,7 +231,6 @@ zlib1g-dev \
 ansible \
 pyyaml \
 dnspython \
-pyOpenSSL \
 python-novaclient \
 shade \
 && update-java-alternatives -s java-1.11.0-openjdk-amd64 \
@@ -257,6 +256,7 @@ pytest-cov \
 python-novaclient \
 jsonschema \
 shade \
+&& pip3 install --upgrade \
 schemathesis \
 && cd /root/ \
 && wget https://github.com/JetBrains/kotlin/releases/download/v${KOTLIN_VERSION}/kotlin-compiler-${KOTLIN_VERSION}.zip \
