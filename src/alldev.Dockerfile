@@ -313,8 +313,8 @@ js-beautify \
 # hugo
 && cd /tmp \
 && wget https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_${HUGO_VERSION}_linux-amd64.deb \
-&& dpkg -i hugo_${HUGO_VERSION}_Linux-64bit.deb \
-&& rm -f hugo_${HUGO_VERSION}_Linux-64bit.deb \
+&& dpkg -i hugo_${HUGO_VERSION}_linux-amd64.deb \
+&& rm -f hugo_${HUGO_VERSION}_linux-amd64.deb \
 # Cleanup temporary data and cache
 && apt clean \
 && apt autoclean \
