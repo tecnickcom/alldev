@@ -91,6 +91,7 @@ python-novaclient \
 jsonschema \
 && pip3 install --upgrade \
 schemathesis \
+httpx \
 pyflakes \
 # Docker
 && cd /tmp \

@@ -257,6 +257,7 @@ jsonschema \
 shade \
 && pip3 install --upgrade \
 schemathesis \
+httpx \
 pyflakes \
 && cd /home/go/ \
 && wget https://github.com/JetBrains/kotlin/releases/download/v${KOTLIN_VERSION}/kotlin-compiler-${KOTLIN_VERSION}.zip \

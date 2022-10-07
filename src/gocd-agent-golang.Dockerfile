@@ -91,7 +91,8 @@ zip \
 # Install extra Python dependencies
 && pip3 install --ignore-installed --upgrade pip \
 && pip3 install --upgrade jsonschema \
-&& pip3 install --upgrade schemathesis \
+schemathesis \
+httpx \
 && cd /tmp \
 && wget https://releases.hashicorp.com/nomad/${NOMAD_VERSION}/nomad_${NOMAD_VERSION}_linux_amd64.zip \
 && unzip nomad_${NOMAD_VERSION}_linux_amd64.zip -d /usr/bin/ \
