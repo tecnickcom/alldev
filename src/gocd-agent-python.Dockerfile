@@ -72,27 +72,27 @@ librdkafka-dev \
 # Install extra Python dependencies
 && pip3 install --ignore-installed --upgrade pip \
 && pip3 install --upgrade \
-setuptools \
-pipenv \
-pyyaml \
 autopep8 \
 cffi \
 coverage \
 dnspython \
 fabric \
+httpx \
+jsonschema \
 lxml \
 nose \
+pipenv \
 pyOpenSSL \
+pyflakes \
 pypandoc \
 pytest \
 pytest-benchmark \
 pytest-cov \
 python-novaclient \
-jsonschema \
-&& pip3 install --upgrade \
+pyyaml \
 schemathesis \
-httpx \
-pyflakes \
+setuptools \
+yamllint \
 # Docker
 && cd /tmp \
 && curl -sSL https://get.docker.com/ | sh \

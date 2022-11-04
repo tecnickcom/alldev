@@ -237,27 +237,27 @@ shade \
 # Install extra Python3 dependencies
 && pip3 install --ignore-installed --upgrade pip \
 && pip3 install --upgrade \
-setuptools \
-pyyaml \
 autopep8 \
 cffi \
 coverage \
 dnspython \
 fabric \
 json-spec \
+jsonschema \
 lxml \
 nose \
 pyOpenSSL==22.0.0 \
+pyflakes \
 pypandoc \
 pytest \
 pytest-benchmark \
 pytest-cov \
 python-novaclient \
-jsonschema \
-shade \
-&& pip3 install --upgrade \
+pyyaml \
 schemathesis \
-pyflakes \
+setuptools \
+shade \
+yamllint \
 && cd /root/ \
 && wget https://github.com/JetBrains/kotlin/releases/download/v${KOTLIN_VERSION}/kotlin-compiler-${KOTLIN_VERSION}.zip \
 && unzip kotlin-compiler-${KOTLIN_VERSION}.zip \

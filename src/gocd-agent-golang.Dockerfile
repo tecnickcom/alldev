@@ -90,9 +90,11 @@ xmlindent \
 zip \
 # Install extra Python dependencies
 && pip3 install --ignore-installed --upgrade pip \
-&& pip3 install --upgrade jsonschema \
-schemathesis \
+&& pip3 install --upgrade \
 httpx \
+jsonschema \
+schemathesis \
+yamllint \
 && cd /tmp \
 && wget https://releases.hashicorp.com/nomad/${NOMAD_VERSION}/nomad_${NOMAD_VERSION}_linux_amd64.zip \
 && unzip nomad_${NOMAD_VERSION}_linux_amd64.zip -d /usr/bin/ \

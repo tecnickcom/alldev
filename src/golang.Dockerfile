@@ -25,4 +25,6 @@ python3-pip \
 rpm \
 sudo \
 upx-ucl \
-&& pip install --upgrade jsonschema
+&& pip install --upgrade \
+jsonschema \
+yamllint
