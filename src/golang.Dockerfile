@@ -27,4 +27,6 @@ sudo \
 upx-ucl \
 && pip install --upgrade \
 jsonschema \
-yamllint
+yamllint \
+&& go install github.com/mikefarah/yq/v4@latest \
+&& go install github.com/hairyhenderson/gomplate/v3/cmd/gomplate@latest

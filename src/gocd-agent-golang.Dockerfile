@@ -115,6 +115,8 @@ yamllint \
 && echo 'export GOPATH=/home/go/GO' >> /home/go/.profile \
 && echo 'export PATH=/usr/local/go/bin:$GOPATH/bin:$PATH' >> /home/go/.profile \
 && go version \
+&& go install github.com/mikefarah/yq/v4@latest \
+&& go install github.com/hairyhenderson/gomplate/v3/cmd/gomplate@latest \
 # Docker
 && cd /tmp \
 && curl -sSL https://get.docker.com/ | sh \
