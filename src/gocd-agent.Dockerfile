@@ -86,13 +86,13 @@ fakeroot \
 fastjar \
 flawfinder \
 g++ \
+g++-multilib \
 gawk \
 gcc \
 gdb \
 gettext \
 ghostscript \
 git \
-g++-multilib \
 gridengine-drmaa-dev \
 gsfonts \
 gtk-sharp2 \
@@ -125,8 +125,8 @@ libxml2-utils \
 libxmlsec1 \
 libxmlsec1-dev \
 libxmlsec1-openssl \
-libxslt1.1 \
 libxslt1-dev \
+libxslt1.1 \
 llvm \
 lsof \
 make \
@@ -142,12 +142,12 @@ nano \
 nodejs \
 nsis \
 nsis-pluginapi \
-openjdk-8-jdk \
-openjdk-8-jre \
 openjdk-11-jdk \
 openjdk-11-jre \
 openjdk-17-jdk \
 openjdk-17-jre \
+openjdk-8-jdk \
+openjdk-8-jre \
 openssh-client \
 openssh-server \
 openssl \
@@ -224,21 +224,22 @@ zbar-tools \
 zip \
 zlib1g \
 zlib1g-dev \
-# Install extra Python2 dependencies
+&& update-java-alternatives -s java-1.11.0-openjdk-amd64 \
+&& java -version \
+# Install extra Python dependencies
 && pip install --upgrade \
 ansible \
-pyyaml \
 dnspython \
 pyOpenSSL \
 python-novaclient \
+pyyaml \
 shade \
-&& update-java-alternatives -s java-1.11.0-openjdk-amd64 \
-&& java -version \
-# Install extra Python3 dependencies
+# Install extra Python dependencies
 && pip3 install --upgrade pip \
 && pip3 install --upgrade \
 autopep8 \
 cffi \
+check-jsonschema \
 coverage \
 dnspython \
 fabric \
@@ -274,13 +275,13 @@ yamllint \
 && cd /tmp \
 # Install extra npm dependencies
 && npm install --global \
+csso \
+csso-cli \
 grunt-cli \
 gulp-cli \
 jquery \
-uglify-js \
-csso \
-csso-cli \
 js-beautify \
+uglify-js \
 # Install R packages
 && Rscript -e "install.packages(c('testthat', 'inline', 'pryr', 'Rcpp'), repos = 'http://cran.us.r-project.org')" \
 # HTML Tidy

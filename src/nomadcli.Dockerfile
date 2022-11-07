@@ -22,8 +22,8 @@ build-essential \
 make \
 parallel \
 sudo \
-wget \
 unzip \
+wget \
 && cd /tmp \
 && wget https://releases.hashicorp.com/nomad/${NOMAD_VERSION}/nomad_${NOMAD_VERSION}_linux_amd64.zip \
 && unzip nomad_${NOMAD_VERSION}_linux_amd64.zip -d /usr/bin/ \

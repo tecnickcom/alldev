@@ -91,6 +91,7 @@ zip \
 # Install extra Python dependencies
 && pip3 install --ignore-installed --upgrade pip \
 && pip3 install --upgrade \
+check-jsonschema \
 httpx \
 jsonschema \
 schemathesis \

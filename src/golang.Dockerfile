@@ -26,6 +26,7 @@ rpm \
 sudo \
 upx-ucl \
 && pip install --upgrade \
+check-jsonschema \
 jsonschema \
 yamllint \
 && go install github.com/mikefarah/yq/v4@latest \

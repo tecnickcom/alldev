@@ -73,12 +73,12 @@ libssl-dev \
 libxml2-utils \
 make \
 mysql-client \
-openjdk-8-jdk \
-openjdk-8-jre \
 openjdk-11-jdk \
 openjdk-11-jre \
 openjdk-17-jdk \
 openjdk-17-jre \
+openjdk-8-jdk \
+openjdk-8-jre \
 openssl \
 parallel \
 perl \
@@ -152,6 +152,7 @@ zip \
 # Install extra Python dependencies
 && pip3 install --ignore-installed --upgrade pip \
 && pip3 install --upgrade \
+check-jsonschema \
 jsonschema \
 yamllint \
 && cd /tmp \

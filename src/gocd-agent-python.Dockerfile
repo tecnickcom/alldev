@@ -49,31 +49,32 @@ RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selectio
 # install development packages and debugging tools
 && apt install -y \
 curl \
+default-jdk \
 devscripts \
 jq \
+libffi-dev \
+libmysqlclient-dev \
+librdkafka-dev \
+libssl-dev \
 make \
+mysql-client \
+pylint \
+python-all-dev \
+python3-all-dev \
+python3-pip \
 rsync \
 ssh \
 sudo \
 tree \
 uidmap \
 unzip \
-libffi-dev \
-libssl-dev \
-default-jdk \
-libmysqlclient-dev \
-mysql-client \
-python-all-dev \
-python3-all-dev \
-python3-pip \
 virtualenv \
-pylint \
-librdkafka-dev \
 # Install extra Python dependencies
 && pip3 install --ignore-installed --upgrade pip \
 && pip3 install --upgrade \
 autopep8 \
 cffi \
+check-jsonschema \
 coverage \
 dnspython \
 fabric \
