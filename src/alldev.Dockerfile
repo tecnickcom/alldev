@@ -229,14 +229,9 @@ zlib1g-dev \
 && update-java-alternatives -s java-1.11.0-openjdk-amd64 \
 && java -version \
 # Install extra Python dependencies
-&& pip install --upgrade \
-ansible \
-dnspython \
-pyyaml \
-shade \
-# Install extra Python3 dependencies
 && pip3 install --ignore-installed --upgrade pip \
 && pip3 install --upgrade \
+ansible \
 autopep8 \
 cffi \
 check-jsonschema \
