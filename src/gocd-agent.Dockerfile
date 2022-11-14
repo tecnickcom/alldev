@@ -10,11 +10,12 @@
 ARG UBUNTU_VERSION="22.04"
 ARG GOCD_VERSION="v22.2.0"
 FROM gocd/gocd-agent-ubuntu-${UBUNTU_VERSION}:${GOCD_VERSION}
-ARG NOMAD_VERSION="1.4.2"
-ARG  KOTLIN_VERSION="1.7.20"
+ARG FLYWAY_VERSION="9.8.1"
 ARG GO_VERSION="1.19.3"
-ARG VENOM_VERSION="v1.0.1"
 ARG HUGO_VERSION="0.105.0"
+ARG KOTLIN_VERSION="1.7.20"
+ARG NOMAD_VERSION="1.4.2"
+ARG VENOM_VERSION="v1.0.1"
 MAINTAINER info@tecnick.com
 USER root
 ENV DEBIAN_FRONTEND noninteractive
@@ -22,7 +23,7 @@ ENV TERM linux
 ENV HOME /home/go
 ENV DISPLAY :0
 ENV GOPATH=/home/go/GO
-ENV PATH=/usr/local/go/bin:$GOPATH/bin:/home/go/kotlinc/bin:$PATH
+ENV PATH=/usr/local/go/bin:$GOPATH/bin:/home/go/kotlinc/bin:/usr/local/flyway:$PATH
 ENV TINI_SUBREAPER=
 ENV DOCKER_USER=go
 ENV DOCKER_ENTRYPOINT=/docker-entrypoint.sh
@@ -286,6 +287,12 @@ uglify-js \
 # Composer
 && cd /tmp \
 && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
+&& cd /tmp \
+&& wget https://repo1.maven.org/maven2/org/flywaydb/flyway-commandline/${FLYWAY_VERSION}/flyway-commandline-${FLYWAY_VERSION}-linux-x64.tar.gz \
+&& tar xvzf flyway-commandline-${FLYWAY_VERSION}-linux-x64.tar.gz \
+&& rm -f flyway-commandline-${FLYWAY_VERSION}-linux-x64.tar.gz \
+&& rm -rf /usr/local/flyway \
+&& mv flyway-${FLYWAY_VERSION} /usr/local/flyway \
 # Install and configure GO
 && cd /tmp \
 && wget https://storage.googleapis.com/golang/go${GO_VERSION}.linux-amd64.tar.gz \
