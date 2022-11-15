@@ -10,7 +10,7 @@
 ARG UBUNTU_VERSION="22.04"
 ARG GOCD_VERSION="v22.2.0"
 FROM gocd/gocd-agent-ubuntu-${UBUNTU_VERSION}:${GOCD_VERSION}
-ARG FLYWAY_VERSION="9.8.1"
+ARG FLYWAY_VERSIONS="7.15.0,9.8.1" # space-separated versions - the latest is the default one
 ARG GO_VERSION="1.19.3"
 ARG HUGO_VERSION="0.105.0"
 ARG KOTLIN_VERSION="1.7.20"
@@ -288,11 +288,13 @@ uglify-js \
 && cd /tmp \
 && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
 && cd /tmp \
-&& wget https://repo1.maven.org/maven2/org/flywaydb/flyway-commandline/${FLYWAY_VERSION}/flyway-commandline-${FLYWAY_VERSION}-linux-x64.tar.gz \
+&& for FLYWAY_VERSION in $(echo ${FLYWAY_VERSIONS} | sed "s/,/ /g"); do \
+wget https://repo1.maven.org/maven2/org/flywaydb/flyway-commandline/${FLYWAY_VERSION}/flyway-commandline-${FLYWAY_VERSION}-linux-x64.tar.gz \
 && tar xvzf flyway-commandline-${FLYWAY_VERSION}-linux-x64.tar.gz \
 && rm -f flyway-commandline-${FLYWAY_VERSION}-linux-x64.tar.gz \
-&& rm -rf /usr/local/flyway \
-&& mv flyway-${FLYWAY_VERSION} /usr/local/flyway \
+&& mv -- flyway-${FLYWAY_VERSION} /usr/local/flyway-${FLYWAY_VERSION} \
+; done \
+&& ln -s /usr/local/flyway-${FLYWAY_VERSION} /usr/local/flyway \
 # Install and configure GO
 && cd /tmp \
 && wget https://storage.googleapis.com/golang/go${GO_VERSION}.linux-amd64.tar.gz \
