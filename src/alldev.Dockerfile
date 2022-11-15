@@ -8,7 +8,7 @@
 # @link        https://github.com/tecnickcom/alldev
 # ------------------------------------------------------------------------------
 FROM phusion/baseimage:master
-ARG FLYWAY_VERSIONS="7.15.0,9.8.1" # space-separated versions - the latest is the default one
+ARG FLYWAY_VERSIONS="7.15.0,9.8.1"
 ARG GO_VERSION="1.19.3"
 ARG HUGO_VERSION="0.105.0"
 ARG KOTLIN_VERSION="1.7.20"

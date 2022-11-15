@@ -10,7 +10,7 @@
 ARG UBUNTU_VERSION="22.04"
 ARG GOCD_VERSION="v22.2.0"
 FROM gocd/gocd-agent-ubuntu-${UBUNTU_VERSION}:${GOCD_VERSION}
-ARG FLYWAY_VERSIONS="7.15.0,9.8.1" # space-separated versions - the latest is the default one
+ARG FLYWAY_VERSIONS="7.15.0,9.8.1"
 ARG GO_VERSION="1.19.3"
 ARG NOMAD_VERSION="1.4.2"
 ARG VENOM_VERSION="v1.0.1"
