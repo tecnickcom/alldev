@@ -294,6 +294,7 @@ wget https://repo1.maven.org/maven2/org/flywaydb/flyway-commandline/${FLYWAY_VER
 && tar xvzf flyway-commandline-${FLYWAY_VERSION}-linux-x64.tar.gz \
 && rm -f flyway-commandline-${FLYWAY_VERSION}-linux-x64.tar.gz \
 && mv -- flyway-${FLYWAY_VERSION} /usr/local/flyway-${FLYWAY_VERSION} \
+&& chmod +x /usr/local/flyway-${FLYWAY_VERSION}/flyway \
 ; done \
 && ln -s /usr/local/flyway-${FLYWAY_VERSION} /usr/local/flyway \
 # Install and configure GO

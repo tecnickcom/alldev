@@ -110,10 +110,11 @@ wget https://repo1.maven.org/maven2/org/flywaydb/flyway-commandline/${FLYWAY_VER
 && tar xvzf flyway-commandline-${FLYWAY_VERSION}-linux-x64.tar.gz \
 && rm -f flyway-commandline-${FLYWAY_VERSION}-linux-x64.tar.gz \
 && mv -- flyway-${FLYWAY_VERSION} /usr/local/flyway-${FLYWAY_VERSION} \
+&& chmod +x /usr/local/flyway-${FLYWAY_VERSION}/flyway \
 ; done \
 && ln -s /usr/local/flyway-${FLYWAY_VERSION} /usr/local/flyway \
-&& cd /tmp \
 # Install and configure GO
+&& cd /tmp \
 && wget https://storage.googleapis.com/golang/go${GO_VERSION}.linux-amd64.tar.gz \
 && tar xvf go${GO_VERSION}.linux-amd64.tar.gz \
 && rm -f go${GO_VERSION}.linux-amd64.tar.gz \
