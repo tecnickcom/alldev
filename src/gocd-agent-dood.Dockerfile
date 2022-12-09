@@ -8,7 +8,7 @@
 # @link        https://github.com/tecnickcom/alldev
 # ------------------------------------------------------------------------------
 ARG UBUNTU_VERSION="22.04"
-ARG GOCD_VERSION="v22.2.0"
+ARG GOCD_VERSION="v22.3.0"
 FROM gocd/gocd-agent-ubuntu-${UBUNTU_VERSION}:${GOCD_VERSION}
 MAINTAINER info@tecnick.com
 USER root
