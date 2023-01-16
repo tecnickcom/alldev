@@ -7,7 +7,7 @@
 
 * **category**    Docker
 * **author**      Nicola Asuni <info@tecnick.com>
-* **copyright**   2016-2022 Nicola Asuni - Tecnick.com LTD
+* **copyright**   2016-2023 Nicola Asuni - Tecnick.com LTD
 * **license**     MIT (see LICENSE)
 * **link**        https://github.com/tecnickcom/alldev
 * **docker**      https://hub.docker.com/r/tecnickcom/alldev/
