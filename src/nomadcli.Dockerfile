@@ -8,7 +8,7 @@
 # @link        https://github.com/tecnickcom/nomadcli
 # ------------------------------------------------------------------------------
 FROM phusion/baseimage:master
-ARG NOMAD_VERSION="1.4.3"
+ARG NOMAD_VERSION="1.4.4"
 MAINTAINER info@tecnick.com
 ENV DEBIAN_FRONTEND noninteractive
 ENV TERM linux
