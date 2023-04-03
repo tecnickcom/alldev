@@ -9,7 +9,7 @@
 # ------------------------------------------------------------------------------
 FROM phusion/baseimage:master
 ARG FLYWAY_VERSIONS="7.15.0,9.9.0"
-ARG GO_VERSION="1.20.1"
+ARG GO_VERSION="1.20.2"
 ARG HUGO_VERSION="0.110.0"
 ARG KOTLIN_VERSION="1.8.10"
 ARG NOMAD_VERSION="1.4.4"
