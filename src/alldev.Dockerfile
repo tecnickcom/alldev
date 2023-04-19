@@ -20,7 +20,7 @@ ENV TERM linux
 ENV HOME /root
 ENV DISPLAY :0
 ENV GOPATH=/root
-ENV PATH=/usr/bin/:/usr/local/bin:$GOPATH/bin:/root/kotlinc/bin:/usr/local/flyway:$PATH
+ENV PATH=/usr/bin/:/usr/local/bin:/usr/local/go/bin/:$GOPATH/bin:/root/kotlinc/bin:/usr/local/flyway:$PATH
 ENV TINI_SUBREAPER=
 ENV DOCKER_USER=root
 ENV DOCKER_ENTRYPOINT=
