@@ -110,14 +110,21 @@ libc6-dev-i386 \
 libcurl4-openssl-dev \
 libcurlpp-dev \
 libffi-dev \
+libfontconfig1-dev \
+libfreetype6-dev \
+libfribidi-dev \
 libglib2.0-0 \
 libglib2.0-dev \
 libgsl-dev \
+libharfbuzz-dev \
 libicu-dev \
+libjpeg-dev \
 liblapack-dev \
 liblzma-dev \
 libncurses5-dev \
+libpng-dev \
 libssl-dev \
+libtiff5-dev \
 libtool \
 libwine-development \
 libxml2 \
@@ -277,7 +284,7 @@ jquery \
 js-beautify \
 uglify-js \
 # Install R packages
-&& Rscript -e "install.packages(c('testthat', 'inline', 'pryr', 'Rcpp'), repos = 'http://cran.us.r-project.org')" \
+&& Rscript -e "install.packages(c('Rcpp', 'base', 'devtools', 'inline', 'pryr', 'renv', 'ragg', 'roxygen2', 'testthat', 'pkgdown', 'libgfortran-ng'), repos = 'http://cran.us.r-project.org')" \
 # HTML Tidy
 && cd /tmp \
 && wget http://launchpadlibrarian.net/413419656/libtidy5deb1_5.6.0-10_amd64.deb \
