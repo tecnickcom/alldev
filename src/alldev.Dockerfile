@@ -125,7 +125,6 @@ libpng-dev \
 libssl-dev \
 libtiff5-dev \
 libtool \
-libwine-development \
 libxml2 \
 libxml2-dev \
 libxml2-utils \
@@ -220,10 +219,6 @@ valgrind \
 vim \
 virtualenv \
 wget \
-wine64 \
-wine64-development-tools \
-wine64-tools \
-winetricks \
 xmldiff \
 xmlindent \
 xmlsec1 \
@@ -231,6 +226,11 @@ zbar-tools \
 zip \
 zlib1g \
 zlib1g-dev \
+&& apt install -y \
+libwine-development \
+wine64 \
+wine64-development-tools \
+winetricks \
 && update-java-alternatives -s java-1.11.0-openjdk-amd64 \
 && java -version \
 # Install extra Python dependencies
