@@ -84,7 +84,6 @@ time \
 tree \
 uidmap \
 unzip \
-upx-ucl \
 wget \
 xmldiff \
 xmlindent \

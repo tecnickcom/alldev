@@ -218,7 +218,6 @@ ubuntu-restricted-addons \
 ubuntu-restricted-extras \
 uidmap \
 unzip \
-upx-ucl \
 valgrind \
 vim \
 virtualenv \

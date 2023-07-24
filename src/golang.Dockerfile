@@ -24,7 +24,6 @@ python3-all-dev \
 python3-pip \
 rpm \
 sudo \
-upx-ucl \
 && pip install --upgrade \
 check-jsonschema \
 jsonschema \
