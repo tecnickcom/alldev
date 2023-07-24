@@ -24,7 +24,7 @@ python3-all-dev \
 python3-pip \
 rpm \
 sudo \
-&& pip install --upgrade \
+&& pip install --break-system-packages --upgrade \
 check-jsonschema \
 jsonschema \
 yamllint \
