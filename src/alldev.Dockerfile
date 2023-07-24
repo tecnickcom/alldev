@@ -7,7 +7,7 @@
 # @license     MIT (see LICENSE)
 # @link        https://github.com/tecnickcom/alldev
 # ------------------------------------------------------------------------------
-FROM phusion/baseimage:master
+FROM phusion/baseimage:jammy-1.0.1
 ARG FLYWAY_VERSIONS="7.15.0,9.9.0"
 ARG GO_VERSION="1.20.6"
 ARG HUGO_VERSION="0.115.4"
@@ -42,16 +42,18 @@ RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selectio
 && echo "	email = gocd@example.com" >> /home/go/.gitconfig \
 && echo "	name = gocd" >> /home/go/.gitconfig \
 # Add repositories and update
-&& curl -sL https://deb.nodesource.com/setup_18.x | bash - \
 && apt update && apt -y dist-upgrade \
-&& apt install -y apt-utils software-properties-common \
+&& apt install -y sudo curl apt-utils software-properties-common \
 && apt-add-repository universe \
 && apt-add-repository multiverse \
+&& curl -fsSL https://pgp.mongodb.com/server-6.0.asc | apt-key add - \
+&& echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu jammy/mongodb-org/6.0 multiverse" | tee /etc/apt/sources.list.d/mongodb-org-6.0.list \
 && apt update \
 # Set Locale
 && apt install -y language-pack-en-base \
 && locale-gen en_US en_US.UTF-8 \
 && dpkg-reconfigure locales \
+&& curl -sL https://deb.nodesource.com/setup_18.x | bash - \
 # install development packages and debugging tools
 && apt install -y \
 alien \
@@ -70,7 +72,6 @@ clang-format \
 clang-tidy \
 cmake \
 cppcheck \
-curl \
 debhelper \
 default-jdk \
 default-jre \
@@ -88,7 +89,6 @@ g++ \
 g++-multilib \
 gawk \
 gcc \
-gcc-8 \
 gdb \
 gettext \
 ghostscript \
@@ -143,7 +143,7 @@ mingw-w64 \
 mingw-w64-i686-dev \
 mingw-w64-tools \
 mingw-w64-x86-64-dev \
-mongodb \
+mongodb-org \
 mysql-client \
 mysql-server \
 nano \
@@ -195,7 +195,6 @@ php-xml \
 pkg-config \
 postgresql \
 postgresql-contrib \
-pyflakes \
 pylint \
 python-all-dev \
 python3-all-dev \
@@ -209,7 +208,6 @@ ruby-all-dev \
 screen \
 ssh \
 strace \
-sudo \
 swig \
 texlive-base \
 time \

@@ -8,13 +8,14 @@
 # @link        https://github.com/tecnickcom/alldev
 # ------------------------------------------------------------------------------
 
-FROM phusion/baseimage:master
+FROM phusion/baseimage:jammy-1.0.1
 ENV TINI_SUBREAPER=
 ENV DOCKER_USER=root
 ENV DOCKER_ENTRYPOINT=
 ADD entrypoint-docker.sh /
 RUN apt update \
 && apt install -y \
+curl \
 sudo \
 && cd /tmp \
 && curl -sSL https://get.docker.com/ | sh \
