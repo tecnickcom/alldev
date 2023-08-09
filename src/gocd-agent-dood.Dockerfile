@@ -21,7 +21,7 @@ ENV PATH=/usr/local/go/bin:$GOPATH/bin:/home/go/kotlinc/bin:$PATH
 ENV TINI_SUBREAPER=
 ENV DOCKER_USER=go
 ENV DOCKER_ENTRYPOINT=/docker-entrypoint.sh
-ADD entrypoint-docker.sh /
+COPY entrypoint-docker.sh /
 RUN apt update \
 && apt install -y \
 sudo \

@@ -27,10 +27,10 @@ ENV PATH=/usr/local/go/bin:$GOPATH/bin:/home/go/kotlinc/bin:/usr/local/flyway:$P
 ENV TINI_SUBREAPER=
 ENV DOCKER_USER=go
 ENV DOCKER_ENTRYPOINT=/docker-entrypoint.sh
-ADD entrypoint-docker.sh /
+COPY entrypoint-docker.sh /
 # Add SSH keys
-ADD id_rsa /home/go/.ssh/id_rsa
-ADD id_rsa.pub /home/go/.ssh/id_rsa.pub
+COPY id_rsa /home/go/.ssh/id_rsa
+COPY id_rsa.pub /home/go/.ssh/id_rsa.pub
 RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections \
 # Configure SSH
 && echo "Host *" >> /home/go/.ssh/config \
