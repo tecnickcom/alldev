@@ -9,7 +9,7 @@
 # ------------------------------------------------------------------------------
 FROM phusion/baseimage:jammy-1.0.1
 ARG FLYWAY_VERSIONS="7.15.0,9.9.0"
-ARG GO_VERSION="1.20.6"
+ARG GO_VERSION="1.21.0"
 ARG HUGO_VERSION="0.115.4"
 ARG KOTLIN_VERSION="1.9.0"
 ARG NOMAD_VERSION="1.6.1"
