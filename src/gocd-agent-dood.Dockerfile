@@ -10,7 +10,7 @@
 ARG UBUNTU_VERSION="22.04"
 ARG GOCD_VERSION="v23.3.0"
 FROM gocd/gocd-agent-ubuntu-${UBUNTU_VERSION}:${GOCD_VERSION}
-MAINTAINER info@tecnick.com
+LABEL com.tecnick.vendor="Tecnick.com"
 USER root
 ENV DEBIAN_FRONTEND noninteractive
 ENV TERM linux

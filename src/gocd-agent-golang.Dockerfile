@@ -14,7 +14,7 @@ ARG FLYWAY_VERSIONS="7.15.0,9.9.0"
 ARG GO_VERSION="1.21.5"
 ARG NOMAD_VERSION="1.7.0"
 ARG VENOM_VERSION="v1.1.0"
-MAINTAINER info@tecnick.com
+LABEL com.tecnick.vendor="Tecnick.com"
 USER root
 ENV DEBIAN_FRONTEND noninteractive
 ENV TERM linux

@@ -13,7 +13,7 @@ FROM gocd/gocd-agent-ubuntu-${UBUNTU_VERSION}:${GOCD_VERSION}
 ARG NOMAD_VERSION="1.7.0"
 ARG KOTLIN_VERSION="1.9.21"
 ARG VENOM_VERSION="v1.1.0"
-MAINTAINER info@tecnick.com
+LABEL com.tecnick.vendor="Tecnick.com"
 USER root
 ENV DEBIAN_FRONTEND noninteractive
 ENV TERM linux

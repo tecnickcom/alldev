@@ -9,7 +9,7 @@
 # ------------------------------------------------------------------------------
 FROM phusion/baseimage:jammy-1.0.1
 ARG NOMAD_VERSION="1.7.0"
-MAINTAINER info@tecnick.com
+LABEL com.tecnick.vendor="Tecnick.com"
 ENV DEBIAN_FRONTEND noninteractive
 ENV TERM linux
 ENV HOME /root
