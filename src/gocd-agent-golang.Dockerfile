@@ -8,7 +8,7 @@
 # @link        https://github.com/tecnickcom/alldev
 # ------------------------------------------------------------------------------
 ARG UBUNTU_VERSION="22.04"
-ARG GOCD_VERSION="v23.3.0"
+ARG GOCD_VERSION="v23.5.0"
 FROM gocd/gocd-agent-ubuntu-${UBUNTU_VERSION}:${GOCD_VERSION}
 ARG FLYWAY_VERSIONS="10.7.1,7.15.0,9.22.3"
 ARG GO_VERSION="1.22.1"
