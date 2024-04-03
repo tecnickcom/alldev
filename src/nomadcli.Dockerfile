@@ -8,7 +8,7 @@
 # @link        https://github.com/tecnickcom/nomadcli
 # ------------------------------------------------------------------------------
 FROM phusion/baseimage:jammy-1.0.1
-ARG NOMAD_VERSION="1.7.5"
+ARG NOMAD_VERSION="1.7.6"
 LABEL com.tecnick.vendor="Tecnick.com"
 ENV DEBIAN_FRONTEND noninteractive
 ENV TERM linux
