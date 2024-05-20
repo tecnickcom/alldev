@@ -9,11 +9,11 @@
 # ------------------------------------------------------------------------------
 FROM phusion/baseimage:jammy-1.0.1
 ARG FLYWAY_VERSIONS="10.7.1,7.15.0,9.22.3"
-ARG GO_VERSION="1.22.2"
-ARG HUGO_VERSION="0.124.1"
-ARG KOTLIN_VERSION="1.9.23"
-ARG NOMAD_VERSION="1.7.6"
-ARG VENOM_VERSION="v1.1.0"
+ARG GO_VERSION="1.22.3"
+ARG HUGO_VERSION="0.126.1"
+ARG KOTLIN_VERSION="1.9.24"
+ARG NOMAD_VERSION="1.7.7"
+ARG VENOM_VERSION="v1.2.0"
 LABEL com.tecnick.vendor="Tecnick.com"
 ENV DEBIAN_FRONTEND noninteractive
 ENV TERM linux
