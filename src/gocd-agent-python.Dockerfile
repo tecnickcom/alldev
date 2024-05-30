@@ -62,6 +62,7 @@ pylint \
 python-all-dev \
 python3-all-dev \
 python3-pip \
+python3-venv \
 rsync \
 ssh \
 sudo \

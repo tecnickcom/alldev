@@ -198,6 +198,7 @@ python-all-dev \
 python-setuptools \
 python3-all-dev \
 python3-pip \
+python3-venv \
 r-base \
 redis-server \
 redis-tools \

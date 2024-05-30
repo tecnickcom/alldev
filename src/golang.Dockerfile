@@ -22,6 +22,7 @@ fakeroot \
 pkg-config \
 python3-all-dev \
 python3-pip \
+python3-venv \
 rpm \
 sudo \
 && pip install --break-system-packages --upgrade \

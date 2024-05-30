@@ -85,6 +85,7 @@ perl \
 pkg-config \
 python3-all-dev \
 python3-pip \
+python3-venv \
 rpm \
 rsync \
 ssh \
