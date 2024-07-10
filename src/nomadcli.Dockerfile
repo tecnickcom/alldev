@@ -7,7 +7,7 @@
 # @license     MIT (see LICENSE)
 # @link        https://github.com/tecnickcom/nomadcli
 # ------------------------------------------------------------------------------
-FROM phusion/baseimage:jammy-1.0.1
+FROM phusion/baseimage:jammy-1.0.4
 ARG NOMAD_VERSION="1.8.1"
 LABEL com.tecnick.vendor="Tecnick.com"
 ENV DEBIAN_FRONTEND noninteractive
