@@ -8,7 +8,7 @@
 # @link        https://github.com/tecnickcom/alldev
 # ------------------------------------------------------------------------------
 FROM phusion/baseimage:jammy-1.0.4
-ARG FLYWAY_VERSIONS="10.17.1,7.15.0,9.22.3"
+ARG FLYWAY_VERSIONS="10.18.2,7.15.0,9.22.3"
 ARG GO_VERSION="1.23.2"
 ARG HUGO_VERSION="0.135.0"
 ARG KOTLIN_VERSION="2.0.20"
