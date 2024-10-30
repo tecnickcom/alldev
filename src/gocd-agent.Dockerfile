@@ -153,6 +153,8 @@ openjdk-11-jdk \
 openjdk-11-jre \
 openjdk-17-jdk \
 openjdk-17-jre \
+openjdk-21-jdk \
+openjdk-21-jre \
 openjdk-8-jdk \
 openjdk-8-jre \
 openssh-client \
