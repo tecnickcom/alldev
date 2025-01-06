@@ -3,7 +3,7 @@
 # GoCD elastic agent based on Ubuntu 18.04 (Bionic)
 #
 # @author      Nicola Asuni <info@tecnick.com>
-# @copyright   2016-2024 Nicola Asuni - Tecnick.com LTD
+# @copyright   2016-2025 Nicola Asuni - Tecnick.com LTD
 # @license     MIT (see LICENSE)
 # @link        https://github.com/tecnickcom/alldev
 # ------------------------------------------------------------------------------
