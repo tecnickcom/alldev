@@ -7,9 +7,9 @@
 # @license     MIT (see LICENSE)
 # @link        https://github.com/tecnickcom/alldev
 # ------------------------------------------------------------------------------
-ARG UBUNTU_VERSION="22.04"
-ARG GOCD_VERSION="v24.5.0"
-FROM gocd/gocd-agent-ubuntu-${UBUNTU_VERSION}:${GOCD_VERSION}
+ARG DEBIAN_VERSION="12"
+ARG GOCD_VERSION="v25.1.0"
+FROM gocd/gocd-agent-debian-${DEBIAN_VERSION}:${GOCD_VERSION}
 ARG NOMAD_VERSION="1.9.5"
 ARG KOTLIN_VERSION="2.1.10"
 ARG VENOM_VERSION="v1.2.0"
