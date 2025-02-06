@@ -8,7 +8,7 @@
 # @link        https://github.com/tecnickcom/alldev
 # ------------------------------------------------------------------------------
 
-FROM phusion/baseimage:jammy-1.0.4
+FROM debian:12
 ENV TINI_SUBREAPER=
 ENV DOCKER_USER=root
 ENV DOCKER_ENTRYPOINT=
