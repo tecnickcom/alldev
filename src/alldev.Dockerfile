@@ -1,6 +1,6 @@
 # Dockerfile
 #
-# Development environment based on phusion/baseimage (Ubuntu)
+# Development environment
 #
 # @author      Nicola Asuni <info@tecnick.com>
 # @copyright   2016-2025 Nicola Asuni - Tecnick.com LTD
@@ -14,7 +14,6 @@ ARG HUGO_VERSION="0.143.1"
 ARG KOTLIN_VERSION="2.1.10"
 ARG NOMAD_VERSION="1.9.5"
 ARG VENOM_VERSION="v1.2.0"
-LABEL com.tecnick.vendor="Tecnick.com"
 ENV DEBIAN_FRONTEND noninteractive
 ENV TERM linux
 ENV HOME /root
@@ -43,17 +42,15 @@ RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selectio
 && echo "	name = gocd" >> /home/go/.gitconfig \
 # Add repositories and update
 && apt update && apt -y dist-upgrade \
-&& apt install -y sudo curl apt-utils software-properties-common \
-&& apt-add-repository universe \
-&& apt-add-repository multiverse \
-&& curl -fsSL https://pgp.mongodb.com/server-6.0.asc | apt-key add - \
-&& echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu jammy/mongodb-org/6.0 multiverse" | tee /etc/apt/sources.list.d/mongodb-org-6.0.list \
+&& apt install -y sudo curl locales apt-utils software-properties-common \
+&& curl -fsSL https://apt.corretto.aws/corretto.key | gpg --dearmor -o /usr/share/keyrings/corretto-keyring.gpg \
+&& echo "deb [signed-by=/usr/share/keyrings/corretto-keyring.gpg] https://apt.corretto.aws stable main" | tee /etc/apt/sources.list.d/corretto.list \
+&& curl -fsSL https://www.mongodb.org/static/pgp/server-8.0.asc | gpg -o /usr/share/keyrings/mongodb-server-8.0.gpg --dearmor \
+&& echo "deb [ signed-by=/usr/share/keyrings/mongodb-server-8.0.gpg ] http://repo.mongodb.org/apt/debian bookworm/mongodb-org/8.0 main" | sudo tee /etc/apt/sources.list.d/mongodb-org-8.0.list \
 && apt update \
-# Set Locale
-&& apt install -y language-pack-en-base \
 && locale-gen en_US en_US.UTF-8 \
 && dpkg-reconfigure locales \
-&& curl -sL https://deb.nodesource.com/setup_18.x | bash - \
+&& curl -sL https://deb.nodesource.com/setup_22.x | bash - \
 # install development packages and debugging tools
 && apt install -y \
 alien \
@@ -99,6 +96,10 @@ gtk-sharp2 \
 htop \
 imagemagick \
 intltool \
+java-1.8.0-amazon-corretto-jdk \
+java-11-amazon-corretto-jdk \
+java-17-amazon-corretto-jdk \
+java-21-amazon-corretto-jdk \
 jq \
 lcov \
 libboost-all-dev \
@@ -123,6 +124,7 @@ liblzma-dev \
 libncurses5-dev \
 libpng-dev \
 libssl-dev \
+libtidy5deb1 \
 libtiff5-dev \
 libtool \
 libxml2 \
@@ -136,6 +138,8 @@ libxslt1.1 \
 llvm \
 lsof \
 make \
+mariadb-client \
+mariadb-server \
 mawk \
 memcached \
 mingw-w64 \
@@ -143,20 +147,10 @@ mingw-w64-i686-dev \
 mingw-w64-tools \
 mingw-w64-x86-64-dev \
 mongodb-org \
-mysql-client \
-mysql-server \
 nano \
 nodejs \
 nsis \
 nsis-pluginapi \
-openjdk-11-jdk \
-openjdk-11-jre \
-openjdk-17-jdk \
-openjdk-17-jre \
-openjdk-21-jdk \
-openjdk-21-jre \
-openjdk-8-jdk \
-openjdk-8-jre \
 openssh-client \
 openssh-server \
 openssl \
@@ -197,8 +191,8 @@ pkg-config \
 postgresql \
 postgresql-contrib \
 pylint \
-python-all-dev \
 python3-all-dev \
+python3-novaclient \
 python3-pip \
 python3-venv \
 r-base \
@@ -212,10 +206,9 @@ ssh \
 strace \
 swig \
 texlive-base \
+tidy \
 time \
 tree \
-ubuntu-restricted-addons \
-ubuntu-restricted-extras \
 uidmap \
 unzip \
 valgrind \
@@ -229,16 +222,10 @@ zbar-tools \
 zip \
 zlib1g \
 zlib1g-dev \
-&& apt install -y \
-libwine-development \
-wine64 \
-wine64-development-tools \
-winetricks \
-&& update-java-alternatives -s java-1.11.0-openjdk-amd64 \
 && java -version \
 # Install extra Python dependencies
-&& pip3 install --ignore-installed --upgrade pip \
-&& pip3 install --upgrade \
+&& pip3 install --ignore-installed --break-system-packages --upgrade pip \
+&& pip3 install --break-system-packages --upgrade \
 ansible \
 autopep8 \
 cffi \
@@ -256,7 +243,6 @@ pypandoc \
 pytest \
 pytest-benchmark \
 pytest-cov \
-python-novaclient \
 pyyaml \
 schemathesis \
 setuptools \
@@ -286,12 +272,6 @@ js-beautify \
 uglify-js \
 # Install R packages
 && Rscript -e "install.packages(c('Rcpp', 'base', 'devtools', 'inline', 'pryr', 'renv', 'ragg', 'roxygen2', 'testthat', 'pkgdown', 'libgfortran-ng'), repos = 'http://cran.us.r-project.org')" \
-# HTML Tidy
-&& cd /tmp \
-&& wget http://launchpadlibrarian.net/413419656/libtidy5deb1_5.6.0-10_amd64.deb \
-&& wget http://launchpadlibrarian.net/413419657/tidy_5.6.0-10_amd64.deb \
-&& dpkg -i libtidy5deb1_5.6.0-10_amd64.deb tidy_5.6.0-10_amd64.deb \
-&& rm -f libtidy5deb1_5.6.0-10_amd64.deb tidy_5.6.0-10_amd64.deb \
 # Composer
 && cd /tmp \
 && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
@@ -340,3 +320,12 @@ wget https://repo1.maven.org/maven2/org/flywaydb/flyway-commandline/${FLYWAY_VER
 && chown -R root:root /entrypoint-docker.sh \
 && chmod -R g=u /entrypoint-docker.sh
 ENTRYPOINT ["/entrypoint-docker.sh"]
+LABEL "org.opencontainers.image.authors"="info@tecnick.com"
+LABEL "org.opencontainers.image.url"="https://github.com/tecnickcom/alldev"
+LABEL "org.opencontainers.image.documentation"="https://github.com/tecnickcom/alldev/blob/main/README.md"
+LABEL "org.opencontainers.image.source"="https://github.com/tecnickcom/alldev/blob/main/src/alldev.Dockerfile"
+LABEL "org.opencontainers.image.vendor"="tecnickcom"
+LABEL "org.opencontainers.image.licenses"="MIT"
+LABEL "org.opencontainers.image.title"="alldev"
+LABEL "org.opencontainers.image.description"="Linux-based development environment with support for multiple programming languages"
+LABEL "org.opencontainers.image.base.name"="debian:12"

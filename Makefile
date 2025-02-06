@@ -3,7 +3,7 @@
 # @since       2016-09-23
 # @category    Docker
 # @author      Nicola Asuni <info@tecnick.com>
-# @copyright   2015-2024 Nicola Asuni - Tecnick.com LTD
+# @copyright   2015-2025 Nicola Asuni - Tecnick.com LTD
 # @license     MIT (see LICENSE)
 # @link        https://github.com/tecnickcom/alldev
 #
@@ -34,6 +34,9 @@ DOCKER_REGISTRY=
 # Docker repository
 DOCKER_REPOSITORY=${DOCKER_REGISTRY}${VENDOR}
 
+# Current date-time
+DATETIME=$(shell date --rfc-3339=seconds)
+
 # --- MAKE TARGETS ---
 
 # Display general help about this command
@@ -55,7 +58,17 @@ all: help
 # Build the specified Docker image
 .PHONY: build
 build:
-	docker build --compress --no-cache --tag ${DOCKER_REPOSITORY}/${DIMG}:latest --file ./src/${DIMG}.Dockerfile ./src/
+	docker build \
+	--compress \
+	--no-cache \
+	--tag ${DOCKER_REPOSITORY}/${DIMG}:latest \
+	--label="com.tecnick.alldev.version=${VERSION}" \
+	--label="com.tecnick.alldev.release=${RELEASE}" \
+	--label="org.opencontainers.image.created=${DATETIME}" \
+	--label="org.opencontainers.image.version=${VERSION}" \
+	--label="org.opencontainers.image.revision=${RELEASE}" \
+	--file ./src/${DIMG}.Dockerfile \
+	./src/
 	docker tag ${DOCKER_REPOSITORY}/${DIMG}:latest ${DOCKER_REPOSITORY}/${DIMG}:${VERSION}-${RELEASE}
 
 # Upload the specified docker image

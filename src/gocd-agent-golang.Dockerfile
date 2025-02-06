@@ -1,6 +1,6 @@
 # Dockerfile
 #
-# GoCD elastic agent based on Ubuntu 18.04 (Bionic)
+# GoCD elastic agent
 #
 # @author      Nicola Asuni <info@tecnick.com>
 # @copyright   2016-2025 Nicola Asuni - Tecnick.com LTD
@@ -14,7 +14,6 @@ ARG FLYWAY_VERSIONS="11.3.1,10.22.0,7.15.0,9.22.3"
 ARG GO_VERSION="1.23.6"
 ARG NOMAD_VERSION="1.9.5"
 ARG VENOM_VERSION="v1.2.0"
-LABEL com.tecnick.vendor="Tecnick.com"
 USER root
 ENV DEBIAN_FRONTEND noninteractive
 ENV TERM linux
@@ -44,10 +43,7 @@ RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selectio
 # Add repositories and update
 && apt update && apt -y dist-upgrade \
 && apt install -y gnupg apt-utils software-properties-common \
-&& apt-add-repository universe \
-&& apt-add-repository multiverse \
 && apt update \
-&& apt install -y language-pack-en-base \
 && locale-gen en_US en_US.UTF-8 \
 && dpkg-reconfigure locales \
 # install development packages and debugging tools
@@ -69,7 +65,7 @@ libffi-dev \
 libssl-dev \
 libxml2-utils \
 make \
-mysql-client \
+mariadb-client \
 openssl \
 parallel \
 perl \
@@ -90,8 +86,8 @@ xmldiff \
 xmlindent \
 zip \
 # Install extra Python dependencies
-&& pip3 install --ignore-installed --upgrade pip \
-&& pip3 install --upgrade \
+&& pip3 install --ignore-installed --break-system-packages --upgrade pip \
+&& pip3 install --break-system-packages --upgrade \
 check-jsonschema \
 httpx \
 jsonschema \
@@ -145,3 +141,12 @@ wget https://repo1.maven.org/maven2/org/flywaydb/flyway-commandline/${FLYWAY_VER
 && chmod -R g=u /entrypoint-docker.sh
 ENTRYPOINT ["/entrypoint-docker.sh"]
 USER go
+LABEL "org.opencontainers.image.authors"="info@tecnick.com"
+LABEL "org.opencontainers.image.url"="https://github.com/tecnickcom/alldev"
+LABEL "org.opencontainers.image.documentation"="https://github.com/tecnickcom/alldev/blob/main/README.md"
+LABEL "org.opencontainers.image.source"="https://github.com/tecnickcom/alldev/blob/main/src/gocd-agent-golang.Dockerfile"
+LABEL "org.opencontainers.image.vendor"="tecnickcom"
+LABEL "org.opencontainers.image.licenses"="MIT"
+LABEL "org.opencontainers.image.title"="gocd-agent-golang"
+LABEL "org.opencontainers.image.description"="GoCD agent with Go (golang)"
+LABEL "org.opencontainers.image.base.name"="gocd/gocd-agent-debian-${DEBIAN_VERSION}:${GOCD_VERSION}"

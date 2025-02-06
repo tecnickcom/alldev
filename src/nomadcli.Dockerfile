@@ -1,6 +1,6 @@
 # Dockerfile
 #
-# Nomad cli and make command - based on phusion/baseimage (Ubuntu)
+# Nomad cli and make command
 #
 # @author      Nicola Asuni <info@tecnick.com>
 # @copyright   2016-2025 Nicola Asuni - Tecnick.com LTD
@@ -9,11 +9,10 @@
 # ------------------------------------------------------------------------------
 FROM debian:12
 ARG NOMAD_VERSION="1.9.5"
-LABEL com.tecnick.vendor="Tecnick.com"
-ENV DEBIAN_FRONTEND noninteractive
-ENV TERM linux
-ENV HOME /root
-ENV DISPLAY :0
+ENV DEBIAN_FRONTEND=noninteractive
+ENV TERM=linux
+ENV HOME=/root
+ENV DISPLAY=:0
 RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections \
 # Add repositories and update
 && apt update && apt -y dist-upgrade \
@@ -33,3 +32,12 @@ wget \
 && apt autoclean \
 && apt -y autoremove \
 && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+LABEL "org.opencontainers.image.authors"="info@tecnick.com"
+LABEL "org.opencontainers.image.url"="https://github.com/tecnickcom/alldev"
+LABEL "org.opencontainers.image.documentation"="https://github.com/tecnickcom/alldev/blob/main/README.md"
+LABEL "org.opencontainers.image.source"="https://github.com/tecnickcom/alldev/blob/main/src/nomadcli.Dockerfile"
+LABEL "org.opencontainers.image.vendor"="tecnickcom"
+LABEL "org.opencontainers.image.licenses"="MIT"
+LABEL "org.opencontainers.image.title"="nomadcli"
+LABEL "org.opencontainers.image.description"="Nomad CLI with extra tools"
+LABEL "org.opencontainers.image.base.name"="debian:12"

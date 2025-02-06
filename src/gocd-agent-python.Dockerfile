@@ -1,6 +1,6 @@
 # Dockerfile
 #
-# GoCD elastic agent based on Ubuntu 18.04 (Bionic)
+# GoCD elastic agent
 #
 # @author      Nicola Asuni <info@tecnick.com>
 # @copyright   2016-2025 Nicola Asuni - Tecnick.com LTD
@@ -10,7 +10,6 @@
 ARG DEBIAN_VERSION="12"
 ARG GOCD_VERSION="v25.1.0"
 FROM gocd/gocd-agent-debian-${DEBIAN_VERSION}:${GOCD_VERSION}
-LABEL com.tecnick.vendor="Tecnick.com"
 USER root
 ENV DEBIAN_FRONTEND noninteractive
 ENV TERM linux
@@ -40,10 +39,7 @@ RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selectio
 # Add repositories and update
 && apt update && apt -y dist-upgrade \
 && apt install -y gnupg apt-utils software-properties-common \
-&& apt-add-repository universe \
-&& apt-add-repository multiverse \
 && apt update \
-&& apt install -y language-pack-en-base \
 && locale-gen en_US en_US.UTF-8 \
 && dpkg-reconfigure locales \
 # install development packages and debugging tools
@@ -53,16 +49,16 @@ default-jdk \
 devscripts \
 jq \
 libffi-dev \
-libmysqlclient-dev \
+libmariadb-dev \
 librdkafka-dev \
 libssl-dev \
 make \
-mysql-client \
+mariadb-client \
 pylint \
-python-all-dev \
 python3-all-dev \
 python3-pip \
 python3-venv \
+python3-novaclient \
 rsync \
 ssh \
 sudo \
@@ -71,8 +67,8 @@ uidmap \
 unzip \
 virtualenv \
 # Install extra Python dependencies
-&& pip3 install --ignore-installed --upgrade pip \
-&& pip3 install --upgrade \
+&& pip3 install --ignore-installed --break-system-packages --upgrade pip \
+&& pip3 install --break-system-packages --upgrade \
 autopep8 \
 cffi \
 check-jsonschema \
@@ -90,7 +86,6 @@ pypandoc \
 pytest \
 pytest-benchmark \
 pytest-cov \
-python-novaclient \
 pyyaml \
 schemathesis \
 setuptools \
@@ -111,3 +106,12 @@ yamllint \
 && chmod -R g=u /entrypoint-docker.sh
 ENTRYPOINT ["/entrypoint-docker.sh"]
 USER go
+LABEL "org.opencontainers.image.authors"="info@tecnick.com"
+LABEL "org.opencontainers.image.url"="https://github.com/tecnickcom/alldev"
+LABEL "org.opencontainers.image.documentation"="https://github.com/tecnickcom/alldev/blob/main/README.md"
+LABEL "org.opencontainers.image.source"="https://github.com/tecnickcom/alldev/blob/main/src/gocd-agent-python.Dockerfile"
+LABEL "org.opencontainers.image.vendor"="tecnickcom"
+LABEL "org.opencontainers.image.licenses"="MIT"
+LABEL "org.opencontainers.image.title"="gocd-agent-python"
+LABEL "org.opencontainers.image.description"="GoCD agent with Python"
+LABEL "org.opencontainers.image.base.name"="gocd/gocd-agent-debian-${DEBIAN_VERSION}:${GOCD_VERSION}"

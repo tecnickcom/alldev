@@ -1,6 +1,6 @@
 # Dockerfile
 #
-# GoCD elastic agent based on Ubuntu 18.04 (Bionic)
+# GoCD elastic agent
 #
 # @author      Nicola Asuni <info@tecnick.com>
 # @copyright   2016-2025 Nicola Asuni - Tecnick.com LTD
@@ -13,7 +13,6 @@ FROM gocd/gocd-agent-debian-${DEBIAN_VERSION}:${GOCD_VERSION}
 ARG NOMAD_VERSION="1.9.5"
 ARG KOTLIN_VERSION="2.1.10"
 ARG VENOM_VERSION="v1.2.0"
-LABEL com.tecnick.vendor="Tecnick.com"
 USER root
 ENV DEBIAN_FRONTEND noninteractive
 ENV TERM linux
@@ -43,10 +42,9 @@ RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selectio
 # Add repositories and update
 && apt update && apt -y dist-upgrade \
 && apt install -y gnupg apt-utils software-properties-common \
-&& apt-add-repository universe \
-&& apt-add-repository multiverse \
+&& curl -fsSL https://apt.corretto.aws/corretto.key | gpg --dearmor -o /usr/share/keyrings/corretto-keyring.gpg \
+&& echo "deb [signed-by=/usr/share/keyrings/corretto-keyring.gpg] https://apt.corretto.aws stable main" | tee /etc/apt/sources.list.d/corretto.list \
 && apt update \
-&& apt install -y language-pack-en-base \
 && locale-gen en_US en_US.UTF-8 \
 && dpkg-reconfigure locales \
 # install development packages and debugging tools
@@ -72,15 +70,11 @@ libffi-dev \
 libssl-dev \
 libxml2-utils \
 make \
-mysql-client \
-openjdk-11-jdk \
-openjdk-11-jre \
-openjdk-17-jdk \
-openjdk-17-jre \
-openjdk-21-jdk \
-openjdk-21-jre \
-openjdk-8-jdk \
-openjdk-8-jre \
+mariadb-client \
+java-1.8.0-amazon-corretto-jdk \
+java-11-amazon-corretto-jdk \
+java-17-amazon-corretto-jdk \
+java-21-amazon-corretto-jdk \
 openssl \
 parallel \
 perl \
@@ -88,6 +82,7 @@ pkg-config \
 python3-all-dev \
 python3-pip \
 python3-venv \
+python3-novaclient \
 rpm \
 rsync \
 ssh \
@@ -101,7 +96,6 @@ xmldiff \
 xmlindent \
 zip \
 && mkdir -p /usr/lib/jvm/ \
-&& update-java-alternatives -s java-1.11.0-openjdk-amd64 \
 && java -version \
 && cd /home/go/ \
 && wget https://github.com/JetBrains/kotlin/releases/download/v${KOTLIN_VERSION}/kotlin-compiler-${KOTLIN_VERSION}.zip \
@@ -109,8 +103,8 @@ zip \
 && rm -f kotlin-compiler-${KOTLIN_VERSION}.zip \
 && kotlin -version \
 # Install extra Python dependencies
-&& pip3 install --ignore-installed --upgrade pip \
-&& pip3 install --upgrade \
+&& pip3 install --ignore-installed --break-system-packages --upgrade pip \
+&& pip3 install --break-system-packages --upgrade \
 check-jsonschema \
 jsonschema \
 yamllint \
@@ -138,3 +132,12 @@ yamllint \
 && chmod -R g=u /entrypoint-docker.sh
 ENTRYPOINT ["/entrypoint-docker.sh"]
 USER go
+LABEL "org.opencontainers.image.authors"="info@tecnick.com"
+LABEL "org.opencontainers.image.url"="https://github.com/tecnickcom/alldev"
+LABEL "org.opencontainers.image.documentation"="https://github.com/tecnickcom/alldev/blob/main/README.md"
+LABEL "org.opencontainers.image.source"="https://github.com/tecnickcom/alldev/blob/main/src/gocd-agent-java.Dockerfile"
+LABEL "org.opencontainers.image.vendor"="tecnickcom"
+LABEL "org.opencontainers.image.licenses"="MIT"
+LABEL "org.opencontainers.image.title"="gocd-agent-java"
+LABEL "org.opencontainers.image.description"="GoCD agent with Java"
+LABEL "org.opencontainers.image.base.name"="gocd/gocd-agent-debian-${DEBIAN_VERSION}:${GOCD_VERSION}"
