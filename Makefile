@@ -46,7 +46,7 @@ help:
 	@echo "${PROJECT} Makefile."
 	@echo "The following commands are available:"
 	@echo ""
-	@echo "    make build  DIMG=<IMAGE_DIR> : Build the specified Docker images"
+	@echo "    make build DIMG=<IMAGE_DIR>  : Build the specified Docker images"
 	@echo "    make upload DIMG=<IMAGE_DIR> : Upload the specified Docker images (only with the right credentials)"
 	@echo "    make tag                     : Tag the Git repository"
 	@echo ""

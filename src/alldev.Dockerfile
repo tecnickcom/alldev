@@ -12,6 +12,8 @@ ARG FLYWAY_VERSIONS="11.3.1,10.22.0,7.15.0,9.22.3"
 ARG GO_VERSION="1.23.6"
 ARG HUGO_VERSION="0.143.1"
 ARG KOTLIN_VERSION="2.1.10"
+ARG MONGODB_VERSION="8.0"
+ARG NODE_VERSION="22"
 ARG NOMAD_VERSION="1.9.5"
 ARG VENOM_VERSION="v1.2.0"
 ENV DEBIAN_FRONTEND noninteractive
@@ -45,12 +47,12 @@ RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selectio
 && apt install -y sudo curl locales apt-utils software-properties-common \
 && curl -fsSL https://apt.corretto.aws/corretto.key | gpg --dearmor -o /usr/share/keyrings/corretto-keyring.gpg \
 && echo "deb [signed-by=/usr/share/keyrings/corretto-keyring.gpg] https://apt.corretto.aws stable main" | tee /etc/apt/sources.list.d/corretto.list \
-&& curl -fsSL https://www.mongodb.org/static/pgp/server-8.0.asc | gpg -o /usr/share/keyrings/mongodb-server-8.0.gpg --dearmor \
-&& echo "deb [ signed-by=/usr/share/keyrings/mongodb-server-8.0.gpg ] http://repo.mongodb.org/apt/debian bookworm/mongodb-org/8.0 main" | sudo tee /etc/apt/sources.list.d/mongodb-org-8.0.list \
+&& curl -fsSL https://www.mongodb.org/static/pgp/server-${MONGODB_VERSION}.asc | gpg -o /usr/share/keyrings/mongodb-server-${MONGODB_VERSION}.gpg --dearmor \
+&& echo "deb [ signed-by=/usr/share/keyrings/mongodb-server-${MONGODB_VERSION}.gpg ] http://repo.mongodb.org/apt/debian bookworm/mongodb-org/${MONGODB_VERSION} main" | sudo tee /etc/apt/sources.list.d/mongodb-org-${MONGODB_VERSION}.list \
 && apt update \
 && locale-gen en_US en_US.UTF-8 \
 && dpkg-reconfigure locales \
-&& curl -sL https://deb.nodesource.com/setup_22.x | bash - \
+&& curl -sL https://deb.nodesource.com/setup_${NODE_VERSION}.x | bash - \
 # install development packages and debugging tools
 && apt install -y \
 alien \

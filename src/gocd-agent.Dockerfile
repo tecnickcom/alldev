@@ -10,10 +10,14 @@
 ARG DEBIAN_VERSION="12"
 ARG GOCD_VERSION="v25.1.0"
 FROM gocd/gocd-agent-debian-${DEBIAN_VERSION}:${GOCD_VERSION}
+ARG DEBIAN_VERSION
+ARG GOCD_VERSION
 ARG FLYWAY_VERSIONS="11.3.1,10.22.0,7.15.0,9.22.3"
 ARG GO_VERSION="1.23.6"
 ARG HUGO_VERSION="0.143.1"
 ARG KOTLIN_VERSION="2.1.10"
+ARG MONGODB_VERSION="8.0"
+ARG NODE_VERSION="22"
 ARG NOMAD_VERSION="1.9.5"
 ARG VENOM_VERSION="v1.2.0"
 LABEL com.tecnick.vendor="Tecnick.com"
@@ -44,7 +48,7 @@ RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selectio
 && echo "	email = gocd@example.com" >> /home/go/.gitconfig \
 && echo "	name = gocd" >> /home/go/.gitconfig \
 # Add repositories and update
-&& curl -sL https://deb.nodesource.com/setup_22.x | bash - \
+&& curl -sL https://deb.nodesource.com/setup_${NODE_VERSION}.x | bash - \
 && apt update && apt -y dist-upgrade \
 && apt install -y gnupg apt-utils software-properties-common \
 && curl -fsSL https://apt.corretto.aws/corretto.key | gpg --dearmor -o /usr/share/keyrings/corretto-keyring.gpg \

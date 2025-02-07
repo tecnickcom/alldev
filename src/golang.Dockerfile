@@ -9,6 +9,7 @@
 # ------------------------------------------------------------------------------
 ARG GO_VERSION="1.23"
 FROM golang:${GO_VERSION}
+ARG GO_VERSION
 ENV PATH=/root/.local/bin:$PATH
 ENV USER=root
 RUN apt update \
