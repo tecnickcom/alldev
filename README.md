@@ -1,6 +1,6 @@
 # alldev
 
-*Dockerfile to build a generic development environment based on Ubuntu Linux*
+*Dockerfile to build linux-based generic development environments*
 
 [![Donate via PayPal](https://img.shields.io/badge/donate-paypal-87ceeb.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&currency_code=GBP&business=paypal@tecnick.com&item_name=donation%20for%20alldev%20project)
 *Please consider supporting this project by making a donation via [PayPal](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&currency_code=GBP&business=paypal@tecnick.com&item_name=donation%20for%20alldev%20project)*
