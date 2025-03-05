@@ -9,7 +9,7 @@
 # ------------------------------------------------------------------------------
 FROM debian:12
 ARG FLYWAY_VERSIONS="11.3.1,10.22.0,7.15.0,9.22.3"
-ARG GO_VERSION="1.24.0"
+ARG GO_VERSION="1.24.1"
 ARG HUGO_VERSION="0.143.1"
 ARG KOTLIN_VERSION="2.1.10"
 ARG MONGODB_VERSION="8.0"
