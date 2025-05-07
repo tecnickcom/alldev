@@ -8,7 +8,7 @@
 # @link        https://github.com/tecnickcom/alldev
 # ------------------------------------------------------------------------------
 ARG DEBIAN_VERSION="12"
-ARG GOCD_VERSION="v25.1.0"
+ARG GOCD_VERSION="v25.2.0"
 FROM gocd/gocd-agent-debian-${DEBIAN_VERSION}:${GOCD_VERSION}
 ARG DEBIAN_VERSION
 ARG GOCD_VERSION
