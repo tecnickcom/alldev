@@ -8,7 +8,7 @@
 # @link        https://github.com/tecnickcom/nomadcli
 # ------------------------------------------------------------------------------
 FROM debian:12
-ARG NOMAD_VERSION="1.10.0"
+ARG NOMAD_VERSION="1.10.1"
 ENV DEBIAN_FRONTEND=noninteractive
 ENV TERM=linux
 ENV HOME=/root
