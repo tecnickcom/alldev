@@ -40,7 +40,7 @@ RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selectio
 && echo "	name = gocd" >> /home/go/.gitconfig \
 # Add repositories and update
 && apt update && apt -y dist-upgrade \
-&& apt install -y gnupg apt-utils software-properties-common \
+&& apt install -y gnupg apt-utils \
 && apt update \
 && locale-gen en_US en_US.UTF-8 \
 && dpkg-reconfigure locales \
@@ -88,7 +88,6 @@ pypandoc \
 pytest \
 pytest-benchmark \
 pytest-cov \
-pyyaml \
 schemathesis \
 setuptools \
 yamllint \

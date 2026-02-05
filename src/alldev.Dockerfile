@@ -8,7 +8,7 @@
 # @link        https://github.com/tecnickcom/alldev
 # ------------------------------------------------------------------------------
 FROM debian:13
-ARG FLYWAY_VERSION="12.0.0"
+ARG FLYWAY_VERSION="11.8.2"
 ARG GO_VERSION="1.25.7"
 ARG HUGO_VERSION="0.155.2"
 ARG KOTLIN_VERSION="2.3.0"
@@ -44,7 +44,7 @@ RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selectio
 && echo "	name = gocd" >> /home/go/.gitconfig \
 # Add repositories and update
 && apt update && apt -y dist-upgrade \
-&& apt install -y sudo curl locales apt-utils software-properties-common \
+&& apt install -y sudo curl locales apt-utils \
 && curl -fsSL https://apt.corretto.aws/corretto.key | gpg --dearmor -o /usr/share/keyrings/corretto-keyring.gpg \
 && echo "deb [signed-by=/usr/share/keyrings/corretto-keyring.gpg] https://apt.corretto.aws stable main" | tee /etc/apt/sources.list.d/corretto.list \
 && curl -fsSL https://www.mongodb.org/static/pgp/server-${MONGODB_VERSION}.asc | gpg -o /usr/share/keyrings/mongodb-server-${MONGODB_VERSION}.gpg --dearmor \
@@ -102,6 +102,7 @@ java-1.8.0-amazon-corretto-jdk \
 java-11-amazon-corretto-jdk \
 java-17-amazon-corretto-jdk \
 java-21-amazon-corretto-jdk \
+java-25-amazon-corretto-jdk \
 jq \
 lcov \
 libboost-all-dev \

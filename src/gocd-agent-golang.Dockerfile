@@ -12,7 +12,7 @@ ARG GOCD_VERSION="v25.4.0"
 FROM gocd/gocd-agent-debian-${DEBIAN_VERSION}:${GOCD_VERSION}
 ARG DEBIAN_VERSION
 ARG GOCD_VERSION
-ARG FLYWAY_VERSION="12.0.0"
+ARG FLYWAY_VERSION="11.8.2"
 ARG GO_VERSION="1.25.7"
 ARG NOMAD_VERSION="1.11.1"
 ARG VENOM_VERSION="v1.3.0"
@@ -44,7 +44,7 @@ RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selectio
 && echo "	name = gocd" >> /home/go/.gitconfig \
 # Add repositories and update
 && apt update && apt -y dist-upgrade \
-&& apt install -y gnupg apt-utils software-properties-common \
+&& apt install -y gnupg apt-utils \
 && apt update \
 && locale-gen en_US en_US.UTF-8 \
 && dpkg-reconfigure locales \
