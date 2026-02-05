@@ -16,10 +16,10 @@ ARG NOMAD_VERSION="1.11.1"
 ARG KOTLIN_VERSION="2.3.0"
 ARG VENOM_VERSION="v1.3.0"
 USER root
-ENV DEBIAN_FRONTEND noninteractive
+ENV DEBIAN_FRONTEND=noninteractive
 ENV TERM linux
-ENV HOME /home/go
-ENV DISPLAY :0
+ENV HOME=/home/go
+ENV DISPLAY=:0
 ENV GOPATH=/home/go/GO
 ENV PATH=/usr/local/go/bin:$GOPATH/bin:/home/go/kotlinc/bin:$PATH
 ENV TINI_SUBREAPER=

@@ -13,10 +13,10 @@ FROM gocd/gocd-agent-debian-${DEBIAN_VERSION}:${GOCD_VERSION}
 ARG DEBIAN_VERSION
 ARG GOCD_VERSION
 USER root
-ENV DEBIAN_FRONTEND noninteractive
-ENV TERM linux
-ENV HOME /home/go
-ENV DISPLAY :0
+ENV DEBIAN_FRONTEND=noninteractive
+ENV TERM=linux
+ENV HOME=/home/go
+ENV DISPLAY=:0
 ENV GOPATH=/home/go/GO
 ENV PATH=/usr/local/go/bin:$GOPATH/bin:$PATH
 ENV TINI_SUBREAPER=

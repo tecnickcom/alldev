@@ -16,10 +16,10 @@ ARG MONGODB_VERSION="8.0"
 ARG NODE_VERSION="24"
 ARG NOMAD_VERSION="1.11.1"
 ARG VENOM_VERSION="v1.3.0"
-ENV DEBIAN_FRONTEND noninteractive
-ENV TERM linux
-ENV HOME /root
-ENV DISPLAY :0
+ENV DEBIAN_FRONTEND=noninteractive
+ENV TERM=linux
+ENV HOME=/root
+ENV DISPLAY=:0
 ENV GOPATH=/root
 ENV PATH=/usr/bin/:/usr/local/bin:/usr/local/go/bin/:$GOPATH/bin:/root/kotlinc/bin:/usr/local/flyway:$PATH
 ENV TINI_SUBREAPER=
