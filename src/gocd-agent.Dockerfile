@@ -305,7 +305,7 @@ uglify-js \
 && echo 'export PATH=/usr/local/go/bin:$GOPATH/bin:$PATH' >> /home/go/.profile \
 && /usr/local/go/bin/go version \
 && /usr/local/go/bin/go install github.com/mikefarah/yq/v4@latest \
-&& /usr/local/go/bin/go install github.com/hairyhenderson/gomplate/v3/cmd/gomplate@latest \
+&& /usr/local/go/bin/go install github.com/hairyhenderson/gomplate/v5/cmd/gomplate@latest \
 # Docker
 && cd /tmp \
 && curl -sSL https://get.docker.com/ | sh \

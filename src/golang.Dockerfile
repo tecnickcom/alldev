@@ -31,7 +31,7 @@ check-jsonschema \
 jsonschema \
 yamllint \
 && go install github.com/mikefarah/yq/v4@latest \
-&& go install github.com/hairyhenderson/gomplate/v3/cmd/gomplate@latest
+&& go install github.com/hairyhenderson/gomplate/v5/cmd/gomplate@latest
 LABEL "org.opencontainers.image.authors"="info@tecnick.com"
 LABEL "org.opencontainers.image.url"="https://github.com/tecnickcom/alldev"
 LABEL "org.opencontainers.image.documentation"="https://github.com/tecnickcom/alldev/blob/main/README.md"
