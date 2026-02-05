@@ -7,7 +7,7 @@
 # @license     MIT (see LICENSE)
 # @link        https://github.com/tecnickcom/alldev
 # ------------------------------------------------------------------------------
-FROM debian:12
+FROM debian:13
 ARG FLYWAY_VERSION="12.0.0"
 ARG GO_VERSION="1.25.7"
 ARG HUGO_VERSION="0.155.2"

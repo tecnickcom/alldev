@@ -8,7 +8,7 @@
 # @link        https://github.com/tecnickcom/alldev
 # ------------------------------------------------------------------------------
 
-FROM debian:12
+FROM debian:13
 ENV TINI_SUBREAPER=
 ENV DOCKER_USER=root
 ENV DOCKER_ENTRYPOINT=

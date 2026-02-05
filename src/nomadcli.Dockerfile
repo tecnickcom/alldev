@@ -7,7 +7,7 @@
 # @license     MIT (see LICENSE)
 # @link        https://github.com/tecnickcom/nomadcli
 # ------------------------------------------------------------------------------
-FROM debian:12
+FROM debian:13
 ARG NOMAD_VERSION="1.11.1"
 ENV DEBIAN_FRONTEND=noninteractive
 ENV TERM=linux
