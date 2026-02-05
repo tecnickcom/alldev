@@ -3,7 +3,7 @@
 # Nomad cli and make command
 #
 # @author      Nicola Asuni <info@tecnick.com>
-# @copyright   2016-2025 Nicola Asuni - Tecnick.com LTD
+# @copyright   2016-2026 Nicola Asuni - Tecnick.com LTD
 # @license     MIT (see LICENSE)
 # @link        https://github.com/tecnickcom/nomadcli
 # ------------------------------------------------------------------------------

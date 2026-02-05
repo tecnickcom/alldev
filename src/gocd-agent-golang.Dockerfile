@@ -3,7 +3,7 @@
 # GoCD elastic agent
 #
 # @author      Nicola Asuni <info@tecnick.com>
-# @copyright   2016-2025 Nicola Asuni - Tecnick.com LTD
+# @copyright   2016-2026 Nicola Asuni - Tecnick.com LTD
 # @license     MIT (see LICENSE)
 # @link        https://github.com/tecnickcom/alldev
 # ------------------------------------------------------------------------------
@@ -12,7 +12,7 @@ ARG GOCD_VERSION="v25.3.0"
 FROM gocd/gocd-agent-debian-${DEBIAN_VERSION}:${GOCD_VERSION}
 ARG DEBIAN_VERSION
 ARG GOCD_VERSION
-ARG FLYWAY_VERSIONS="11.20.2,10.22.0,7.15.0,9.22.3"
+ARG FLYWAY_VERSION="12.0.0"
 ARG GO_VERSION="1.25.6"
 ARG NOMAD_VERSION="1.11.1"
 ARG VENOM_VERSION="v1.3.0"
@@ -103,13 +103,11 @@ yamllint \
 && wget -O /usr/bin/venom https://github.com/ovh/venom/releases/download/${VENOM_VERSION}/venom.linux-amd64 \
 && chmod +x /usr/bin/venom \
 && cd /tmp \
-&& for FLYWAY_VERSION in $(echo ${FLYWAY_VERSIONS} | sed "s/,/ /g"); do \
 wget https://repo1.maven.org/maven2/org/flywaydb/flyway-commandline/${FLYWAY_VERSION}/flyway-commandline-${FLYWAY_VERSION}-linux-x64.tar.gz \
 && tar xvzf flyway-commandline-${FLYWAY_VERSION}-linux-x64.tar.gz \
 && rm -f flyway-commandline-${FLYWAY_VERSION}-linux-x64.tar.gz \
 && mv -- flyway-${FLYWAY_VERSION} /usr/local/flyway-${FLYWAY_VERSION} \
 && chmod +x /usr/local/flyway-${FLYWAY_VERSION}/flyway \
-; done \
 && ln -s /usr/local/flyway-${FLYWAY_VERSION} /usr/local/flyway \
 # Install and configure GO
 && cd /tmp \
