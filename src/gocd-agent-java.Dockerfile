@@ -17,7 +17,7 @@ ARG KOTLIN_VERSION="2.3.0"
 ARG VENOM_VERSION="v1.3.0"
 USER root
 ENV DEBIAN_FRONTEND=noninteractive
-ENV TERM linux
+ENV TERM=linux
 ENV HOME=/home/go
 ENV DISPLAY=:0
 ENV GOPATH=/home/go/GO
@@ -43,7 +43,7 @@ RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selectio
 && echo "	name = gocd" >> /home/go/.gitconfig \
 # Add repositories and update
 && apt update && apt -y dist-upgrade \
-&& apt install -y gnupg apt-utils software-properties-common \
+&& apt install -y gnupg apt-utils \
 && curl -fsSL https://apt.corretto.aws/corretto.key | gpg --dearmor -o /usr/share/keyrings/corretto-keyring.gpg \
 && echo "deb [signed-by=/usr/share/keyrings/corretto-keyring.gpg] https://apt.corretto.aws stable main" | tee /etc/apt/sources.list.d/corretto.list \
 && apt update \
@@ -77,6 +77,7 @@ java-1.8.0-amazon-corretto-jdk \
 java-11-amazon-corretto-jdk \
 java-17-amazon-corretto-jdk \
 java-21-amazon-corretto-jdk \
+java-25-amazon-corretto-jdk \
 openssl \
 parallel \
 perl \
