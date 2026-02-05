@@ -7,7 +7,7 @@
 # @license     MIT (see LICENSE)
 # @link        https://github.com/tecnickcom/alldev
 # ------------------------------------------------------------------------------
-ARG DEBIAN_VERSION="12"
+ARG DEBIAN_VERSION="13"
 ARG GOCD_VERSION="v25.3.0"
 FROM gocd/gocd-agent-debian-${DEBIAN_VERSION}:${GOCD_VERSION}
 ARG DEBIAN_VERSION
