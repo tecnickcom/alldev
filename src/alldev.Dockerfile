@@ -279,7 +279,7 @@ uglify-js \
 && cd /tmp \
 && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
 && cd /tmp \
-wget https://repo1.maven.org/maven2/org/flywaydb/flyway-commandline/${FLYWAY_VERSION}/flyway-commandline-${FLYWAY_VERSION}-linux-x64.tar.gz \
+&& wget https://repo1.maven.org/maven2/org/flywaydb/flyway-commandline/${FLYWAY_VERSION}/flyway-commandline-${FLYWAY_VERSION}-linux-x64.tar.gz \
 && tar xvzf flyway-commandline-${FLYWAY_VERSION}-linux-x64.tar.gz \
 && rm -f flyway-commandline-${FLYWAY_VERSION}-linux-x64.tar.gz \
 && mv -- flyway-${FLYWAY_VERSION} /usr/local/flyway-${FLYWAY_VERSION} \
