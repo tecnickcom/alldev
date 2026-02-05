@@ -44,7 +44,7 @@ RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selectio
 && echo "	name = gocd" >> /home/go/.gitconfig \
 # Add repositories and update
 && apt update && apt -y dist-upgrade \
-&& apt install -y sudo curl locales apt-utils \
+&& apt install -y sudo curl locales apt-utils gpg \
 && curl -fsSL https://apt.corretto.aws/corretto.key | gpg --dearmor -o /usr/share/keyrings/corretto-keyring.gpg \
 && echo "deb [signed-by=/usr/share/keyrings/corretto-keyring.gpg] https://apt.corretto.aws stable main" | tee /etc/apt/sources.list.d/corretto.list \
 && curl -fsSL https://www.mongodb.org/static/pgp/server-${MONGODB_VERSION}.asc | gpg -o /usr/share/keyrings/mongodb-server-${MONGODB_VERSION}.gpg --dearmor \
@@ -94,7 +94,6 @@ ghostscript \
 git \
 gridengine-drmaa-dev \
 gsfonts \
-gtk-sharp2 \
 htop \
 imagemagick \
 intltool \
@@ -127,7 +126,6 @@ liblzma-dev \
 libncurses5-dev \
 libpng-dev \
 libssl-dev \
-libtidy5deb1 \
 libtiff5-dev \
 libtool \
 libxml2 \
@@ -170,7 +168,6 @@ php-bcmath \
 php-bz2 \
 php-cgi \
 php-cli \
-php-codesniffer \
 php-common \
 php-curl \
 php-db \
@@ -228,7 +225,7 @@ zlib1g-dev \
 && java -version \
 # Install extra Python dependencies
 && pip3 install --ignore-installed --break-system-packages --upgrade pip \
-&& pip3 install --break-system-packages --upgrade \
+&& pip3 install --ignore-installed --break-system-packages --upgrade \
 ansible \
 autopep8 \
 cffi \
@@ -238,7 +235,6 @@ dnspython \
 fabric \
 json-spec \
 jsonschema \
-lxml \
 nose \
 pyOpenSSL==22.0.0 \
 pyflakes \
@@ -248,7 +244,6 @@ pytest-benchmark \
 pytest-cov \
 pyyaml \
 schemathesis \
-setuptools \
 shade \
 yamllint \
 && cd /root/ \
@@ -282,8 +277,8 @@ uglify-js \
 && wget https://github.com/flyway/flyway/releases/download/flyway-${FLYWAY_VERSION}/flyway-commandline-${FLYWAY_VERSION}-linux-x64.tar.gz \
 && tar xvzf flyway-commandline-${FLYWAY_VERSION}-linux-x64.tar.gz \
 && rm -f flyway-commandline-${FLYWAY_VERSION}-linux-x64.tar.gz \
-&& mv -- flyway-${FLYWAY_VERSION} /usr/local/flyway-${FLYWAY_VERSION} \
-&& chmod +x /usr/local/flyway-${FLYWAY_VERSION}/flyway \
+&& mv -- flyway-${FLYWAY_VERSION} /usr/local/flyway \
+&& chmod +x /usr/local/flyway/flyway \
 && ln -s /usr/local/flyway-${FLYWAY_VERSION} /usr/local/flyway \
 # Install and configure GO
 && cd /tmp \

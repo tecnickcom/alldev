@@ -70,7 +70,7 @@ unzip \
 virtualenv \
 # Install extra Python dependencies
 && pip3 install --ignore-installed --break-system-packages --upgrade pip \
-&& pip3 install --break-system-packages --upgrade \
+&& pip3 install --ignore-installed --break-system-packages --upgrade \
 autopep8 \
 cffi \
 check-jsonschema \
@@ -79,7 +79,6 @@ dnspython \
 fabric \
 httpx \
 jsonschema \
-lxml \
 nose \
 pipenv \
 pyOpenSSL \
@@ -89,7 +88,6 @@ pytest \
 pytest-benchmark \
 pytest-cov \
 schemathesis \
-setuptools \
 yamllint \
 # Docker
 && cd /tmp \

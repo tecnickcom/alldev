@@ -106,8 +106,8 @@ yamllint \
 && wget https://github.com/flyway/flyway/releases/download/flyway-${FLYWAY_VERSION}/flyway-commandline-${FLYWAY_VERSION}-linux-x64.tar.gz \
 && tar xvzf flyway-commandline-${FLYWAY_VERSION}-linux-x64.tar.gz \
 && rm -f flyway-commandline-${FLYWAY_VERSION}-linux-x64.tar.gz \
-&& mv -- flyway-${FLYWAY_VERSION} /usr/local/flyway-${FLYWAY_VERSION} \
-&& chmod +x /usr/local/flyway-${FLYWAY_VERSION}/flyway \
+&& mv -- flyway-${FLYWAY_VERSION} /usr/local/flyway \
+&& chmod +x /usr/local/flyway/flyway \
 && ln -s /usr/local/flyway-${FLYWAY_VERSION} /usr/local/flyway \
 # Install and configure GO
 && cd /tmp \
