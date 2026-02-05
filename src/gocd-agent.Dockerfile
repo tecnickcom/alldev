@@ -12,7 +12,7 @@ ARG GOCD_VERSION="v25.4.0"
 FROM gocd/gocd-agent-debian-${DEBIAN_VERSION}:${GOCD_VERSION}
 ARG DEBIAN_VERSION
 ARG GOCD_VERSION
-ARG FLYWAY_VERSION="11.20.3"
+ARG FLYWAY_VERSION="12.0.0"
 ARG GO_VERSION="1.25.7"
 ARG HUGO_VERSION="0.155.2"
 ARG KOTLIN_VERSION="2.3.0"
@@ -285,7 +285,7 @@ uglify-js \
 && cd /tmp \
 && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
 && cd /tmp \
-&& wget https://repo1.maven.org/maven2/org/flywaydb/flyway-commandline/${FLYWAY_VERSION}/flyway-commandline-${FLYWAY_VERSION}-linux-x64.tar.gz \
+&& wget https://github.com/flyway/flyway/releases/download/flyway-${FLYWAY_VERSION}/flyway-commandline-${FLYWAY_VERSION}-linux-x64.tar.gz \
 && tar xvzf flyway-commandline-${FLYWAY_VERSION}-linux-x64.tar.gz \
 && rm -f flyway-commandline-${FLYWAY_VERSION}-linux-x64.tar.gz \
 && mv -- flyway-${FLYWAY_VERSION} /usr/local/flyway-${FLYWAY_VERSION} \
