@@ -61,21 +61,21 @@ build:
 	docker build \
 	--compress \
 	--no-cache \
-	--tag ${DOCKER_REPOSITORY}/${DIMG}:latest \
+	--tag "${DOCKER_REPOSITORY}/${DIMG}:latest" \
 	--label="com.tecnick.alldev.version=${VERSION}" \
 	--label="com.tecnick.alldev.release=${RELEASE}" \
 	--label="org.opencontainers.image.created=${DATETIME}" \
 	--label="org.opencontainers.image.version=${VERSION}" \
 	--label="org.opencontainers.image.revision=${RELEASE}" \
-	--file ./src/${DIMG}.Dockerfile \
+	--file "./src/${DIMG}.Dockerfile" \
 	./src/
-	docker tag ${DOCKER_REPOSITORY}/${DIMG}:latest ${DOCKER_REPOSITORY}/${DIMG}:${VERSION}-${RELEASE}
+	docker tag "${DOCKER_REPOSITORY}/${DIMG}:latest" "${DOCKER_REPOSITORY}/${DIMG}:${VERSION}-${RELEASE}"
 
 # Upload the specified docker image
 .PHONY: upload
 upload:
-	docker push ${DOCKER_REPOSITORY}/${DIMG}:latest
-	docker push ${DOCKER_REPOSITORY}/${DIMG}:${VERSION}-${RELEASE}
+	docker push "${DOCKER_REPOSITORY}/${DIMG}:latest"
+	docker push "${DOCKER_REPOSITORY}/${DIMG}:${VERSION}-${RELEASE}"
 
 # Tag the Git repository
 .PHONY: tag
