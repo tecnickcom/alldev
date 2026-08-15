@@ -8,7 +8,7 @@
 # @link        https://github.com/tecnickcom/alldev
 # ------------------------------------------------------------------------------
 FROM debian:13
-ARG FLYWAY_VERSION="12.11.0"
+ARG FLYWAY_VERSION="13.3.0"
 ARG GO_VERSION="1.26.5"
 ARG HUGO_VERSION="0.164.0"
 ARG KOTLIN_VERSION="2.4.0"
