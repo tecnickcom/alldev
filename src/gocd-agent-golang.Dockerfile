@@ -89,7 +89,7 @@ xmlindent \
 zip \
 # Install extra Python dependencies
 && pip3 install --ignore-installed --break-system-packages --upgrade pip \
-&& pip3 install --break-system-packages --upgrade \
+&& pip3 install --ignore-installed --break-system-packages --upgrade \
 check-jsonschema \
 httpx \
 jsonschema \
